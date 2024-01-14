@@ -1,4 +1,4 @@
-## Pomouti web
+## Money Tracker web
 
 ## Requirements
 

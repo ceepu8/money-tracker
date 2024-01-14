@@ -20,7 +20,7 @@ export const authOptions = {
   },
   providers: [
     CredentialsProvider({
-      name: 'Pomouti',
+      name: 'MoneyTracker',
       credentials: {
         email: {
           label: 'Email Address',
