@@ -1,0 +1,10 @@
+{
+    "common": {
+        "not_found": "Not found"
+    },
+    "gender": {
+        "female": "female",
+        "male": "male",
+        "other": "other"
+    }
+}

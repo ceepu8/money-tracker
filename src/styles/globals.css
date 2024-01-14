@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --black: 217, 47%, 8%, 1; /* #0e0e0e */
+    --white: 0, 0%, 100%, 0.3; /* #f2f2f2 */
+
+    --yellow: 48, 78%, 62%; /* #ffd541 */
+    --pink: 349, 65%, 82%, 1; /* #f63b9a */
+    --green: 135, 59%, 49%, 1; /* #4fd964 */
+    --blue: 211, 100%, 50%, 1; /* #0033cc */
+    --orange: 35, 100%, 50%, 1; /* #ff6600 */
+    --red: 0, 79%, 63%, 1; /* #ff3333 */
+
+    --main: 196, 63%, 72%, 1; /* #56b1bf */
+    --primary: 217, 46%, 39%, 1; /* #2b4d63 */
+    --secondary: 217, 46%, 20%, 1; /* #2b333d */
+    --outline: 0 0% 31%; /* #505050 */
+    --danger: 0 100% 62%; /* #FF0000 */
+    --silver: 0 0% 80%; /* #CCCCCC */
+
+    --dark-gray: 236 29% 10%; /* #121321 */
+    --light-gray: 0 0% 31%; /* #505050 */
+
+    --dark-blue: 217, 46%, 20%, 1; /* #2b333d */
+    --light-blue: 196, 65%, 93%, 1; /* #f1fbff */
+
+    --sea-blue: 203, 36%, 47%, 1; /* #4282ad */
+    --sub-blue: 205, 50%, 80%, 1; /* #c0d9e8 */
+
+    --text-main: var(--main);
+    --text-black: 218, 46%, 8%; /* #303030 */
+    --text-gray: 221, 9%, 68%, 1; /* #b3b3b3 */
+    --text-primary: var(--primary);
+    --text-secondary: var(--secondary);
+
+    --bg-background: var(--main);
+    --bg-secondary: var(--secondary);
+    --bg-light: var(--light-blue);
+
+    --bg-button-primary: var(--primary);
+    --bg-button-secondary: var(--secondary);
+
+    --border-gray: 0, 0%, 80%; /* #cccccc */
+    --border-dark-gray: 235 16% 29%; /* #3E3F4A */
+    --border-dark: 0 0% 8%; /* #151515 */
+    --border-red: 359 88% 52%; /* #F63E3D */
+
+    --shadow-drop: 0px 16px 32px hsla(0, 0%, 0%, 0.4);
+    --shadow-card: 0px 0px 11px 1px hsla(0, 0%, 0%, 0.3);
+
+    --radius-button: 40px;
+    --radius-input: 8px;
+
+    --height-header-mobile: 74px;
+    --height-header-desktop: 154px;
+  }
+
+  [data-theme='light'] {
+    /*  */
+  }
+
+  [data-theme='dark'] {
+    /*  */
+  }
+
+  [data-theme='ceepu'] {
+    /*  */
+  }
+
+  [data-theme='tist'] {
+    /*  */
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-background);
+    color: var(--text-main);
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .link-item {
+    @apply transition-opacity hover:opacity-50;
+  }
+}
+
+@layer components {
+  input::placeholder {
+    @apply text-gray-500;
+  }
+
+  button:disabled {
+    @apply pointer-events-none cursor-not-allowed select-none shadow-none;
+  }
+}
+
+/* Hide the arrow in input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.disabled\:text-white:disabled {
+  -webkit-text-fill-color: #fff;
+  opacity: 1; /* required on iOS */
+}
+
+/* -- START_SCROLLBAR_STYLE -- */
+/* Width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #646565;
+  border-radius: 5px;
+}
+/* -- END_SCROLLBAR_STYLE -- */
