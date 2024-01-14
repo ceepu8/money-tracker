@@ -1,5 +1,5 @@
-import { notFound } from 'next/navigation'
+import HomeView from '@/views/Home'
 
-export default function CatchAllPage() {
-  notFound()
+export default function HomePage() {
+  return <HomeView />
 }

@@ -29,7 +29,8 @@ export default async function middleware(req) {
   const pathName = removeLocalesFromPathname(req.nextUrl.pathname)
   const isPublicPage = checkIsPublicPage(pathName)
   const token = await getToken({ req })
-  const isAuth = !!token || !!webviewToken
+  // const isAuth = !!token || !!webviewToken
+  const isAuth = true
 
   const isPublicFolder =
     pathName.startsWith('/_next') ||
@@ -56,9 +57,9 @@ export default async function middleware(req) {
     return intlMiddleware(req)
   }
 
-  if (!isAuth && !isPublicPage && req.method !== 'POST') {
-    return NextResponse.redirect(new URL(Routes.AUTH.LOGIN, req.url))
-  }
+  // if (!isAuth && !isPublicPage && req.method !== 'POST') {
+  //   return NextResponse.redirect(new URL(Routes.AUTH.LOGIN, req.url))
+  // }
   return authMiddleware(req)
 }
 
