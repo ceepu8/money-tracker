@@ -1,0 +1,20 @@
+.common-title:where(.css-dev-only-do-not-override-i1mju1).ant-input-outlined:focus,
+:where(.css-dev-only-do-not-override-i1mju1).ant-input-outlined:focus-within {
+  height: 46px !important;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+.common-title:where(.css-dev-only-do-not-override-i1mju1).ant-typography-edit-content {
+  transition: none;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  inset-inline-start: 0;
+}
+
+.common-title:where(.css-dev-only-do-not-override-i1mju1).ant-typography-edit-content
+  .ant-typography-edit-content-confirm {
+  display: none;
+}

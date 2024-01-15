@@ -1,5 +1,5 @@
-import HomeView from '@/views/Home'
+import ExpenseView from '@/views/Expense'
 
 export default function HomePage() {
-  return <HomeView />
+  return <ExpenseView />
 }
