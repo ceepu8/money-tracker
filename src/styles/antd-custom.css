@@ -18,3 +18,34 @@
   .ant-typography-edit-content-confirm {
   display: none;
 }
+
+/* EXPENSE-TABS */
+
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab {
+  border-radius: 4px;
+  padding: 4px;
+  color: #7e7e7e;
+  transition:
+    color 150ms ease-in,
+    background-color 150ms ease-in;
+  margin-bottom: 6px;
+}
+
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab:hover {
+  color: #212121;
+  background-color: #ededed;
+}
+
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab + .ant-tabs-tab {
+  margin: 0px 0px 6px 0px;
+}
+
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs
+  .ant-tabs-tab.ant-tabs-tab-active
+  .ant-tabs-tab-btn {
+  color: #212121;
+}
+
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-ink-bar {
+  background-color: #212121;
+}

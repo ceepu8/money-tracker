@@ -1,3 +1,3 @@
-import { Bars3Icon as MenuIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon as MenuIcon, TableCellsIcon } from '@heroicons/react/24/outline'
 
-export { MenuIcon }
+export { MenuIcon, TableCellsIcon }

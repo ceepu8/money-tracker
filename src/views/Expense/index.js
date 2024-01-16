@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Title } from '@/components/common'
+import ExpenseTab from './ExpenseTab'
 
 const ExpenseView = () => {
   const [title, setTitle] = useState('Expense')
@@ -16,6 +17,7 @@ const ExpenseView = () => {
       <Title editable onChange={onSetTitle}>
         {title}
       </Title>
+      <ExpenseTab />
     </div>
   )
 }
