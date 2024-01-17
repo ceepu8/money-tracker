@@ -1,10 +1,11 @@
 import { Tabs } from 'antd'
-import { useRef, useState } from 'react'
-import { TableCellsIcon } from '@/components/icons'
+import { v4 as uuidv4 } from 'uuid'
+import { PlusIcon, TableCellsIcon } from '@/components/icons'
+import { useTabs } from '@/utils'
 
 const TabTitle = ({ children, icon: Icon }) => {
   return (
-    <div className="flex-center gap-x-2 px-2">
+    <div className="flex items-center gap-x-2 px-2 py-1">
       <Icon className="h-4 w-4" />
       <span className="">{children}</span>
     </div>
@@ -18,72 +19,61 @@ const TabContent = ({ children }) => {
 const defaultPanes = [
   {
     key: 'january',
-    label: <TabTitle icon={TableCellsIcon}>JANUARY</TabTitle>,
-    children: <TabContent>January Content</TabContent>,
+    label: 'JANUARY',
+    children: 'January Content',
+    closable: false,
   },
   {
     key: 'february',
-    label: <TabTitle icon={TableCellsIcon}>FEBRUARY</TabTitle>,
-    children: <TabContent>February Content</TabContent>,
+    label: 'FEBRUARY',
+    children: 'February Content',
+    closable: false,
   },
 ]
 
+const AddTabButton = ({ onClick }) => {
+  return (
+    <button
+      type="button"
+      className="flex-center h-[30px] w-[30px] shrink-0 rounded border-none transition-colors hover:bg-gray-100"
+      onClick={onClick}
+    >
+      <PlusIcon className="h-4 w-4 text-gray-500" />
+    </button>
+  )
+}
+
+const { TabPane } = Tabs
+
 const ExpenseTabList = () => {
-  const [activeKey, setActiveKey] = useState(defaultPanes[0].key)
-  const [items, setItems] = useState(defaultPanes)
-  const newTabIndex = useRef(0)
+  const { items, activeKey, add, onEdit, onChange } = useTabs(defaultPanes)
 
-  const onChange = (key) => {
-    setActiveKey(key)
-  }
-
-  const add = () => {
-    const newTabValue = newTabIndex.current + 1
-    const newActiveKey = `newTab${newTabValue}`
-    setItems([
-      ...items,
-      {
-        label: <TabTitle icon={TableCellsIcon}>New View</TabTitle>,
-        children: <TabContent>New View Pane</TabContent>,
-        key: newActiveKey,
-      },
-    ])
-    setActiveKey(newActiveKey)
-  }
-
-  const remove = (targetKey) => {
-    const targetIndex = items.findIndex((pane) => pane.key === targetKey)
-    const newPanes = items.filter((pane) => pane.key !== targetKey)
-    if (newPanes.length && targetKey === activeKey) {
-      const { key } = newPanes[targetIndex === newPanes.length ? targetIndex - 1 : targetIndex]
-      setActiveKey(key)
+  const onAddNewTab = () => {
+    const newItem = {
+      label: 'New View',
+      children: 'New View Pane',
+      key: uuidv4(),
+      closable: false,
     }
-    setItems(newPanes)
-  }
-
-  const onEdit = (targetKey, action) => {
-    if (action === 'add') {
-      add()
-    } else {
-      remove(targetKey)
-    }
+    add(newItem)
   }
 
   return (
-    <div>
-      <Tabs
-        id="expense-tabs"
-        activeKey={activeKey}
-        onChange={onChange}
-        items={items}
-        onEdit={onEdit}
-      />
-      <div style={{ marginBottom: 16 }}>
-        <button type="button" onClick={add}>
-          ADD
-        </button>
-      </div>
-    </div>
+    <Tabs id="expense-tabs" activeKey={activeKey} onChange={onChange} onEdit={onEdit}>
+      {items.map((item) => {
+        const { key, children, label, closable } = item || {}
+        return (
+          <TabPane
+            closable={closable}
+            tab={<TabTitle icon={TableCellsIcon}>{label}</TabTitle>}
+            key={key}
+          >
+            <TabContent>{children}</TabContent>
+          </TabPane>
+        )
+      })}
+      <TabPane disabled className="p-0" tab={<AddTabButton onClick={onAddNewTab} />} key="button" />
+    </Tabs>
   )
 }
 

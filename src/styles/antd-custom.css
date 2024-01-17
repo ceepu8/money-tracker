@@ -23,7 +23,7 @@
 
 #expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab {
   border-radius: 4px;
-  padding: 4px;
+  padding: 0px;
   color: #7e7e7e;
   transition:
     color 150ms ease-in,
