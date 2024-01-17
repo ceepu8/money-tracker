@@ -7,7 +7,7 @@ const TabTitle = ({ children, icon: Icon }) => {
   return (
     <div className="flex items-center gap-x-2 px-2 py-1">
       <Icon className="h-4 w-4" />
-      <span className="">{children}</span>
+      <span className="text-sm">{children}</span>
     </div>
   )
 }

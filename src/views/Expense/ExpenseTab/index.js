@@ -1,10 +1,34 @@
-import React from 'react'
+'use client'
+
+import { useFlag } from '@/hooks/shared'
+import ExpenseSortFilterControl from './ExpenseSortFilterControl'
 import ExpenseTabList from './ExpenseTabList'
+import ExpenseTabSearch from './ExpenseTabSearch'
+import ExpenseTabSetting from './ExpenseTabSetting'
+
+const ACTIVE_EXTRA_SETTING_WIDTH = 330
+const INACTIVE_EXTRA_SETTING_WIDTH = 150
 
 const ExpenseTab = () => {
+  const [search, _, setSearchFalse, setToggleSearch] = useFlag()
+
+  const width = search ? ACTIVE_EXTRA_SETTING_WIDTH : INACTIVE_EXTRA_SETTING_WIDTH
+
   return (
-    <div>
-      <ExpenseTabList />
+    <div className="relative">
+      <ExpenseTabList search={search} />
+      <div
+        className="absolute right-0 top-0 flex justify-between transition-[width]"
+        style={{ width: `${width}px` }}
+      >
+        <ExpenseSortFilterControl />
+        <ExpenseTabSearch
+          search={search}
+          setToggleSearch={setToggleSearch}
+          setSearchFalse={setSearchFalse}
+        />
+        <ExpenseTabSetting />
+      </div>
     </div>
   )
 }

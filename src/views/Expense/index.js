@@ -13,7 +13,7 @@ const ExpenseView = () => {
   }
 
   return (
-    <div className="mx-auto mt-12 max-w-[1200px]">
+    <div className="mx-auto mt-12 max-w-[1200px] overflow-hidden">
       <Title editable onChange={onSetTitle}>
         {title}
       </Title>
