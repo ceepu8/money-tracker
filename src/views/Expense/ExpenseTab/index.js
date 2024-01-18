@@ -16,9 +16,11 @@ const ExpenseTab = () => {
 
   return (
     <div className="relative">
-      <ExpenseTabList search={search} />
+      <div className="transition-[max-width]" style={{ maxWidth: `calc(100% - ${width}px)` }}>
+        <ExpenseTabList search={search} />
+      </div>
       <div
-        className="absolute right-0 top-0 flex justify-between transition-[width]"
+        className="absolute right-0 top-0 flex justify-between border-b border-[#ededed] pb-[5px] transition-[width]"
         style={{ width: `${width}px` }}
       >
         <ExpenseSortFilterControl />
