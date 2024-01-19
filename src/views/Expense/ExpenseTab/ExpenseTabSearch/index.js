@@ -2,22 +2,8 @@
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import { ButtonIcon } from '@/components/ui'
 import { cn } from '@/utils'
-
-const Button = ({ onClick, children, className }) => {
-  return (
-    <button
-      type="button"
-      className={cn(
-        'flex-center h-[30px] w-[30px] shrink-0 rounded border-none transition-colors hover:bg-gray-100',
-        className
-      )}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  )
-}
 
 const SearchInput = forwardRef(({ active, onBlur, onChange }, ref) => {
   return (
@@ -60,9 +46,11 @@ const ExpenseTabSearch = ({ search, setToggleSearch, setSearchFalse }) => {
 
   return (
     <div className="flex items-center">
-      <Button className="shrink-0" onClick={setToggleSearch}>
-        <MagnifyingGlassIcon className="h-4 w-4" />
-      </Button>
+      <ButtonIcon
+        icon={<MagnifyingGlassIcon className="h-4 w-4" />}
+        className="shrink-0"
+        onClick={setToggleSearch}
+      />
       <SearchInput
         active={search}
         ref={searchRef}

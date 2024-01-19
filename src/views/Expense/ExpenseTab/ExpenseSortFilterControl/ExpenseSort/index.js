@@ -4,7 +4,9 @@ import { Button } from '@/components/ui'
 const ExpenseSort = () => {
   return (
     <div>
-      <Button>Sort</Button>
+      <Button type="text" size="medium">
+        Sort
+      </Button>
     </div>
   )
 }

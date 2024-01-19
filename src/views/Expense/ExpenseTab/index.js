@@ -6,8 +6,8 @@ import ExpenseTabList from './ExpenseTabList'
 import ExpenseTabSearch from './ExpenseTabSearch'
 import ExpenseTabSetting from './ExpenseTabSetting'
 
-const ACTIVE_EXTRA_SETTING_WIDTH = 330
-const INACTIVE_EXTRA_SETTING_WIDTH = 150
+const ACTIVE_EXTRA_SETTING_WIDTH = 365
+const INACTIVE_EXTRA_SETTING_WIDTH = 185
 
 const ExpenseTab = () => {
   const [search, _, setSearchFalse, setToggleSearch] = useFlag()

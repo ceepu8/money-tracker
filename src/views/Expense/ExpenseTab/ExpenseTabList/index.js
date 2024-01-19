@@ -1,4 +1,5 @@
 import { DndContext, PointerSensor, useSensor } from '@dnd-kit/core'
+import { restrictToHorizontalAxis, restrictToParentElement } from '@dnd-kit/modifiers'
 import {
   arrayMove,
   horizontalListSortingStrategy,
@@ -10,6 +11,7 @@ import { Tabs } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { PlusIcon, TableCellsIcon } from '@/components/icons'
+import { ButtonIcon } from '@/components/ui'
 import { cn, useTabs } from '@/utils'
 
 const CLICK = {
@@ -18,19 +20,12 @@ const CLICK = {
 }
 
 const TabTitle = ({ children, icon: Icon }) => {
-  const [edit, setEdit] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
   const [width, setWidth] = useState(0)
   const [value, setValue] = useState(children)
 
   const inputRef = useRef(null)
   const spanRef = useRef(null)
-
-  useEffect(() => {
-    if (spanRef?.current && !edit) {
-      const { offsetWidth } = spanRef.current
-      setWidth(offsetWidth)
-    }
-  }, [edit])
 
   const onClick = (e) => {
     switch (e.detail) {
@@ -38,7 +33,7 @@ const TabTitle = ({ children, icon: Icon }) => {
         break
 
       case CLICK.DOUBLE:
-        setEdit(true)
+        setIsEditing(true)
         break
 
       default:
@@ -53,19 +48,29 @@ const TabTitle = ({ children, icon: Icon }) => {
   }
 
   const onBlur = () => {
-    setEdit(false)
+    setIsEditing(false)
   }
 
   useEffect(() => {
-    if (edit) {
+    if (isEditing) {
       inputRef.current.focus()
     }
-  }, [edit])
+  }, [isEditing])
+
+  useEffect(() => {
+    if (spanRef?.current && !isEditing) {
+      const { offsetWidth } = spanRef.current
+      setWidth(offsetWidth)
+    }
+  }, [isEditing])
 
   return (
     <button type="button" onClick={onClick} className="flex items-center gap-x-2 px-2 py-1">
       <Icon className="h-4 w-4" />
-      <span ref={spanRef} className={cn('text-sm', edit && 'hidden')}>
+      <span
+        ref={spanRef}
+        className={cn('max-w-[80px] overflow-hidden truncate text-sm', isEditing && 'hidden')}
+      >
         {value}
       </span>
       <input
@@ -73,7 +78,7 @@ const TabTitle = ({ children, icon: Icon }) => {
         onChange={onChangeValue}
         onBlur={onBlur}
         ref={inputRef}
-        className={cn('hidden bg-inherit outline-none', edit && 'block')}
+        className={cn('hidden bg-inherit outline-none', isEditing && 'block')}
         style={{
           width: `${width}px`,
         }}
@@ -126,13 +131,11 @@ const defaultPanes = [
 
 const AddTabButton = ({ onClick }) => {
   return (
-    <button
-      type="button"
-      className="flex-center h-[30px] w-[30px] shrink-0 rounded border-none transition-colors hover:bg-gray-100"
+    <ButtonIcon
+      size="medium"
+      icon={<PlusIcon className="h-4 w-4 text-gray-500" />}
       onClick={onClick}
-    >
-      <PlusIcon className="h-4 w-4 text-gray-500" />
-    </button>
+    />
   )
 }
 
@@ -163,7 +166,11 @@ const ExpenseTabList = () => {
     }
   }
   const renderTabBar = (tabBarProps, DefaultTabBar) => (
-    <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
+    <DndContext
+      sensors={[sensor]}
+      modifiers={[restrictToParentElement, restrictToHorizontalAxis]}
+      onDragEnd={onDragEnd}
+    >
       <SortableContext items={items.map((i) => i.key)} strategy={horizontalListSortingStrategy}>
         <DefaultTabBar {...tabBarProps}>
           {(node) => {

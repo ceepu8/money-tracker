@@ -8,13 +8,7 @@ export const useTabs = (initialPanes) => {
     setActiveKey(key)
   }
 
-  const add = () => {
-    const item = {
-      label: 'New Tab',
-      children: 'Content of new Tab',
-      key: Math.random().toString(16).slice(2),
-      closable: false,
-    }
+  const add = (item) => {
     setItems([...items, item])
     setActiveKey(item.key)
   }
