@@ -57,6 +57,20 @@
   padding: 6px 16px;
 }
 
-#expense-tabs::where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-content-holder {
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-content-holder {
   min-width: 1200px;
+}
+
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-btn:focus-visible,
+:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-remove:focus-visible {
+  outline: none;
+}
+
+#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs
+  .ant-tabs-tab-btn:focus:not(:focus-visible),
+:where(.css-dev-only-do-not-override-i1mju1).ant-tabs
+  .ant-tabs-tab-remove:focus:not(:focus-visible),
+:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-btn:active,
+:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-remove:active {
+  color: inherit;
 }

@@ -37,5 +37,5 @@ export const useTabs = (initialPanes) => {
     }
   }
 
-  return { items, activeKey, add, remove, onEdit, onChange }
+  return { items, setItems, activeKey, add, remove, onEdit, onChange }
 }
