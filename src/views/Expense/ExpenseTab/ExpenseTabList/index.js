@@ -7,17 +7,78 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Tabs } from 'antd'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { PlusIcon, TableCellsIcon } from '@/components/icons'
-import { useTabs } from '@/utils'
+import { cn, useTabs } from '@/utils'
+
+const CLICK = {
+  SINGLE: 1,
+  DOUBLE: 2,
+}
 
 const TabTitle = ({ children, icon: Icon }) => {
+  const [edit, setEdit] = useState(false)
+  const [width, setWidth] = useState(0)
+  const [value, setValue] = useState(children)
+
+  const inputRef = useRef(null)
+  const spanRef = useRef(null)
+
+  useEffect(() => {
+    if (spanRef?.current && !edit) {
+      const { offsetWidth } = spanRef.current
+      setWidth(offsetWidth)
+    }
+  }, [edit])
+
+  const onClick = (e) => {
+    switch (e.detail) {
+      case CLICK.SINGLE:
+        break
+
+      case CLICK.DOUBLE:
+        setEdit(true)
+        break
+
+      default:
+        break
+    }
+  }
+
+  const onChangeValue = (e) => {
+    const { value: eValue } = e.target
+    if (!eValue) return
+    setValue(eValue)
+  }
+
+  const onBlur = () => {
+    setEdit(false)
+  }
+
+  useEffect(() => {
+    if (edit) {
+      inputRef.current.focus()
+    }
+  }, [edit])
+
   return (
-    <div className="flex items-center gap-x-2 px-2 py-1">
+    <button type="button" onClick={onClick} className="flex items-center gap-x-2 px-2 py-1">
       <Icon className="h-4 w-4" />
-      <span className="text-sm">{children}</span>
-    </div>
+      <span ref={spanRef} className={cn('text-sm', edit && 'hidden')}>
+        {value}
+      </span>
+      <input
+        value={value}
+        onChange={onChangeValue}
+        onBlur={onBlur}
+        ref={inputRef}
+        className={cn('hidden bg-inherit outline-none', edit && 'block')}
+        style={{
+          width: `${width}px`,
+        }}
+      />
+    </button>
   )
 }
 
