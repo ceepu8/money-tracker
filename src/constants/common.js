@@ -5,7 +5,4 @@ export const APP_NAME = 'MONEY_TRACKER'
 
 export const locales = ['en', 'vi']
 
-export const DEBOUNCE_DELAY = 250
-export const DEBOUNCE_OPTIONS = { leading: true, trailing: false }
-
-export const THEME = { LIGHT: 'light', DARK: 'dark', CEEPU: 'ceepu', TIST: 'tist' }
+export const THEME = { LIGHT: 'light', DARK: 'dark' }

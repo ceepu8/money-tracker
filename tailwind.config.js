@@ -22,48 +22,19 @@ module.exports = {
         serif: ['var(--font-serif)'],
       },
       colors: {
-        main: 'hsl(var(--main) / <alpha-value>)',
-        main: 'hsl(var(--main) / <alpha-value>)',
-        primary: 'hsl(var(--primary) / <alpha-value>)',
-        secondary: 'hsl(var(--secondary) / <alpha-value>)',
-        outline: 'hsl(var(--outline) / <alpha-value>)',
-        danger: 'hsl(var(--danger) / <alpha-value>)',
-        silver: 'hsl(var(--silver) / <alpha-value>)',
-        'dark-gray': 'hsl(var(--dark-gray) / <alpha-value>)',
-        'light-gray': 'hsl(var(--light-gray) / <alpha-value>)',
-        background: 'hsl(var(--bg-background) / <alpha-value>)',
-        'secondary-bg': 'hsl(var(--bg-secondary) / <alpha-value>)',
-        'light-bg': 'hsl(var(--bg-light) / <alpha-value>)',
-        'button-primary-bg': 'hsl(var(--bg-button-primary) / <alpha-value>)',
-        'button-secondary-bg': 'hsl(var(--bg-button-secondary) / <alpha-value>)',
-        'border-gray': 'hsl(var(--border-gray) / var(--border-gray-alpha))',
-        'border-dark-gray': 'hsl(var(--border-dark-gray) / <alpha-value>)',
-        'border-dark': 'hsl(var(--border-dark) / <alpha-value>)',
-        'border-red': 'hsl(var(--border-red) / <alpha-value>)',
+        black: 'var(--black)',
+        white: 'var(--white)',
+        blue: 'var(--blue)',
+
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
       },
       textColor: {
-        primary: 'hsl(var(--text-primary) / <alpha-value>)',
-        secondary: 'hsl(var(--text-secondary) / <alpha-value>)',
-        white: 'hsl(var(--white) / <alpha-value>)',
-        black: 'hsl(var(--black) / <alpha-value>)',
-        main: 'hsl(var(--text-main) / <alpha-value>)',
-        text_black: 'hsl(var(--text-black) / <alpha-value>)',
-        text_gray: 'hsl(var(--text-gray) / <alpha-value>)',
+        // dùng chung với colors luôn vậy
       },
-      borderColor: {
-        gray: 'hsl(var(--border-gray) / <alpha-value>)',
-        'dark-gray': 'hsl(var(--border-dark-gray) / <alpha-value>)',
-        dark: 'hsl(var(--border-dark) / <alpha-value>)',
-        red: 'hsl(var(--border-red) / <alpha-value>)',
-      },
-      boxShadow: {
-        drop: 'var(--shadow-drop)',
-        card: 'var(--shadow-card)',
-      },
-      borderRadius: {
-        button: 'var(--radius-button)',
-        input: 'var(--radius-input)',
-      },
+      borderColor: {},
+      boxShadow: {},
+      borderRadius: {},
     },
   },
 
@@ -79,7 +50,7 @@ module.exports = {
 
   // daisyUI config (optional - here are the default values)
   daisyui: {
-    themes: ['light', 'dark', 'ceepu', 'tist'],
+    themes: ['light', 'dark'],
     // themes: false, // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: 'dark', // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default

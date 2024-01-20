@@ -3,7 +3,7 @@ import { Button } from '@/components/ui'
 const ExpenseFilter = () => {
   return (
     <div>
-      <Button type="text" size="medium" danger>
+      <Button type="text" size="medium">
         Filter
       </Button>
     </div>

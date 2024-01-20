@@ -20,11 +20,7 @@ const Button = ({
   href,
   ...props
 }) => {
-  const customClassName = cn('flex-center', {
-    'bg-secondary text-white border-secondary': type === 'secondary',
-    'bg-green text-white border-green': type === 'success',
-    'bg-error text-white border-danger': type === 'error',
-  })
+  const rootClassName = cn('flex-center')
 
   const customType = ANTD_BUTTON_TYPES.includes(type) && htmlType !== 'submit' ? type : 'default'
 
@@ -45,10 +41,10 @@ const Button = ({
 
   return (
     <AntdButton
-      id="base_admin_button"
       size={size}
+      id="_button_"
       htmlType={htmlType}
-      className={cn(customClassName, className)}
+      className={cn(rootClassName, className)}
       onClick={onClick || onClickDefault}
       disabled={disabled}
       type={customType}
