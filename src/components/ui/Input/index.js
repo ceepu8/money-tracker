@@ -28,7 +28,7 @@ const Input = forwardRef((props, ref) => {
   const rootClassnames = useMemo(
     () =>
       cn(
-        'block h-12 w-full rounded-lg border border-gray px-4 text-base font-bold text-secondary outline-none enabled:hover:border-primary',
+        'border-gray block h-12 w-full rounded-lg border px-4 text-base font-bold text-secondary outline-none enabled:hover:border-primary',
         'disabled:bg-table-header disabled:text-white disabled:shadow-none',
         {
           'invalid:text-red-300 focus:border-red enabled:hover:border-red': Boolean(error),

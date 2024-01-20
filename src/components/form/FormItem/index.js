@@ -38,7 +38,7 @@ const FormItem = ({
           {required && (
             <span
               className={cn(
-                'ml-3 rounded border border-dark-gray bg-secondary px-2 py-0.5 text-[10px] text-white lg:ml-5',
+                'border-dark-gray ml-3 rounded border bg-secondary px-2 py-0.5 text-[10px] text-white lg:ml-5',
                 requiredClassName
               )}
             >
@@ -61,7 +61,7 @@ const FormItem = ({
         )}
         {!hideErrorMessage && (
           <p
-            className={cn('text-xs text-danger', !meta.error ? 'max-h-0' : 'mt-1 max-h-[40px]')}
+            className={cn('text-danger text-xs', !meta.error ? 'max-h-0' : 'mt-1 max-h-[40px]')}
             role="alert"
             style={{
               transition: !meta.error ? 'max-height 0.15s ease-out' : 'max-height 0.25s ease-in',
