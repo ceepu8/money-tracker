@@ -1,6 +1,4 @@
-import '@/styles/globals.css'
-//
-import '@/styles/daisy-custom.css'
+import '@/styles/index.css'
 
 export default function RootLayout({ children }) {
   return children
