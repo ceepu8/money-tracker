@@ -1,5 +1,5 @@
-.common-title:where(.css-dev-only-do-not-override-i1mju1).ant-input-outlined:focus,
-:where(.css-dev-only-do-not-override-i1mju1).ant-input-outlined:focus-within {
+.common-title.ant-input-outlined:focus,
+.ant-input-outlined:focus-within {
   height: 46px !important;
   border: none;
   padding: 0;
@@ -7,21 +7,20 @@
   transition: none;
 }
 
-.common-title:where(.css-dev-only-do-not-override-i1mju1).ant-typography-edit-content {
+.common-title.ant-typography-edit-content {
   transition: none;
   margin-bottom: 0.5em;
   margin-top: 0;
   inset-inline-start: 0;
 }
 
-.common-title:where(.css-dev-only-do-not-override-i1mju1).ant-typography-edit-content
-  .ant-typography-edit-content-confirm {
+.common-title.ant-typography-edit-content .ant-typography-edit-content-confirm {
   display: none;
 }
 
 /* EXPENSE-TABS */
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab {
+#expense-tabs.ant-tabs .ant-tabs-tab {
   border-radius: 4px;
   padding: 0px;
   color: #7e7e7e;
@@ -31,46 +30,40 @@
   margin-bottom: 6px;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab:hover {
+#expense-tabs.ant-tabs .ant-tabs-tab:hover {
   color: #212121;
   background-color: #ededed;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab + .ant-tabs-tab {
+#expense-tabs.ant-tabs .ant-tabs-tab + .ant-tabs-tab {
   margin: 0px 0px 6px 0px;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs
-  .ant-tabs-tab.ant-tabs-tab-active
-  .ant-tabs-tab-btn {
+#expense-tabs.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   color: #212121;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-ink-bar {
+#expense-tabs.ant-tabs .ant-tabs-ink-bar {
   background-color: #212121;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs
-  > .ant-tabs-nav
-  .ant-tabs-nav-more,
-:where(.css-dev-only-do-not-override-i1mju1).ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-more {
+#expense-tabs.ant-tabs > .ant-tabs-nav .ant-tabs-nav-more,
+.ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-more {
   padding: 6px 16px;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-content-holder {
+#expense-tabs.ant-tabs .ant-tabs-content-holder {
   min-width: 1200px;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-btn:focus-visible,
-:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-remove:focus-visible {
+#expense-tabs.ant-tabs .ant-tabs-tab-btn:focus-visible,
+.ant-tabs .ant-tabs-tab-remove:focus-visible {
   outline: none;
 }
 
-#expense-tabs:where(.css-dev-only-do-not-override-i1mju1).ant-tabs
-  .ant-tabs-tab-btn:focus:not(:focus-visible),
-:where(.css-dev-only-do-not-override-i1mju1).ant-tabs
-  .ant-tabs-tab-remove:focus:not(:focus-visible),
-:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-btn:active,
-:where(.css-dev-only-do-not-override-i1mju1).ant-tabs .ant-tabs-tab-remove:active {
+#expense-tabs.ant-tabs .ant-tabs-tab-btn:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab-remove:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab-btn:active,
+.ant-tabs .ant-tabs-tab-remove:active {
   color: inherit;
 }

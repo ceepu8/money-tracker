@@ -1,7 +1,6 @@
 'use client'
 
 import { Typography } from 'antd/lib'
-import isEmpty from 'lodash/isEmpty'
 import { useState } from 'react'
 import { cn } from '@/utils'
 
@@ -20,12 +19,12 @@ const HeadingTitle = ({
   const [title, setTitle] = useState(label)
 
   const onSetTitle = (value) => {
-    if (!value || isEmpty(editable)) return
+    if (!value) return
     setTitle(value)
     onChange?.(value)
   }
 
-  const _editable = !isEmpty(editable) && {
+  const _editable = !!editable && {
     tooltip: true,
     maxLength: 10,
     onChange: onSetTitle,
