@@ -1,7 +1,8 @@
 'use client'
 
+/* eslint-disable no-unused-vars */
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import { forwardRef, useDeferredValue, useEffect, useRef, useState } from 'react'
 import { ButtonIcon } from '@/components/ui'
 import { cn } from '@/utils'
 
@@ -28,35 +29,39 @@ const SearchInput = forwardRef(({ active, onBlur, onChange }, ref) => {
   )
 })
 
-const ExpenseTabSearch = ({ search, setToggleSearch, setSearchFalse }) => {
+const ExpenseTabSearch = ({ searchFlag }) => {
+  const [hasSearch, _onOpenSeach, onCloseSearch, toggleHasSearch] = searchFlag
+
   const [value, setValue] = useState('')
+  const deferredValue = useDeferredValue(value)
+
   const searchRef = useRef(null)
 
-  const onSetValue = (e) => {
+  const onChange = (e) => {
     const { value: inputVal } = e.target
     if (!inputVal) return
     setValue(inputVal)
   }
 
   useEffect(() => {
-    if (search) {
+    if (hasSearch && searchRef.current) {
       searchRef.current.focus()
     }
-  }, [search])
+  }, [hasSearch])
 
   return (
     <div className="flex items-center">
       <ButtonIcon
         icon={<MagnifyingGlassIcon className="h-4 w-4" />}
         className="shrink-0"
-        onClick={setToggleSearch}
+        onClick={toggleHasSearch}
       />
       <SearchInput
-        active={search}
+        active={hasSearch}
         ref={searchRef}
-        value={value}
-        onChange={onSetValue}
-        onBlur={setSearchFalse}
+        value={deferredValue}
+        onChange={onChange}
+        onBlur={onCloseSearch}
       />
     </div>
   )

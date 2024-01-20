@@ -8,88 +8,12 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Tabs } from 'antd'
-import React, { useEffect, useRef, useState } from 'react'
+import { cloneElement } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { PlusIcon, TableCellsIcon } from '@/components/icons'
 import { ButtonIcon } from '@/components/ui'
-import { cn, useTabs } from '@/utils'
-
-const CLICK = {
-  SINGLE: 1,
-  DOUBLE: 2,
-}
-
-const TabTitle = ({ children, icon: Icon }) => {
-  const [isEditing, setIsEditing] = useState(false)
-  const [width, setWidth] = useState(0)
-  const [value, setValue] = useState(children)
-
-  const inputRef = useRef(null)
-  const spanRef = useRef(null)
-
-  const onClick = (e) => {
-    switch (e.detail) {
-      case CLICK.SINGLE:
-        break
-
-      case CLICK.DOUBLE:
-        setIsEditing(true)
-        break
-
-      default:
-        break
-    }
-  }
-
-  const onChangeValue = (e) => {
-    const { value: eValue } = e.target
-    if (!eValue) return
-    setValue(eValue)
-  }
-
-  const onBlur = () => {
-    setIsEditing(false)
-  }
-
-  useEffect(() => {
-    if (isEditing) {
-      inputRef.current.focus()
-    }
-  }, [isEditing])
-
-  useEffect(() => {
-    if (spanRef?.current && !isEditing) {
-      const { offsetWidth } = spanRef.current
-      setWidth(offsetWidth)
-    }
-  }, [isEditing])
-
-  return (
-    <button type="button" onClick={onClick} className="flex items-center gap-x-2 px-2 py-1">
-      <Icon className="h-4 w-4" />
-      <span
-        ref={spanRef}
-        className={cn('max-w-[80px] overflow-hidden truncate text-sm', isEditing && 'hidden')}
-      >
-        {value}
-      </span>
-      <input
-        value={value}
-        onChange={onChangeValue}
-        onBlur={onBlur}
-        ref={inputRef}
-        className={cn('hidden bg-inherit outline-none', isEditing && 'block')}
-        style={{
-          width: `${width}px`,
-        }}
-      />
-    </button>
-  )
-}
-
-const TabContent = ({ children }) => {
-  return <div className="className">{children}</div>
-}
+import { useTabs } from '@/utils'
+import ExpenseTabTitle from './ExpenseTabTitle'
 
 const DraggableTabNode = ({ className, ...props }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
@@ -106,7 +30,7 @@ const DraggableTabNode = ({ className, ...props }) => {
     transition,
     cursor: 'move',
   }
-  return React.cloneElement(props.children, {
+  return cloneElement(props.children, {
     ref: setNodeRef,
     style,
     ...attributes,
@@ -142,7 +66,7 @@ const AddTabButton = ({ onClick }) => {
 const { TabPane } = Tabs
 
 const ExpenseTabList = () => {
-  const { items, setItems, activeKey, add, onEdit, onChange } = useTabs(defaultPanes)
+  const { items, setItems, activeKey, onAdd, onEdit, onChange } = useTabs(defaultPanes)
 
   const onAddNewTab = () => {
     const newItem = {
@@ -151,7 +75,7 @@ const ExpenseTabList = () => {
       key: uuidv4(),
       closable: false,
     }
-    add(newItem)
+    onAdd(newItem)
   }
 
   const sensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
@@ -190,7 +114,7 @@ const ExpenseTabList = () => {
     return (
       <TabPane
         closable={closable}
-        tab={<TabTitle icon={TableCellsIcon}>{label}</TabTitle>}
+        tab={<ExpenseTabTitle icon={TableCellsIcon}>{label}</ExpenseTabTitle>}
         key={key}
       >
         <TabContent>{children}</TabContent>
@@ -212,3 +136,7 @@ const ExpenseTabList = () => {
 }
 
 export default ExpenseTabList
+
+function TabContent({ children }) {
+  return <div className="className">{children}</div>
+}

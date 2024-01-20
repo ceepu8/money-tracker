@@ -1,4 +1,4 @@
-@import './antd-custom.css';
+@import './antd.reset.css';
 
 @tailwind base;
 @tailwind components;

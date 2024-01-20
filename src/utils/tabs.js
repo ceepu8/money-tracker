@@ -1,4 +1,6 @@
-const { useState } = require('react')
+'use client'
+
+import { useState } from 'react'
 
 export const useTabs = (initialPanes) => {
   const [activeKey, setActiveKey] = useState(initialPanes[0].key)
@@ -8,12 +10,12 @@ export const useTabs = (initialPanes) => {
     setActiveKey(key)
   }
 
-  const add = (item) => {
+  const onAdd = (item) => {
     setItems([...items, item])
     setActiveKey(item.key)
   }
 
-  const remove = (targetKey) => {
+  const onRemove = (targetKey) => {
     const targetIndex = items.findIndex((pane) => pane.key === targetKey)
     const newPanes = items.filter((pane) => pane.key !== targetKey)
     if (newPanes.length && targetKey === activeKey) {
@@ -25,11 +27,11 @@ export const useTabs = (initialPanes) => {
 
   const onEdit = (targetKey, action) => {
     if (action === 'add') {
-      add()
+      onAdd()
     } else {
-      remove(targetKey)
+      onRemove(targetKey)
     }
   }
 
-  return { items, setItems, activeKey, add, remove, onEdit, onChange }
+  return { items, setItems, activeKey, setActiveKey, onAdd, onRemove, onEdit, onChange }
 }

@@ -1,10 +1,9 @@
-import React from 'react'
 import { Button } from '@/components/ui'
 
 const ExpenseSort = () => {
   return (
     <div>
-      <Button type="text" size="medium">
+      <Button type="text" size="medium" danger>
         Sort
       </Button>
     </div>
