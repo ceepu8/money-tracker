@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { PlusIcon, TableCellsIcon } from '@/components/icons'
 import { ButtonIcon } from '@/components/ui'
 import { useTabs } from '@/utils'
+import ExpenseTabTable from './ExpenseTabTable'
 import ExpenseTabTitle from './ExpenseTabTitle'
 
 const DraggableTabNode = ({ className, ...props }) => {
@@ -42,13 +43,13 @@ const defaultPanes = [
   {
     key: 'january',
     label: 'JANUARY',
-    children: 'January Content',
+    children: <ExpenseTabTable />,
     closable: false,
   },
   {
     key: 'february',
     label: 'FEBRUARY',
-    children: 'February Content',
+    children: <ExpenseTabTable />,
     closable: false,
   },
 ]
