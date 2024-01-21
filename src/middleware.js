@@ -1,9 +1,8 @@
-import { getToken } from 'next-auth/jwt'
 import { withAuth } from 'next-auth/middleware'
 import createIntlMiddleware from 'next-intl/middleware'
 import { NextResponse } from 'next/server'
 import { locales, Routes } from '@/constants'
-import { checkIsPublicPage, parseQueryString, removeLocalesFromPathname } from './utils'
+import { checkIsPublicPage, removeLocalesFromPathname } from './utils'
 
 const PUBLIC_FILE = /\.(.*)$/
 
@@ -25,10 +24,10 @@ const authMiddleware = withAuth((req) => intlMiddleware(req), {
 })
 
 export default async function middleware(req) {
-  const webviewToken = parseQueryString(req.nextUrl.search)?.token
+  // const webviewToken = parseQueryString(req.nextUrl.search)?.token
   const pathName = removeLocalesFromPathname(req.nextUrl.pathname)
   const isPublicPage = checkIsPublicPage(pathName)
-  const token = await getToken({ req })
+  // const token = await getToken({ req })
   // const isAuth = !!token || !!webviewToken
   const isAuth = true
 

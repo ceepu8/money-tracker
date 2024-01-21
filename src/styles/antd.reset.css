@@ -194,3 +194,11 @@
 #expense-table .ant-form-item .ant-form-item-control-input {
   min-height: 38px;
 }
+/* BUTTON */
+#_button_.ant-btn.ant-btn-sm {
+  @apply rounded-lg p-4;
+}
+
+#_button_.ant-btn.ant-btn-text {
+  @apply text-blue hover:bg-[#1b84e225];
+}

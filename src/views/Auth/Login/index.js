@@ -15,6 +15,7 @@ const LoginView = ({ data = {} }) => {
   )
 
   const onSubmit = useDebouncedCallback((values, actions) => {
+    // eslint-disable-next-line no-console
     console.log(values, actions)
   })
 
@@ -28,7 +29,7 @@ const LoginView = ({ data = {} }) => {
         <div className="w-[480px] space-y-6">
           <Input name="email" label="Email" />
           <Input name="password" label="Password" />
-          <button type="submit" className="rounded-md bg-blue-400 px-6 py-3">
+          <button type="submit" className="rounded-md bg-blue px-6 py-3">
             Login
           </button>
         </div>
