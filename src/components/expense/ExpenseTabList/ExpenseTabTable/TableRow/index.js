@@ -52,9 +52,9 @@ const TableRow = ({ index, children, ...props }) => {
                 if (child.key === 'key-0') {
                   return cloneElement(child, {
                     children: (
-                      <div className="flex h-6 items-center gap-x-2">
+                      <div className="flex-center h-10">
                         <MenuIcon
-                          className="h-4 w-4"
+                          className="h-4 w-4 shrink-0"
                           ref={setActivatorNodeRef}
                           style={{
                             touchAction: 'none',
@@ -62,7 +62,6 @@ const TableRow = ({ index, children, ...props }) => {
                           }}
                           {...listeners}
                         />
-                        {child}
                       </div>
                     ),
                   })

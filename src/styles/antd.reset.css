@@ -132,7 +132,8 @@
   > tbody.ant-table-tbody
   > tr
   > td.ant-table-cell:first-child {
-  @apply p-0 pl-6;
+  @apply p-0;
+  border-inline-end: none;
 }
 
 #expense-table
@@ -144,6 +145,10 @@
   > td.ant-table-cell:last-child {
   border-inline-end: none;
   padding-right: 32px;
+}
+
+#expense-table .ant-table-wrapper .ant-table-cell {
+  @apply p-0;
 }
 
 #expense-table

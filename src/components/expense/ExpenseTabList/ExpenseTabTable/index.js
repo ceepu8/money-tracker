@@ -12,20 +12,10 @@ import {
   MenuIcon,
   PlusIcon,
 } from '@/components/icons'
-import { Button } from '@/components/ui'
 import data from '@/data/expense.json'
 import TableCell from './TableCell'
 import TableHead from './TableHead'
 import TableRow from './TableRow'
-
-const TableHeader = ({ icon: Icon, label }) => {
-  return (
-    <div className="flex items-center gap-x-2 text-gray-600">
-      <Icon className="h-4 w-4" />
-      <span className="truncate font-normal">{label}</span>
-    </div>
-  )
-}
 
 const TableAddNewRow = ({ onClick }) => {
   return (
@@ -33,7 +23,7 @@ const TableAddNewRow = ({ onClick }) => {
       role="presentation"
       onClick={onClick}
       type="text"
-      className="absolute bottom-[2px] left-0 z-20 flex h-10 w-[1430px] cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
+      className="absolute bottom-[2px] left-0 z-20 flex h-10 w-[1462px] cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
     >
       <div className="sticky left-0 flex items-center gap-x-2 pl-4">
         <PlusIcon className="h-4 w-4" />
@@ -43,83 +33,108 @@ const TableAddNewRow = ({ onClick }) => {
   )
 }
 
+const defaultColumns = [
+  {
+    dataIndex: 'drag',
+    id: 'drag',
+    width: 32,
+  },
+  {
+    title: 'Description',
+    icon: MenuIcon,
+    dataIndex: 'description',
+    id: 'description',
+    width: 320,
+    editable: true,
+  },
+  {
+    title: 'Amount',
+    icon: CalculatorIcon,
+    dataIndex: 'amount',
+    id: 'amount',
+    width: 100,
+    editable: true,
+  },
+  {
+    title: 'Link',
+    icon: LinkIcon,
+    dataIndex: 'link',
+    id: 'link',
+    width: 100,
+    editable: true,
+    render: (text, record, index) => {
+      return <span className="truncate">{text}</span>
+    },
+  },
+  {
+    title: 'Method',
+    icon: MenuIcon,
+    dataIndex: 'method',
+    id: 'method',
+    width: 100,
+    editable: true,
+  },
+  {
+    title: 'Date',
+    icon: CalendarDaysIcon,
+    dataIndex: 'date',
+    id: 'date',
+    width: 150,
+    editable: true,
+    render: (text, record, index) => {
+      return <span>{dayjs(text)?.format('DD/MM/YYYY')}</span>
+    },
+  },
+  {
+    title: 'Category',
+    icon: ChevronDownIcon,
+    dataIndex: 'category',
+    id: 'category',
+    width: 120,
+    editable: true,
+    render: (text, record, index) => {
+      return <>{text ? <span className="rounded-md bg-red-200 px-2 py-1">{text}</span> : null}</>
+    },
+  },
+  {
+    title: 'Status',
+    icon: CalendarDaysIcon,
+    dataIndex: 'status',
+    id: 'status',
+    width: 120,
+    editable: true,
+    render: (text, record, index) => {
+      return <>{text ? <span className="rounded-md bg-green-200 px-2 py-1">{text}</span> : null}</>
+    },
+  },
+  {
+    title: 'Details',
+    icon: MenuIcon,
+    dataIndex: 'details',
+    id: 'details',
+    width: 320,
+    editable: true,
+  },
+  {
+    title: '',
+    icon: PlusIcon,
+    width: 100,
+    dataIndex: 'add',
+    id: 'add',
+    editable: false,
+  },
+]
+
 const ExpenseTabTable = () => {
   const [dataSource, setDataSource] = useState(data)
+  const [columns, setColumns] = useState(defaultColumns)
   const [count, setCount] = useState(2)
+
   const handleDelete = (key) => {
     const newData = dataSource.filter((item) => item.key !== key)
     setDataSource(newData)
   }
-  const defaultColumns = [
-    {
-      title: <TableHeader icon={MenuIcon} label="Description" />,
-      dataIndex: 'description',
-      width: 320,
-      editable: true,
-    },
-    {
-      title: <TableHeader icon={CalculatorIcon} label="Amount" />,
-      dataIndex: 'amount',
-      width: 100,
-      editable: true,
-    },
-    {
-      title: <TableHeader icon={LinkIcon} label="Link" />,
-      dataIndex: 'link',
-      width: 100,
-      editable: true,
-      render: (text, record, index) => {
-        return <span className="truncate">{text}</span>
-      },
-    },
-    {
-      title: <TableHeader icon={MenuIcon} label="Method" />,
-      dataIndex: 'method',
-      width: 100,
-      editable: true,
-    },
-    {
-      title: <TableHeader icon={CalendarDaysIcon} label="Date" />,
-      dataIndex: 'date',
-      width: 150,
-      editable: true,
-      render: (text, record, index) => {
-        return <span>{dayjs(text)?.format('DD/MM/YYYY')}</span>
-      },
-    },
-    {
-      title: <TableHeader icon={ChevronDownIcon} label="Category" />,
-      dataIndex: 'category',
-      width: 120,
-      editable: true,
-      render: (text, record, index) => {
-        return <>{text ? <span className="rounded-md bg-red-200 px-2 py-1">{text}</span> : null}</>
-      },
-    },
-    {
-      title: <TableHeader icon={CalendarDaysIcon} label="Status" />,
-      dataIndex: 'status',
-      width: 120,
-      editable: true,
-      render: (text, record, index) => {
-        return (
-          <>{text ? <span className="rounded-md bg-green-200 px-2 py-1">{text}</span> : null}</>
-        )
-      },
-    },
-    {
-      title: <TableHeader icon={MenuIcon} label="Details" />,
-      dataIndex: 'details',
-      width: 320,
-      editable: true,
-    },
-    {
-      title: <Button type="text" icon={<PlusIcon className="h-4 w-4" />} />,
-      width: 100,
-      dataIndex: 'add',
-      editable: false,
-    },
-  ]
+
   const handleAdd = () => {
     const newData = {
       key: count,
@@ -151,7 +166,7 @@ const ExpenseTabTable = () => {
       cell: TableCell,
     },
   }
-  const columns = defaultColumns.map((col) => {
+  const formattedColumns = columns.map((col) => {
     if (!col.editable) {
       return col
     }
@@ -179,7 +194,7 @@ const ExpenseTabTable = () => {
   return (
     <div id="expense-table" className="relative overflow-scroll bg-white">
       <TableAddNewRow onClick={handleAdd} />
-      <TableHead columns={columns} />
+      <TableHead columns={formattedColumns} setColumns={setColumns} />
       <DndContext
         modifiers={[restrictToVerticalAxis, restrictToParentElement]}
         onDragEnd={onDragEnd}
@@ -193,7 +208,7 @@ const ExpenseTabTable = () => {
             rowClassName={() => 'editable-row'}
             pagination={false}
             bordered
-            columns={columns}
+            columns={formattedColumns}
             dataSource={dataSource}
             showHeader={false}
             tableLayout="fixed"
