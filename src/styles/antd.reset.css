@@ -88,6 +88,7 @@
 
 #expense-table > .ant-table-container > .ant-table-content {
   transition: visibility 150ms ease-in;
+  padding-bottom: 42px;
 }
 
 #expense-table > .ant-table-container > .ant-table-content::-webkit-scrollbar {
@@ -133,7 +134,7 @@
   > tbody.ant-table-tbody
   > tr
   > td.ant-table-cell {
-  padding: 0px;
+  @apply p-0;
 }
 
 #expense-table
@@ -165,7 +166,7 @@
   > tbody.ant-table-tbody
   > tr
   > td.ant-table-cell.ant-table-cell-row-hover {
-  background-color: transparent;
+  @apply bg-transparent;
 }
 
 #expense-table
@@ -175,16 +176,15 @@
   > tbody.ant-table-tbody
   > tr
   > td.ant-table-cell:first-child {
-  padding-left: 32px;
+  @apply pl-8;
 }
 
 #expense-table .ant-table-wrapper .ant-table-pagination.ant-pagination {
-  margin: 52px 0px 0px 0px;
+  /* margin: 16px 0px 0px 0px; */
 }
 #expense-table .common-title.ant-input-outlined:focus,
 #expense-table .ant-input-outlined:focus-within {
-  height: 38px !important;
-  padding: 8px;
+  @apply !h-[40px] p-2;
   box-shadow:
     0px 4px 16px rgba(17, 17, 26, 0.2),
     0px 8px 24px rgba(17, 17, 26, 0.2),
@@ -192,7 +192,7 @@
 }
 
 #expense-table .ant-form-item .ant-form-item-control-input {
-  min-height: 38px;
+  @apply min-h-[38px];
 }
 /* BUTTON */
 #_button_.ant-btn.ant-btn-sm {

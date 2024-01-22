@@ -15,7 +15,7 @@ const { Column, ColumnGroup, Footer, Summary } = Table
 
 const TableHeader = ({ icon: Icon, label }) => {
   return (
-    <div className="flex items-center gap-x-2">
+    <div className="flex items-center gap-x-2 text-gray-600">
       <Icon className="h-4 w-4" />
       <span className="truncate font-normal">{label}</span>
     </div>
@@ -28,7 +28,7 @@ const TableAddNewRow = ({ onClick }) => {
       role="presentation"
       onClick={onClick}
       type="text"
-      className="absolute bottom-[52px] left-0 z-20 flex h-[38px] w-full cursor-pointer items-center rounded-none border-b border-[#ededed] px-4 hover:bg-gray-50"
+      className="absolute bottom-[10px] left-0 z-20 flex h-[38px] w-full cursor-pointer items-center rounded-none border-b border-[#ededed] px-4 hover:bg-gray-50"
     >
       <div className="flex items-center gap-x-2">
         <PlusIcon className="h-4 w-4" />
@@ -256,17 +256,19 @@ const ExpenseTabTable = () => {
     }
   })
   return (
-    <div id="expense-table" className="relative">
+    <div id="expense-table" className="relative bg-white">
       <TableAddNewRow onClick={handleAdd} />
 
       <Table
         id="expense-table"
+        className="bg-white"
         components={components}
         rowClassName={() => 'editable-row'}
         bordered
         scroll={{ x: 'max-content' }}
         dataSource={dataSource}
         columns={columns}
+        pagination={false}
       />
     </div>
   )
