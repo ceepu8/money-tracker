@@ -18,7 +18,7 @@ const ExpenseTab = () => {
   const width = hasSearch ? ACTIVE_EXTRA_SETTING_WIDTH : INACTIVE_EXTRA_SETTING_WIDTH
 
   return (
-    <div className="relative">
+    <div className="relative pb-12">
       <div className="transition-[max-width]" style={{ maxWidth: `calc(100% - ${width}px)` }}>
         <ExpenseTabList />
       </div>

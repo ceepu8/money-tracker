@@ -1,6 +1,9 @@
-import { Form, Input, Table } from 'antd'
+import { DndContext } from '@dnd-kit/core'
+import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { Table } from 'antd'
 import dayjs from 'dayjs'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import {
   CalculatorIcon,
   CalendarDaysIcon,
@@ -10,8 +13,10 @@ import {
   PlusIcon,
 } from '@/components/icons'
 import { Button } from '@/components/ui'
-
-const { Column, ColumnGroup, Footer, Summary } = Table
+import data from '@/data/expense.json'
+import TableCell from './TableCell'
+import TableHead from './TableHead'
+import TableRow from './TableRow'
 
 const TableHeader = ({ icon: Icon, label }) => {
   return (
@@ -28,9 +33,9 @@ const TableAddNewRow = ({ onClick }) => {
       role="presentation"
       onClick={onClick}
       type="text"
-      className="absolute bottom-[10px] left-0 z-20 flex h-[38px] w-full cursor-pointer items-center rounded-none border-b border-[#ededed] px-4 hover:bg-gray-50"
+      className="absolute bottom-[2px] left-0 z-20 flex h-10 w-[1430px] cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
     >
-      <div className="flex items-center gap-x-2">
+      <div className="sticky left-0 flex items-center gap-x-2 pl-4">
         <PlusIcon className="h-4 w-4" />
         <span>New</span>
       </div>
@@ -38,102 +43,8 @@ const TableAddNewRow = ({ onClick }) => {
   )
 }
 
-const EditableContext = React.createContext(null)
-const EditableRow = ({ index, ...props }) => {
-  const [form] = Form.useForm()
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  )
-}
-const EditableCell = ({
-  title,
-  editable,
-  children,
-  dataIndex,
-  record,
-  handleSave,
-  ...restProps
-}) => {
-  const [editing, setEditing] = useState(false)
-  const inputRef = useRef(null)
-  const form = useContext(EditableContext)
-  useEffect(() => {
-    if (editing) {
-      inputRef.current.focus()
-    }
-  }, [editing])
-  const toggleEdit = () => {
-    setEditing(!editing)
-    form.setFieldsValue({
-      [dataIndex]: record[dataIndex],
-    })
-  }
-  const save = async () => {
-    try {
-      const values = await form.validateFields()
-      toggleEdit()
-      handleSave({
-        ...record,
-        ...values,
-      })
-    } catch (errInfo) {
-      console.log('Save failed:', errInfo)
-    }
-  }
-  let childNode = children
-  if (editable) {
-    childNode = editing ? (
-      <Form.Item
-        style={{
-          margin: 0,
-        }}
-        name={dataIndex}
-        rules={[
-          {
-            required: true,
-            message: `${title} is required.`,
-          },
-        ]}
-      >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
-      </Form.Item>
-    ) : (
-      <div role="presentation" onClick={toggleEdit} className="editable-cell-value-wrap">
-        {children}
-      </div>
-    )
-  }
-  return <td {...restProps}>{childNode}</td>
-}
 const ExpenseTabTable = () => {
-  const [dataSource, setDataSource] = useState([
-    {
-      key: '0',
-      description: 'Edward King 0',
-      amount: '32',
-      link: 'Link',
-      method: 'Shopee',
-      date: dayjs(),
-      category: 'Beverages',
-      status: 'Completed',
-      details: 'Details',
-    },
-    {
-      key: '1',
-      description: 'Edward King 1',
-      amount: '32',
-      link: 'Link',
-      method: 'Shopee',
-      date: dayjs(),
-      category: 'Beverages',
-      status: 'Completed',
-      details: 'Details',
-    },
-  ])
+  const [dataSource, setDataSource] = useState(data)
   const [count, setCount] = useState(2)
   const handleDelete = (key) => {
     const newData = dataSource.filter((item) => item.key !== key)
@@ -173,7 +84,7 @@ const ExpenseTabTable = () => {
       width: 150,
       editable: true,
       render: (text, record, index) => {
-        return <span>{text?.format('DD/MM/YYYY')}</span>
+        return <span>{dayjs(text)?.format('DD/MM/YYYY')}</span>
       },
     },
     {
@@ -236,8 +147,8 @@ const ExpenseTabTable = () => {
   }
   const components = {
     body: {
-      row: EditableRow,
-      cell: EditableCell,
+      row: TableRow,
+      cell: TableCell,
     },
   }
   const columns = defaultColumns.map((col) => {
@@ -255,21 +166,40 @@ const ExpenseTabTable = () => {
       }),
     }
   })
-  return (
-    <div id="expense-table" className="relative bg-white">
-      <TableAddNewRow onClick={handleAdd} />
 
-      <Table
-        id="expense-table"
-        className="bg-white"
-        components={components}
-        rowClassName={() => 'editable-row'}
-        bordered
-        scroll={{ x: 'max-content' }}
-        dataSource={dataSource}
-        columns={columns}
-        pagination={false}
-      />
+  const onDragEnd = ({ active, over }) => {
+    if (active.id !== over?.id) {
+      setDataSource((previous) => {
+        const activeIndex = previous.findIndex((i) => i.key === active.id)
+        const overIndex = previous.findIndex((i) => i.key === over?.id)
+        return arrayMove(previous, activeIndex, overIndex)
+      })
+    }
+  }
+  return (
+    <div id="expense-table" className="relative overflow-scroll bg-white">
+      <TableAddNewRow onClick={handleAdd} />
+      <TableHead columns={columns} />
+      <DndContext
+        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+        onDragEnd={onDragEnd}
+      >
+        <SortableContext
+          items={dataSource.map((i) => i.key)}
+          strategy={verticalListSortingStrategy}
+        >
+          <Table
+            components={components}
+            rowClassName={() => 'editable-row'}
+            pagination={false}
+            bordered
+            columns={columns}
+            dataSource={dataSource}
+            showHeader={false}
+            tableLayout="fixed"
+          />
+        </SortableContext>
+      </DndContext>
     </div>
   )
 }

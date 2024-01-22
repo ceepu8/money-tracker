@@ -70,44 +70,32 @@
 
 /* EXPENSE TABLE */
 
-/* #expense-table ::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-#expense-table ::-webkit-scrollbar-thumb {
-  height: 6px;
-  border-radius: 10px;
-}
-
-#expense-table ::-webkit-scrollbar-thumb:hover {
-} */
-
-#expense-table > .ant-table-container {
+#expense-table .ant-table-container {
   border: none;
 }
 
-#expense-table > .ant-table-container > .ant-table-content {
+#expense-table .ant-table-container > .ant-table-content {
   transition: visibility 150ms ease-in;
   padding-bottom: 42px;
 }
 
-#expense-table > .ant-table-container > .ant-table-content::-webkit-scrollbar {
+#expense-table::-webkit-scrollbar {
   height: 6px;
 }
 
-#expense-table > .ant-table-container > .ant-table-content::-webkit-scrollbar-thumb {
+#expense-table::-webkit-scrollbar-thumb {
   visibility: hidden;
 }
 
-#expense-table > .ant-table-container > .ant-table-content:active::-webkit-scrollbar-thumb,
-#expense-table > .ant-table-container > .ant-table-content:focus::-webkit-scrollbar-thumb,
-#expense-table > .ant-table-container > .ant-table-content:hover::-webkit-scrollbar-thumb {
+#expense-table:active::-webkit-scrollbar-thumb,
+#expense-table:focus::-webkit-scrollbar-thumb,
+#expense-table:hover::-webkit-scrollbar-thumb {
   visibility: visible;
 }
 
 #expense-table
-  > .ant-table-container
-  > .ant-table-content
+  .ant-table-container
+  .ant-table-content
   > table
   > thead.ant-table-thead
   > tr
@@ -118,18 +106,18 @@
 }
 
 #expense-table
-  > .ant-table-container
-  > .ant-table-content
+  .ant-table-container
+  .ant-table-content
   > table
   > thead.ant-table-thead
   > tr
   > th.ant-table-cell:first-child {
-  padding-left: 32px;
+  @apply pl-8;
 }
 
 #expense-table
-  > .ant-table-container
-  > .ant-table-content
+  .ant-table-container
+  .ant-table-content
   > table
   > tbody.ant-table-tbody
   > tr
@@ -138,19 +126,18 @@
 }
 
 #expense-table
-  > .ant-table-container
-  > .ant-table-content
+  .ant-table-container
+  .ant-table-content
   > table
   > tbody.ant-table-tbody
   > tr
-  > td.ant-table-cell
-  > .editable-cell-value-wrap {
-  padding: 8px;
+  > td.ant-table-cell:first-child {
+  @apply p-0 pl-6;
 }
 
 #expense-table
-  > .ant-table-container
-  > .ant-table-content
+  .ant-table-container
+  .ant-table-content
   > table
   > tbody.ant-table-tbody
   > tr
@@ -160,23 +147,24 @@
 }
 
 #expense-table
-  > .ant-table-container
-  > .ant-table-content
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
+  > td.ant-table-cell
+  > .editable-cell-value-wrap {
+  padding: 8px;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
   > table
   > tbody.ant-table-tbody
   > tr
   > td.ant-table-cell.ant-table-cell-row-hover {
   @apply bg-transparent;
-}
-
-#expense-table
-  > .ant-table-container
-  > .ant-table-content
-  > table
-  > tbody.ant-table-tbody
-  > tr
-  > td.ant-table-cell:first-child {
-  @apply pl-8;
 }
 
 #expense-table .ant-table-wrapper .ant-table-pagination.ant-pagination {
