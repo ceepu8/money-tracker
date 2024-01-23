@@ -5,7 +5,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { Form } from 'antd'
 import { Children, cloneElement, useEffect, useState } from 'react'
 import { MenuIcon } from '@/components/icons'
-import { TableContext } from '../context'
+import { TableContext } from '../../context'
 
 const TableRow = ({ index, children, ...props }) => {
   const [domLoaded, setDomLoaded] = useState(false)

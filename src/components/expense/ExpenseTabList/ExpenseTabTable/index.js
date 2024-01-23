@@ -1,7 +1,4 @@
-import { DndContext } from '@dnd-kit/core'
-import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
-import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import { Table } from 'antd'
+import { arrayMove } from '@dnd-kit/sortable'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import {
@@ -13,9 +10,8 @@ import {
   PlusIcon,
 } from '@/components/icons'
 import data from '@/data/expense.json'
-import TableCell from './TableCell'
+import TableBody from './TableBody'
 import TableHead from './TableHead'
-import TableRow from './TableRow'
 
 const TableAddNewRow = ({ onClick }) => {
   return (
@@ -93,7 +89,7 @@ const defaultColumns = [
     width: 120,
     editable: true,
     render: (text, record, index) => {
-      return <>{text ? <span className="rounded-md bg-red-200 px-2 py-1">{text}</span> : null}</>
+      return <span className="rounded-md bg-red-200 px-2 py-1">{text || ''}</span>
     },
   },
   {
@@ -104,7 +100,7 @@ const defaultColumns = [
     width: 120,
     editable: true,
     render: (text, record, index) => {
-      return <>{text ? <span className="rounded-md bg-green-200 px-2 py-1">{text}</span> : null}</>
+      return <span className="rounded-md bg-green-200 px-2 py-1">{text || ''}</span>
     },
   },
   {
@@ -160,27 +156,6 @@ const ExpenseTabTable = () => {
     })
     setDataSource(newData)
   }
-  const components = {
-    body: {
-      row: TableRow,
-      cell: TableCell,
-    },
-  }
-  const formattedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        editable: col.editable,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        handleSave,
-      }),
-    }
-  })
 
   const onDragEnd = ({ active, over }) => {
     if (active.id !== over?.id) {
@@ -194,27 +169,13 @@ const ExpenseTabTable = () => {
   return (
     <div id="expense-table" className="relative overflow-scroll bg-white">
       <TableAddNewRow onClick={handleAdd} />
-      <TableHead columns={formattedColumns} setColumns={setColumns} />
-      <DndContext
-        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+      <TableHead columns={columns} setColumns={setColumns} />
+      <TableBody
+        dataSource={dataSource}
+        columns={columns}
+        handleSave={handleSave}
         onDragEnd={onDragEnd}
-      >
-        <SortableContext
-          items={dataSource.map((i) => i.key)}
-          strategy={verticalListSortingStrategy}
-        >
-          <Table
-            components={components}
-            rowClassName={() => 'editable-row'}
-            pagination={false}
-            bordered
-            columns={formattedColumns}
-            dataSource={dataSource}
-            showHeader={false}
-            tableLayout="fixed"
-          />
-        </SortableContext>
-      </DndContext>
+      />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { Form, Input } from 'antd'
 import { useContext, useEffect, useRef, useState } from 'react'
-import { TableContext } from '../context'
+import { TableContext } from '../../context'
 
 const TableCell = ({ title, editable, children, dataIndex, record, handleSave, ...restProps }) => {
   const [editing, setEditing] = useState(false)
