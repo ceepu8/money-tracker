@@ -3,16 +3,32 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Form } from 'antd'
-import { Children, cloneElement, useEffect, useState } from 'react'
+import { Children, cloneElement, forwardRef, memo, useEffect, useState } from 'react'
 import { MenuIcon } from '@/components/icons'
 import { TableContext } from '../../context'
 
+const DraggingRow = forwardRef((props, ref) => {
+  return (
+    <div className="flex-center h-10">
+      <MenuIcon
+        className="h-4 w-4 shrink-0"
+        ref={ref}
+        style={{
+          touchAction: 'none',
+          cursor: 'move',
+        }}
+        {...props}
+      />
+    </div>
+  )
+})
+
 const TableRow = ({ index, children, ...props }) => {
-  const [domLoaded, setDomLoaded] = useState(false)
+  const [isHydrated, setHydrated] = useState(false)
   const [form] = Form.useForm()
 
   useEffect(() => {
-    setDomLoaded(true)
+    setHydrated(true)
   }, [])
 
   const {
@@ -44,26 +60,14 @@ const TableRow = ({ index, children, ...props }) => {
   }
   return (
     <>
-      {domLoaded && (
+      {isHydrated && (
         <Form form={form} component={false}>
           <TableContext.Provider value={form}>
             <tr {...props} ref={setNodeRef} style={style} {...attributes}>
               {Children.map(children, (child) => {
                 if (child.key === 'key-0') {
                   return cloneElement(child, {
-                    children: (
-                      <div className="flex-center h-10">
-                        <MenuIcon
-                          className="h-4 w-4 shrink-0"
-                          ref={setActivatorNodeRef}
-                          style={{
-                            touchAction: 'none',
-                            cursor: 'move',
-                          }}
-                          {...listeners}
-                        />
-                      </div>
-                    ),
+                    children: <DraggingRow ref={setActivatorNodeRef} {...listeners} />,
                   })
                 }
                 return child
@@ -76,4 +80,4 @@ const TableRow = ({ index, children, ...props }) => {
   )
 }
 
-export default TableRow
+export default memo(TableRow)

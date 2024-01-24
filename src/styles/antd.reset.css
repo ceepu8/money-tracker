@@ -76,7 +76,7 @@
 
 #expense-table .ant-table-container > .ant-table-content {
   transition: visibility 150ms ease-in;
-  padding-bottom: 42px;
+  /* padding-bottom: 42px; */
 }
 
 #expense-table::-webkit-scrollbar {

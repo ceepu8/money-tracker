@@ -1,8 +1,8 @@
 import { Form, Input } from 'antd'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { memo, useContext, useEffect, useRef, useState } from 'react'
 import { TableContext } from '../../context'
 
-const TableCell = ({ title, editable, children, dataIndex, record, handleSave, ...restProps }) => {
+const BodyCell = ({ title, editable, children, dataIndex, record, handleSave, ...restProps }) => {
   const [editing, setEditing] = useState(false)
   const inputRef = useRef(null)
   const form = useContext(TableContext)
@@ -26,7 +26,7 @@ const TableCell = ({ title, editable, children, dataIndex, record, handleSave, .
         ...values,
       })
     } catch (errInfo) {
-      console.log('Save failed:', errInfo)
+      //   console.log('Save failed:', errInfo)
     }
   }
   let childNode = children
@@ -49,4 +49,4 @@ const TableCell = ({ title, editable, children, dataIndex, record, handleSave, .
   return <td {...restProps}>{childNode}</td>
 }
 
-export default TableCell
+export default memo(BodyCell)

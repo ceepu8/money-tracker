@@ -1,4 +1,3 @@
-import { arrayMove } from '@dnd-kit/sortable'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import {
@@ -9,17 +8,17 @@ import {
   MenuIcon,
   PlusIcon,
 } from '@/components/icons'
+import { ExpenseTableHead } from '@/components/table/head'
+import { COLUMN_TYPE } from '@/constants'
 import data from '@/data/expense.json'
 import TableBody from './TableBody'
-import TableHead from './TableHead'
 
 const TableAddNewRow = ({ onClick }) => {
   return (
     <div
       role="presentation"
       onClick={onClick}
-      type="text"
-      className="absolute bottom-[2px] left-0 z-20 flex h-10 w-[1462px] cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
+      className="sticky bottom-[-4px] left-0 z-20 flex h-10 w-full cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
     >
       <div className="sticky left-0 flex items-center gap-x-2 pl-4">
         <PlusIcon className="h-4 w-4" />
@@ -37,6 +36,7 @@ const defaultColumns = [
   },
   {
     title: 'Description',
+    type: COLUMN_TYPE.TEXT,
     icon: MenuIcon,
     dataIndex: 'description',
     id: 'description',
@@ -45,6 +45,7 @@ const defaultColumns = [
   },
   {
     title: 'Amount',
+    type: COLUMN_TYPE.NUMBER,
     icon: CalculatorIcon,
     dataIndex: 'amount',
     id: 'amount',
@@ -53,17 +54,16 @@ const defaultColumns = [
   },
   {
     title: 'Link',
+    type: COLUMN_TYPE.URL,
     icon: LinkIcon,
     dataIndex: 'link',
     id: 'link',
     width: 100,
     editable: true,
-    render: (text, record, index) => {
-      return <span className="truncate">{text}</span>
-    },
   },
   {
     title: 'Method',
+    type: COLUMN_TYPE.TEXT,
     icon: MenuIcon,
     dataIndex: 'method',
     id: 'method',
@@ -72,39 +72,37 @@ const defaultColumns = [
   },
   {
     title: 'Date',
+    type: COLUMN_TYPE.DATE,
     icon: CalendarDaysIcon,
     dataIndex: 'date',
     id: 'date',
     width: 150,
     editable: true,
-    render: (text, record, index) => {
+    render: (text) => {
       return <span>{dayjs(text)?.format('DD/MM/YYYY')}</span>
     },
   },
   {
     title: 'Category',
+    type: COLUMN_TYPE.SELECT,
     icon: ChevronDownIcon,
     dataIndex: 'category',
     id: 'category',
     width: 120,
     editable: true,
-    render: (text, record, index) => {
-      return <span className="rounded-md bg-red-200 px-2 py-1">{text || ''}</span>
-    },
   },
   {
     title: 'Status',
+    type: COLUMN_TYPE.STATUS,
     icon: CalendarDaysIcon,
     dataIndex: 'status',
     id: 'status',
     width: 120,
     editable: true,
-    render: (text, record, index) => {
-      return <span className="rounded-md bg-green-200 px-2 py-1">{text || ''}</span>
-    },
   },
   {
     title: 'Details',
+    type: COLUMN_TYPE.TEXT,
     icon: MenuIcon,
     dataIndex: 'details',
     id: 'details',
@@ -126,10 +124,10 @@ const ExpenseTabTable = () => {
   const [columns, setColumns] = useState(defaultColumns)
   const [count, setCount] = useState(2)
 
-  const handleDelete = (key) => {
-    const newData = dataSource.filter((item) => item.key !== key)
-    setDataSource(newData)
-  }
+  // const handleDelete = (key) => {
+  //   const newData = dataSource.filter((item) => item.key !== key)
+  //   setDataSource(newData)
+  // }
 
   const handleAdd = () => {
     const newData = {
@@ -157,25 +155,16 @@ const ExpenseTabTable = () => {
     setDataSource(newData)
   }
 
-  const onDragEnd = ({ active, over }) => {
-    if (active.id !== over?.id) {
-      setDataSource((previous) => {
-        const activeIndex = previous.findIndex((i) => i.key === active.id)
-        const overIndex = previous.findIndex((i) => i.key === over?.id)
-        return arrayMove(previous, activeIndex, overIndex)
-      })
-    }
-  }
   return (
-    <div id="expense-table" className="relative overflow-scroll bg-white">
-      <TableAddNewRow onClick={handleAdd} />
-      <TableHead columns={columns} setColumns={setColumns} />
+    <div id="expense-table" className="relative overflow-scroll bg-white pb-2">
+      <ExpenseTableHead columns={columns} setColumns={setColumns} />
       <TableBody
         dataSource={dataSource}
+        setDataSource={setDataSource}
         columns={columns}
         handleSave={handleSave}
-        onDragEnd={onDragEnd}
       />
+      <TableAddNewRow onClick={handleAdd} />
     </div>
   )
 }

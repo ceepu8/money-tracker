@@ -51,8 +51,8 @@ const SortableList = ({ items, onChange, renderItem }) => {
     >
       <SortableContext items={items} strategy={horizontalListSortingStrategy}>
         <ul className="flex flex-row flex-nowrap p-0">
-          {items.map((item) => (
-            <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>
+          {items.map((item, index) => (
+            <React.Fragment key={item.id}>{renderItem(item, index)}</React.Fragment>
           ))}
         </ul>
       </SortableContext>

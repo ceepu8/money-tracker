@@ -1,15 +1,15 @@
 import { DndContext } from '@dnd-kit/core'
 import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { Table } from 'antd'
-import TableCell from './TableCell'
-import TableRow from './TableRow'
+import { BodyCell } from '@/components/table/cell'
+import { BodyRow } from '@/components/table/row'
 
-const TableBody = ({ dataSource, onDragEnd, columns, handleSave }) => {
+const TableBody = ({ dataSource, setDataSource, columns, handleSave }) => {
   const components = {
     body: {
-      row: TableRow,
-      cell: TableCell,
+      row: BodyRow,
+      cell: BodyCell,
     },
   }
 
@@ -29,18 +29,28 @@ const TableBody = ({ dataSource, onDragEnd, columns, handleSave }) => {
     }
   })
 
+  const onDragEnd = ({ active, over }) => {
+    if (active.id !== over?.id) {
+      setDataSource((previous) => {
+        const activeIndex = previous.findIndex((i) => i.key === active.id)
+        const overIndex = previous.findIndex((i) => i.key === over?.id)
+        return arrayMove(previous, activeIndex, overIndex)
+      })
+    }
+  }
+
   return (
     <DndContext modifiers={[restrictToVerticalAxis, restrictToParentElement]} onDragEnd={onDragEnd}>
       <SortableContext items={dataSource.map((i) => i.key)} strategy={verticalListSortingStrategy}>
         <Table
-          components={components}
-          rowClassName={() => 'editable-row'}
           pagination={false}
-          bordered
+          showHeader={false}
+          components={components}
           columns={formattedColumns}
           dataSource={dataSource}
-          showHeader={false}
+          rowClassName={() => 'editable-row'}
           tableLayout="fixed"
+          bordered
         />
       </SortableContext>
     </DndContext>
