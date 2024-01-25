@@ -1,7 +1,7 @@
 'use client'
 
 import { Input as AntdInput } from 'antd/lib'
-import { createElement, forwardRef, useDeferredValue, useMemo, useState } from 'react'
+import { forwardRef, useDeferredValue, useMemo, useState } from 'react'
 import { Divider, Popover } from '@/components/ui'
 import { PROPERTY_BY_ICONS } from '@/constants'
 
@@ -17,14 +17,15 @@ const Input = forwardRef((props, ref) => {
   )
 })
 
-const ExpenseFilterItem = ({ item }) => {
+const ExpenseFilterItem = ({ item, onClick }) => {
   const { id, title, type } = item
   const Icon = PROPERTY_BY_ICONS[type]
 
   return (
     <li
       className="-mx-2 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 hover:bg-[#ededed]"
-      key={id}
+      role="presentation"
+      onClick={onClick}
     >
       {Icon && <Icon className="h-4 w-4" />}
       <span>{title}</span>
@@ -32,15 +33,19 @@ const ExpenseFilterItem = ({ item }) => {
   )
 }
 
-const ExpenseFilterList = ({ list }) => {
+const ExpenseFilterList = ({ list, addItem }) => {
   const renderItem = (item) => {
-    return <ExpenseFilterItem key={item.id} item={item} />
+    return <ExpenseFilterItem key={item.id} item={item} onClick={() => addItem(item)} />
+  }
+
+  if (list?.length === 0) {
+    return <span className="text-xs">No result</span>
   }
 
   return <ul>{list.map(renderItem)}</ul>
 }
 
-const PopoverContent = ({ list, extraContent, inputPlaceholder }) => {
+const PopoverContent = ({ list, extraContent, inputPlaceholder, addItem }) => {
   const [value, setValue] = useState('')
   const deferredValue = useDeferredValue(value)
 
@@ -53,16 +58,16 @@ const PopoverContent = ({ list, extraContent, inputPlaceholder }) => {
       list.filter(({ title }) => {
         return title.toLowerCase().includes(value.toLowerCase())
       }),
-    [deferredValue]
+    [list, deferredValue]
   )
 
   return (
     <div className="flex flex-col gap-y-2">
       <Input value={value} onChange={onChange} placeholder={inputPlaceholder} size="small" />
-      <ExpenseFilterList list={filterList} />
+      <ExpenseFilterList list={filterList} addItem={addItem} />
       {extraContent && (
         <>
-          <Divider className="my-0" />
+          <Divider className="!my-0" />
           {extraContent}
         </>
       )}
@@ -78,6 +83,8 @@ const FilterSortPopover = ({
   children,
   rootClassName,
   inputPlaceholder,
+  items,
+  addItem,
 }) => {
   return (
     <Popover
@@ -86,6 +93,7 @@ const FilterSortPopover = ({
           list={list}
           extraContent={extraContent}
           inputPlaceholder={inputPlaceholder}
+          addItem={addItem}
         />
       }
       rootClassName={rootClassName}

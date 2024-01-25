@@ -6,8 +6,19 @@ import { Button } from '@/components/ui'
 import defaultColumns from '@/data/columns.json'
 import FilterSortPopover from '../FilterSortPopover'
 
-const ExpenseFilter = ({ filters, setFilters }) => {
+const ExpenseFilter = ({ filters, setFilters, extraFlag }) => {
+  const [hasExtra, onOpenExtra, onCloseExtra, toggleExtra] = extraFlag
   const [open, setOpen] = useState(false)
+
+  const isOpen = open && filters?.length === 0
+
+  const handleOpenChange = (newOpen) => {
+    if (filters?.length === 0) {
+      setOpen(newOpen)
+    } else {
+      toggleExtra()
+    }
+  }
 
   const extraContent = (
     <Button
@@ -20,15 +31,22 @@ const ExpenseFilter = ({ filters, setFilters }) => {
     </Button>
   )
 
+  const addItem = (item) => {
+    setFilters((prev) => [...prev, item])
+    setOpen(false)
+    onOpenExtra()
+  }
+
   return (
     <FilterSortPopover
-      open={open}
-      onOpenChange={setOpen}
+      open={isOpen}
+      onOpenChange={handleOpenChange}
       list={defaultColumns}
       rootClassName="w-[280px]"
       inputPlaceholder="Filter by..."
       extraContent={extraContent}
       items={filters}
+      addItem={addItem}
     >
       <Button type="text" size="small">
         Filter

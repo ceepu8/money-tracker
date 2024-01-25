@@ -16,16 +16,19 @@ const INACTIVE_EXTRA_SETTING_WIDTH = 185
 const ExpenseTab = () => {
   const [filters, setFilters] = useState([])
   const [sorts, setSorts] = useState([])
+
   const searchFlag = useFlag()
   const extraFlag = useFlag()
+
   const [hasSearch] = searchFlag
+  const [hasExtra] = extraFlag
 
   const width = hasSearch ? ACTIVE_EXTRA_SETTING_WIDTH : INACTIVE_EXTRA_SETTING_WIDTH
 
   return (
     <div className="relative pb-12">
       <div className="transition-[max-width]" style={{ maxWidth: `calc(100% - ${width}px)` }}>
-        <ExpenseTabList />
+        <ExpenseTabList hasExtra={hasExtra} />
       </div>
       <div
         className="absolute right-0 top-0 flex justify-between border-b border-[#ededed] pb-[5px] transition-[width]"
@@ -36,12 +39,19 @@ const ExpenseTab = () => {
           setFilters={setFilters}
           sorts={sorts}
           setSorts={setSorts}
+          extraFlag={extraFlag}
         />
         <ExpenseTabSearch searchFlag={searchFlag} />
         <ExpenseTabSetting />
       </div>
       <div className="absolute left-0 top-[calc(38px+16px)]">
-        <ExpenseExtra extraFlag={extraFlag} />
+        <ExpenseExtra
+          extraFlag={extraFlag}
+          filters={filters}
+          setFilters={setFilters}
+          sorts={sorts}
+          setSorts={setSorts}
+        />
       </div>
     </div>
   )

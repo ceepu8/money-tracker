@@ -4,9 +4,10 @@
 
 @layer base {
   :root {
-    --black: #00ee0e;
+    --black: #000000;
     --white: #ffffff;
 
+    --primary: #1b84e2;
     --blue: #1b84e2;
   }
 

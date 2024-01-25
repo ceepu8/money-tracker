@@ -1,11 +1,11 @@
 import ExpenseFilter from './ExpenseFilter'
 import ExpenseSort from './ExpenseSort'
 
-const ExpenseSortFilterControl = ({ filters, setFilters, sorts, setSorts }) => {
+const ExpenseSortFilterControl = ({ filters, setFilters, sorts, setSorts, extraFlag }) => {
   return (
     <div className="flex items-center">
-      <ExpenseFilter filters={filters} setFilters={setFilters} />
-      <ExpenseSort sorts={sorts} setSorts={setSorts} />
+      <ExpenseFilter filters={filters} setFilters={setFilters} extraFlag={extraFlag} />
+      <ExpenseSort sorts={sorts} setSorts={setSorts} extraFlag={extraFlag} />
     </div>
   )
 }

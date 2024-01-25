@@ -189,10 +189,14 @@
 }
 /* BUTTON */
 #_button_.ant-btn {
-  @apply !flex text-sm;
+  @apply !flex !text-sm;
 }
-#_button_.ant-btn.ant-btn-sm {
+/* #_button_.ant-btn.ant-btn-sm {
   @apply rounded;
+} */
+
+.ant-btn.ant-btn-sm {
+  @apply !flex-center !text-sm;
 }
 
 #_button_.ant-btn.ant-btn-text {

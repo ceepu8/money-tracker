@@ -12,7 +12,7 @@ import { cloneElement } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { PlusIcon, TableCellsIcon } from '@/components/icons'
 import { ButtonIcon } from '@/components/ui'
-import { useTabs } from '@/utils'
+import { cn, useTabs } from '@/utils'
 import ExpenseTabTable from './ExpenseTabTable'
 import ExpenseTabTitle from './ExpenseTabTitle'
 
@@ -66,7 +66,7 @@ const AddTabButton = ({ onClick }) => {
 
 const { TabPane } = Tabs
 
-const ExpenseTabList = () => {
+const ExpenseTabList = ({ hasExtra }) => {
   const { items, setItems, activeKey, onAdd, onEdit, onChange } = useTabs(defaultPanes)
 
   const onAddNewTab = () => {
@@ -114,11 +114,11 @@ const ExpenseTabList = () => {
     const { key, children, label, closable } = item || {}
     return (
       <TabPane
-        closable={closable}
         tab={<ExpenseTabTitle icon={TableCellsIcon}>{label}</ExpenseTabTitle>}
+        closable={closable}
         key={key}
       >
-        <TabContent>{children}</TabContent>
+        <TabContent className={cn(hasExtra ? 'pt-10' : 'pt-0')}>{children}</TabContent>
       </TabPane>
     )
   }
@@ -138,6 +138,6 @@ const ExpenseTabList = () => {
 
 export default ExpenseTabList
 
-function TabContent({ children }) {
-  return <div className="pt-10">{children}</div>
+function TabContent({ children, className }) {
+  return <div className={cn('', className)}>{children}</div>
 }
