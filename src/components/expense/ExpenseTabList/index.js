@@ -139,5 +139,5 @@ const ExpenseTabList = () => {
 export default ExpenseTabList
 
 function TabContent({ children }) {
-  return <div className="className">{children}</div>
+  return <div className="pt-10">{children}</div>
 }

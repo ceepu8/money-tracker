@@ -1,8 +1,9 @@
 'use client'
 
 import { Input as AntdInput } from 'antd/lib'
-import { forwardRef, useDeferredValue, useMemo, useState } from 'react'
+import { createElement, forwardRef, useDeferredValue, useMemo, useState } from 'react'
 import { Divider, Popover } from '@/components/ui'
+import { PROPERTY_BY_ICONS } from '@/constants'
 
 const Input = forwardRef((props, ref) => {
   return (
@@ -17,14 +18,15 @@ const Input = forwardRef((props, ref) => {
 })
 
 const ExpenseFilterItem = ({ item }) => {
-  const { id, title, icon: Icon } = item
+  const { id, title, type } = item
+  const Icon = PROPERTY_BY_ICONS[type]
 
   return (
     <li
       className="-mx-2 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 hover:bg-[#ededed]"
       key={id}
     >
-      <Icon className="h-4 w-4" />
+      {Icon && <Icon className="h-4 w-4" />}
       <span>{title}</span>
     </li>
   )

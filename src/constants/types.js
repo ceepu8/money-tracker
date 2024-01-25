@@ -4,6 +4,7 @@ import {
   ChevronDownIcon,
   LinkIcon,
   MenuIcon,
+  PlusIcon,
 } from '@/components/icons'
 
 export const GENDER = {
@@ -33,10 +34,10 @@ export const PROPERTY_LIST = [
     id: 'text',
   },
   {
-    title: 'Amount',
+    title: 'Number',
     type: COLUMN_TYPE.NUMBER,
     icon: CalculatorIcon,
-    id: 'amount',
+    id: 'number',
   },
   {
     title: 'URL',
@@ -68,10 +69,13 @@ export const PROPERTY_LIST = [
     icon: CalendarDaysIcon,
     id: 'status',
   },
-  {
-    title: 'Details',
-    type: COLUMN_TYPE.TEXT,
-    icon: MenuIcon,
-    id: 'details',
-  },
 ]
+
+export const PROPERTY_BY_ICONS = {
+  text: MenuIcon,
+  number: CalculatorIcon,
+  url: LinkIcon,
+  date: CalendarDaysIcon,
+  select: ChevronDownIcon,
+  status: CalendarDaysIcon,
+}
