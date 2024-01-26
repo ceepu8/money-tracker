@@ -12,7 +12,13 @@ const ExpenseSort = ({ sorts, setSorts, extraFlag }) => {
   const isOpen = open && sorts?.length === 0
 
   const addItem = (item) => {
-    setSorts((prev) => [...prev, item])
+    setSorts((prev) => [
+      ...prev,
+      {
+        ...item,
+        isAscending: true,
+      },
+    ])
     setOpen(false)
     onOpenExtra()
   }

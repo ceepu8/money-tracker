@@ -1,0 +1,146 @@
+import differenceBy from 'lodash/differenceBy'
+import { useEffect, useState } from 'react'
+import {
+  ArrowDownIcon,
+  ArrowsUpDownIcon,
+  ArrowUpIcon,
+  ChevronDownIcon,
+  PlusIcon,
+  SixDotsVerticalIcon,
+  TrashIcon,
+  XMarkIcon,
+} from '@/components/icons'
+import { Button, ButtonIcon, Popover } from '@/components/ui'
+import { PROPERTY_BY_ICONS } from '@/constants'
+import defaultColumns from '@/data/columns.json'
+import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
+
+const AddSortSection = ({ leftSorts, open, setOpen, addItem }) => {
+  return (
+    <FilterSortPopover
+      open={open}
+      onOpenChange={setOpen}
+      list={leftSorts}
+      rootClassName="w-[280px]"
+      inputPlaceholder="Search for a property..."
+      addItem={addItem}
+    >
+      <Button
+        type="text"
+        size="small"
+        icon={<PlusIcon className="h-4 w-4" />}
+        className="!-mx-2 !justify-start"
+      >
+        Add sort
+      </Button>
+    </FilterSortPopover>
+  )
+}
+
+const SortItem = ({ item, deleteItem }) => {
+  const { id, title, isAscending } = item
+
+  return (
+    <li key={id} className="flex-between gap-x-2 text-xs text-[#7e7e7e]">
+      <SixDotsVerticalIcon className="h-3 w-3 fill-[#7e7e7e]" />
+      <span className="flex-1">{title}</span>
+      <span className="flex-1">{isAscending ? 'Ascending' : 'Descending'}</span>
+      <ButtonIcon
+        icon={<XMarkIcon className="h-3.5 w-3.5 text-[#7e7e7e]" />}
+        onClick={() => deleteItem(id)}
+        size="small"
+      />
+    </li>
+  )
+}
+
+const SortEditorContent = ({ list, setList }) => {
+  const [leftSorts, setLeftSorts] = useState(defaultColumns)
+  const [open, setOpen] = useState(false)
+
+  const onDeleteSort = () => {
+    setList([])
+  }
+
+  const deleteItem = (deleteId) => {
+    setList((prev) => prev.filter((item) => item.id !== deleteId))
+  }
+
+  const addItem = (item) => {
+    setList((prev) => [
+      ...prev,
+      {
+        ...item,
+        isAscending: true,
+      },
+    ])
+    setOpen(false)
+  }
+
+  const renderItem = (item) => {
+    return <SortItem key={item.id} item={item} deleteItem={deleteItem} />
+  }
+
+  useEffect(() => {
+    const newSorts = differenceBy(defaultColumns, list, 'id')
+    setLeftSorts(newSorts)
+  }, [list])
+
+  return (
+    <div className="flex flex-col gap-y-1">
+      <ul className="flex flex-col gap-y-1">{list.map(renderItem)}</ul>
+      {leftSorts?.length !== 0 && (
+        <AddSortSection open={open} setOpen={setOpen} addItem={addItem} leftSorts={leftSorts} />
+      )}
+      <Button
+        type="text"
+        size="small"
+        onClick={onDeleteSort}
+        className="!-mx-2 !justify-start"
+        icon={<TrashIcon className="h-4 w-4" />}
+      >
+        Delete sort
+      </Button>
+    </div>
+  )
+}
+
+const SortEditor = ({ list, setList }) => {
+  const [open, setOpen] = useState(false)
+  const { title, type, isAscending } = list[0] || {}
+
+  if (list?.length === 0) return null
+
+  const renderRepresentor =
+    list?.length > 1 ? (
+      <>
+        <ArrowsUpDownIcon className="h-3 w-3" />
+        <span>{list.length} sorts</span>
+        <ChevronDownIcon className="h-3 w-3" />
+      </>
+    ) : (
+      <>
+        {isAscending ? <ArrowUpIcon className="h-3 w-3" /> : <ArrowDownIcon className="h-3 w-3" />}
+        <span>{title}</span>
+        <ChevronDownIcon className="h-3 w-3" />
+      </>
+    )
+
+  return (
+    <Popover
+      rootClassName="w-[290px]"
+      open={open}
+      onOpenChange={setOpen}
+      content={<SortEditorContent list={list} setList={setList} />}
+    >
+      <button
+        type="button"
+        className="flex-center gap-x-1 rounded-full border border-blue px-2 py-0.5 text-sm text-blue hover:bg-[#f7f7f5]"
+      >
+        {renderRepresentor}
+      </button>
+    </Popover>
+  )
+}
+
+export default SortEditor

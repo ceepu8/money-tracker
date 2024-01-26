@@ -6,7 +6,7 @@ const ButtonIcon = ({ icon, onClick, className, ...props }) => {
     <Button
       type="text"
       icon={icon}
-      className={cn('flex-center', className)}
+      className={cn('!flex !items-center !justify-center', className)}
       onClick={onClick}
       {...props}
     />

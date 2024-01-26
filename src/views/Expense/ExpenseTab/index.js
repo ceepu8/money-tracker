@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import {
-  ExpenseExtra,
+  ExpenseEditor,
   ExpenseSortFilterControl,
   ExpenseTabList,
   ExpenseTabSearch,
@@ -10,8 +10,8 @@ import {
 } from '@/components/expense'
 import { useFlag } from '@/hooks/shared'
 
-const ACTIVE_EXTRA_SETTING_WIDTH = 365
-const INACTIVE_EXTRA_SETTING_WIDTH = 185
+const ACTIVE_EXTRA_SETTING_WIDTH = 335
+const INACTIVE_EXTRA_SETTING_WIDTH = 155
 
 const ExpenseTab = () => {
   const [filters, setFilters] = useState([])
@@ -45,7 +45,7 @@ const ExpenseTab = () => {
         <ExpenseTabSetting />
       </div>
       <div className="absolute left-0 top-[calc(38px+16px)]">
-        <ExpenseExtra
+        <ExpenseEditor
           extraFlag={extraFlag}
           filters={filters}
           setFilters={setFilters}
