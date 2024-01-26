@@ -76,7 +76,7 @@ const SortEditorContent = ({ list, setList }) => {
     setOpen(false)
   }
 
-  const renderItem = (item, index) => {
+  const renderItem = (item) => {
     return (
       <SortableList.Item id={item.id}>
         <div className="flex items-center gap-x-2">
