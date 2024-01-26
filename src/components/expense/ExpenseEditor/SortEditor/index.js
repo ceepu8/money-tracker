@@ -10,8 +10,8 @@ import {
   TrashIcon,
   XMarkIcon,
 } from '@/components/icons'
+import { SortableList } from '@/components/sortable'
 import { Button, ButtonIcon, Popover } from '@/components/ui'
-import { PROPERTY_BY_ICONS } from '@/constants'
 import defaultColumns from '@/data/columns.json'
 import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
@@ -41,8 +41,7 @@ const SortItem = ({ item, deleteItem }) => {
   const { id, title, isAscending } = item
 
   return (
-    <li key={id} className="flex-between gap-x-2 text-xs text-[#7e7e7e]">
-      <SixDotsVerticalIcon className="h-3 w-3 fill-[#7e7e7e]" />
+    <li key={id} className="flex-between flex-1 gap-x-2 text-xs text-[#7e7e7e]">
       <span className="flex-1">{title}</span>
       <span className="flex-1">{isAscending ? 'Ascending' : 'Descending'}</span>
       <ButtonIcon
@@ -77,8 +76,17 @@ const SortEditorContent = ({ list, setList }) => {
     setOpen(false)
   }
 
-  const renderItem = (item) => {
-    return <SortItem key={item.id} item={item} deleteItem={deleteItem} />
+  const renderItem = (item, index) => {
+    return (
+      <SortableList.Item id={item.id}>
+        <div className="flex items-center gap-x-2">
+          <SortableList.DragHandle>
+            <SixDotsVerticalIcon className="h-3 w-3 fill-[#7e7e7e]" />
+          </SortableList.DragHandle>
+          <SortItem key={item.id} item={item} deleteItem={deleteItem} />
+        </div>
+      </SortableList.Item>
+    )
   }
 
   useEffect(() => {
@@ -88,7 +96,7 @@ const SortEditorContent = ({ list, setList }) => {
 
   return (
     <div className="flex flex-col gap-y-1">
-      <ul className="flex flex-col gap-y-1">{list.map(renderItem)}</ul>
+      <SortableList type="vertical" items={list} onChange={setList} renderItem={renderItem} />
       {leftSorts?.length !== 0 && (
         <AddSortSection open={open} setOpen={setOpen} addItem={addItem} leftSorts={leftSorts} />
       )}
@@ -111,7 +119,7 @@ const SortEditor = ({ list, setList }) => {
 
   if (list?.length === 0) return null
 
-  const renderRepresentor =
+  const renderElement =
     list?.length > 1 ? (
       <>
         <ArrowsUpDownIcon className="h-3 w-3" />
@@ -137,7 +145,7 @@ const SortEditor = ({ list, setList }) => {
         type="button"
         className="flex-center gap-x-1 rounded-full border border-blue px-2 py-0.5 text-sm text-blue hover:bg-[#f7f7f5]"
       >
-        {renderRepresentor}
+        {renderElement}
       </button>
     </Popover>
   )

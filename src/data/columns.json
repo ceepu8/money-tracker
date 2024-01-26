@@ -43,6 +43,7 @@
         "dataIndex": "category",
         "editable": true,
         "icon": "chevron-down",
+        "id": "select",
         "title": "Category",
         "type": "select",
         "width": 120
