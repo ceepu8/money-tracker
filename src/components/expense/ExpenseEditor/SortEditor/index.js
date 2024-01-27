@@ -16,15 +16,15 @@ import defaultColumns from '@/data/columns.json'
 import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
-const AddSortSection = ({ leftSorts, open, setOpen, addItem }) => {
+const AddSortPopover = ({ list, open, setOpen, onAddItem }) => {
   return (
     <FilterSortPopover
       open={open}
       onOpenChange={setOpen}
-      list={leftSorts}
+      list={list}
       rootClassName="w-[280px]"
       inputPlaceholder="Search for a property..."
-      addItem={addItem}
+      addItem={onAddItem}
     >
       <Button
         type="text"
@@ -38,7 +38,7 @@ const AddSortSection = ({ leftSorts, open, setOpen, addItem }) => {
   )
 }
 
-const SortItem = ({ item, deleteItem }) => {
+const SortItem = ({ item, onDeleteItem }) => {
   const { id, title, isAscending } = item
 
   return (
@@ -47,7 +47,7 @@ const SortItem = ({ item, deleteItem }) => {
       <span className="flex-1">{isAscending ? 'Ascending' : 'Descending'}</span>
       <ButtonIcon
         icon={<XMarkIcon className="h-3.5 w-3.5 text-[#7e7e7e]" />}
-        onClick={() => deleteItem(id)}
+        onClick={() => onDeleteItem(id)}
         size="small"
       />
     </li>
@@ -66,15 +66,15 @@ const SortEditorContent = () => {
   const [leftSorts, setLeftSorts] = useState(defaultColumns)
   const [open, setOpen] = useState(false)
 
-  const onDeleteSort = () => {
+  const onRemoveAllSorts = () => {
     handleRemoveAllSorts()
   }
 
-  const deleteItem = (deleteId) => {
+  const onDeleteItem = (deleteId) => {
     handleDeleteSortItem(deleteId)
   }
 
-  const addItem = (item) => {
+  const onAddItem = (item) => {
     handleAddSortItem({
       ...item,
       isAscending: true,
@@ -89,7 +89,7 @@ const SortEditorContent = () => {
           <SortableList.DragHandle>
             <SixDotsVerticalIcon className="h-3 w-3 fill-[#7e7e7e]" />
           </SortableList.DragHandle>
-          <SortItem key={item.id} item={item} deleteItem={deleteItem} />
+          <SortItem key={item.id} item={item} onDeleteItem={onDeleteItem} />
         </div>
       </SortableList.Item>
     )
@@ -105,12 +105,13 @@ const SortEditorContent = () => {
       <SortableList type="vertical" items={list} onChange={setList} renderItem={renderItem} />
 
       {leftSorts?.length !== 0 && (
-        <AddSortSection open={open} setOpen={setOpen} addItem={addItem} leftSorts={leftSorts} />
+        <AddSortPopover open={open} setOpen={setOpen} onAddItem={onAddItem} list={leftSorts} />
       )}
+
       <Button
         type="text"
         size="small"
-        onClick={onDeleteSort}
+        onClick={onRemoveAllSorts}
         className="!-mx-2 !justify-start"
         icon={<TrashIcon className="h-4 w-4" />}
       >
