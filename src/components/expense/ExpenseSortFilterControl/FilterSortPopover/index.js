@@ -86,16 +86,17 @@ const FilterSortPopover = ({
   items,
   addItem,
 }) => {
+  const content = (
+    <PopoverContent
+      list={list}
+      extraContent={extraContent}
+      inputPlaceholder={inputPlaceholder}
+      addItem={addItem}
+    />
+  )
   return (
     <Popover
-      content={
-        <PopoverContent
-          list={list}
-          extraContent={extraContent}
-          inputPlaceholder={inputPlaceholder}
-          addItem={addItem}
-        />
-      }
+      content={content}
       rootClassName={rootClassName}
       onOpenChange={onOpenChange}
       trigger="click"

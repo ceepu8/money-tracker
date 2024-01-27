@@ -115,23 +115,28 @@ const SortEditorContent = ({ list, setList }) => {
 
 const SortEditor = ({ list, setList }) => {
   const [open, setOpen] = useState(false)
-  const { title, type, isAscending } = list[0] || {}
+  const { title, isAscending } = list[0] || {}
 
   if (list?.length === 0) return null
 
-  const renderElement =
+  const element =
     list?.length > 1 ? (
-      <>
-        <ArrowsUpDownIcon className="h-3 w-3" />
+      <Button icon={<ArrowsUpDownIcon className="h-3 w-3" />} size="small" shape="round" ghost>
         <span>{list.length} sorts</span>
-        <ChevronDownIcon className="h-3 w-3" />
-      </>
+        <ChevronDownIcon className="ml-1 h-3 w-3" />
+      </Button>
     ) : (
-      <>
-        {isAscending ? <ArrowUpIcon className="h-3 w-3" /> : <ArrowDownIcon className="h-3 w-3" />}
-        <span>{title}</span>
-        <ChevronDownIcon className="h-3 w-3" />
-      </>
+      <Button
+        size="small"
+        shape="round"
+        ghost
+        icon={
+          isAscending ? <ArrowUpIcon className="h-3 w-3" /> : <ArrowDownIcon className="h-3 w-3" />
+        }
+      >
+        {title}
+        <ChevronDownIcon className="ml-1 h-3 w-3" />
+      </Button>
     )
 
   return (
@@ -141,12 +146,7 @@ const SortEditor = ({ list, setList }) => {
       onOpenChange={setOpen}
       content={<SortEditorContent list={list} setList={setList} />}
     >
-      <button
-        type="button"
-        className="flex-center gap-x-1 rounded-full border border-blue px-2 py-0.5 text-sm text-blue hover:bg-[#f7f7f5]"
-      >
-        {renderElement}
-      </button>
+      {element}
     </Popover>
   )
 }

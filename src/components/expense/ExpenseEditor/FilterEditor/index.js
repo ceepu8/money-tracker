@@ -1,21 +1,26 @@
-import { Button } from 'antd'
 import differenceBy from 'lodash/differenceBy'
 import { useEffect, useState } from 'react'
 import { ChevronDownIcon, PlusIcon } from '@/components/icons'
 import { SortableList } from '@/components/sortable'
+import { Button } from '@/components/ui'
 import { PROPERTY_BY_ICONS } from '@/constants'
 import defaultColumns from '@/data/columns.json'
 import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
-const FilterItem = ({ item }) => {
+const FilterItem = ({ item, active }) => {
   const { id, title, type } = item
   const Icon = PROPERTY_BY_ICONS[type]
   return (
-    <div className="flex-center gap-x-1 rounded-full border border-[#ededed] px-2 py-0.5 text-sm">
-      {Icon && <Icon className="h-3 w-3" />}
-      <span>{title}</span>
-      <ChevronDownIcon className="h-3 w-3" />
-    </div>
+    <Button
+      ghost
+      size="small"
+      shape="round"
+      type={active ? 'primary' : 'default'}
+      icon={Icon && <Icon className="h-4 w-4" />}
+    >
+      {title}
+      <ChevronDownIcon className="ml-1 h-3 w-3" />
+    </Button>
   )
 }
 

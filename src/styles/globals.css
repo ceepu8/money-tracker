@@ -9,6 +9,8 @@
 
     --primary: #1b84e2;
     --blue: #1b84e2;
+
+    --text-primary: #212121;
   }
 
   [data-theme='light'] {
