@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import {
   ExpenseEditor,
   ExpenseSortFilterControl,
@@ -14,9 +13,6 @@ const ACTIVE_EXTRA_SETTING_WIDTH = 335
 const INACTIVE_EXTRA_SETTING_WIDTH = 155
 
 const ExpenseTab = () => {
-  const [filters, setFilters] = useState([])
-  const [sorts, setSorts] = useState([])
-
   const searchFlag = useFlag()
   const extraFlag = useFlag()
 
@@ -34,24 +30,12 @@ const ExpenseTab = () => {
         className="absolute right-0 top-0 flex justify-between border-b border-[#ededed] pb-[5px] transition-[width]"
         style={{ width: `${width}px` }}
       >
-        <ExpenseSortFilterControl
-          filters={filters}
-          setFilters={setFilters}
-          sorts={sorts}
-          setSorts={setSorts}
-          extraFlag={extraFlag}
-        />
+        <ExpenseSortFilterControl extraFlag={extraFlag} />
         <ExpenseTabSearch searchFlag={searchFlag} />
         <ExpenseTabSetting />
       </div>
       <div className="absolute left-0 top-[calc(38px+16px)]">
-        <ExpenseEditor
-          extraFlag={extraFlag}
-          filters={filters}
-          setFilters={setFilters}
-          sorts={sorts}
-          setSorts={setSorts}
-        />
+        <ExpenseEditor extraFlag={extraFlag} />
       </div>
     </div>
   )

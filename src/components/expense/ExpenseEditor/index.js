@@ -1,10 +1,14 @@
 import { Divider } from '@/components/ui'
 import { cn } from '@/utils'
+import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterEditor from './FilterEditor'
 import SortEditor from './SortEditor'
 
-const ExpenseEditor = ({ extraFlag, filters, setFilters, sorts, setSorts }) => {
+const ExpenseEditor = ({ extraFlag }) => {
+  const { filters, sorts } = useFilterSortContext()
+
   const [hasExtra] = extraFlag
+  const isFull = sorts?.length > 0 && filters?.length > 0
 
   return (
     <div
@@ -13,11 +17,9 @@ const ExpenseEditor = ({ extraFlag, filters, setFilters, sorts, setSorts }) => {
         hasExtra ? 'visible h-10 opacity-100' : 'invisible h-0 opacity-0'
       )}
     >
-      <SortEditor list={sorts} setList={setSorts} />
-      {sorts?.length > 0 && filters?.length > 0 && (
-        <Divider type="vertical" className="!h-[26px]" />
-      )}
-      <FilterEditor list={filters} setList={setFilters} />
+      <SortEditor />
+      {isFull && <Divider type="vertical" className="!h-[26px]" />}
+      <FilterEditor />
     </div>
   )
 }

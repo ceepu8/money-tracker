@@ -3,22 +3,22 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui'
 import defaultColumns from '@/data/columns.json'
+import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterSortPopover from '../FilterSortPopover'
 
-const ExpenseSort = ({ sorts, setSorts, extraFlag }) => {
-  const [hasExtra, onOpenExtra, onCloseExtra, toggleExtra] = extraFlag
+const ExpenseSort = ({ extraFlag }) => {
+  const { sorts, handleAddSortItem } = useFilterSortContext()
+
+  const [_hasExtra, onOpenExtra, _onCloseExtra, toggleExtra] = extraFlag
   const [open, setOpen] = useState(false)
 
   const isOpen = open && sorts?.length === 0
 
   const addItem = (item) => {
-    setSorts((prev) => [
-      ...prev,
-      {
-        ...item,
-        isAscending: true,
-      },
-    ])
+    handleAddSortItem({
+      ...item,
+      isAscending: true,
+    })
     setOpen(false)
     onOpenExtra()
   }

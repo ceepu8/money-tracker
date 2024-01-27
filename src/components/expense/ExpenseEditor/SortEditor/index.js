@@ -13,6 +13,7 @@ import {
 import { SortableList } from '@/components/sortable'
 import { Button, ButtonIcon, Popover } from '@/components/ui'
 import defaultColumns from '@/data/columns.json'
+import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
 const AddSortSection = ({ leftSorts, open, setOpen, addItem }) => {
@@ -53,26 +54,31 @@ const SortItem = ({ item, deleteItem }) => {
   )
 }
 
-const SortEditorContent = ({ list, setList }) => {
+const SortEditorContent = () => {
+  const {
+    sorts: list,
+    setSorts: setList,
+    handleAddSortItem,
+    handleDeleteSortItem,
+    handleRemoveAllSorts,
+  } = useFilterSortContext()
+
   const [leftSorts, setLeftSorts] = useState(defaultColumns)
   const [open, setOpen] = useState(false)
 
   const onDeleteSort = () => {
-    setList([])
+    handleRemoveAllSorts()
   }
 
   const deleteItem = (deleteId) => {
-    setList((prev) => prev.filter((item) => item.id !== deleteId))
+    handleDeleteSortItem(deleteId)
   }
 
   const addItem = (item) => {
-    setList((prev) => [
-      ...prev,
-      {
-        ...item,
-        isAscending: true,
-      },
-    ])
+    handleAddSortItem({
+      ...item,
+      isAscending: true,
+    })
     setOpen(false)
   }
 
@@ -97,6 +103,7 @@ const SortEditorContent = ({ list, setList }) => {
   return (
     <div className="flex flex-col gap-y-1">
       <SortableList type="vertical" items={list} onChange={setList} renderItem={renderItem} />
+
       {leftSorts?.length !== 0 && (
         <AddSortSection open={open} setOpen={setOpen} addItem={addItem} leftSorts={leftSorts} />
       )}
@@ -113,7 +120,9 @@ const SortEditorContent = ({ list, setList }) => {
   )
 }
 
-const SortEditor = ({ list, setList }) => {
+const SortEditor = () => {
+  const { sorts: list } = useFilterSortContext()
+
   const [open, setOpen] = useState(false)
   const { title, isAscending } = list[0] || {}
 
@@ -144,7 +153,7 @@ const SortEditor = ({ list, setList }) => {
       rootClassName="w-[290px]"
       open={open}
       onOpenChange={setOpen}
-      content={<SortEditorContent list={list} setList={setList} />}
+      content={<SortEditorContent />}
     >
       {element}
     </Popover>

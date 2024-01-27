@@ -5,6 +5,7 @@ import { SortableList } from '@/components/sortable'
 import { Button } from '@/components/ui'
 import { PROPERTY_BY_ICONS } from '@/constants'
 import defaultColumns from '@/data/columns.json'
+import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
 const FilterItem = ({ item, active }) => {
@@ -24,12 +25,14 @@ const FilterItem = ({ item, active }) => {
   )
 }
 
-const FilterEditor = ({ list, setList }) => {
+const FilterEditor = () => {
+  const { filters: list, setFilters: setList, handleAddFilterItem } = useFilterSortContext()
+
   const [leftFilters, setLeftFilters] = useState(defaultColumns)
   const [open, setOpen] = useState(false)
 
   const addItem = (item) => {
-    setList((prev) => [...prev, item])
+    handleAddFilterItem(item)
     setOpen(false)
   }
 

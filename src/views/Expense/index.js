@@ -2,6 +2,7 @@
 
 import { HeadingTitle } from '@/components/common'
 import ExpenseTab from './ExpenseTab'
+import { FilterSortProvider } from './FilterSortContext'
 
 const ExpenseView = () => {
   const onChangeTitle = () => {}
@@ -9,7 +10,9 @@ const ExpenseView = () => {
   return (
     <div className="mx-auto max-w-[1200px] overflow-hidden pt-12">
       <HeadingTitle label="Expense" editable onChange={onChangeTitle} />
-      <ExpenseTab />
+      <FilterSortProvider>
+        <ExpenseTab />
+      </FilterSortProvider>
     </div>
   )
 }

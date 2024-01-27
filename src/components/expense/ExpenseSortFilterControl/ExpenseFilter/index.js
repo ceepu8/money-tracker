@@ -4,10 +4,12 @@ import { useState } from 'react'
 import { PlusIcon } from '@/components/icons'
 import { Button } from '@/components/ui'
 import defaultColumns from '@/data/columns.json'
+import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterSortPopover from '../FilterSortPopover'
 
-const ExpenseFilter = ({ filters, setFilters, extraFlag }) => {
-  const [hasExtra, onOpenExtra, onCloseExtra, toggleExtra] = extraFlag
+const ExpenseFilter = ({ extraFlag }) => {
+  const { filters, handleAddFilterItem } = useFilterSortContext()
+  const [_hasExtra, onOpenExtra, _onCloseExtra, toggleExtra] = extraFlag
   const [open, setOpen] = useState(false)
 
   const isOpen = open && filters?.length === 0
@@ -32,7 +34,7 @@ const ExpenseFilter = ({ filters, setFilters, extraFlag }) => {
   )
 
   const addItem = (item) => {
-    setFilters((prev) => [...prev, item])
+    handleAddFilterItem(item)
     setOpen(false)
     onOpenExtra()
   }

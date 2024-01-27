@@ -34,12 +34,12 @@ const ExpenseFilterItem = ({ item, onClick }) => {
 }
 
 const ExpenseFilterList = ({ list, addItem }) => {
-  const renderItem = (item) => {
-    return <ExpenseFilterItem key={item.id} item={item} onClick={() => addItem(item)} />
+  if (!list?.length) {
+    return <span className="text-xs">No result</span>
   }
 
-  if (list?.length === 0) {
-    return <span className="text-xs">No result</span>
+  const renderItem = (item) => {
+    return <ExpenseFilterItem key={item.id} item={item} onClick={() => addItem(item)} />
   }
 
   return <ul>{list.map(renderItem)}</ul>
