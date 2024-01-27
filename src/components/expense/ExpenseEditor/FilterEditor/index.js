@@ -9,7 +9,7 @@ import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
 const FilterItem = ({ item, active }) => {
-  const { id, title, type } = item
+  const { title, type } = item
   const Icon = PROPERTY_BY_ICONS[type]
   return (
     <Button

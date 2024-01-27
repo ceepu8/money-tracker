@@ -4,7 +4,6 @@ import {
   ChevronDownIcon,
   LinkIcon,
   MenuIcon,
-  PlusIcon,
 } from '@/components/icons'
 
 export const GENDER = {

@@ -18,7 +18,7 @@ const Input = forwardRef((props, ref) => {
 })
 
 const ExpenseFilterItem = ({ item, onClick }) => {
-  const { id, title, type } = item
+  const { title, type } = item
   const Icon = PROPERTY_BY_ICONS[type]
 
   return (
@@ -83,7 +83,7 @@ const FilterSortPopover = ({
   children,
   rootClassName,
   inputPlaceholder,
-  items,
+  // items,
   addItem,
 }) => {
   const content = (

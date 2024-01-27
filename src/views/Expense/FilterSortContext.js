@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useMemo, useReducer } from 'react'
 
 const initialContextValues = {
   filters: [],
@@ -98,30 +98,28 @@ export const FilterSortProvider = ({ children }) => {
     dispatch({ type: 'DELETE_SORT_ITEM', payload: value })
   }
 
-  const handleRemoveAllFilters = (value) => {
+  const handleRemoveAllFilters = () => {
     dispatch({ type: 'REMOVE_ALL_FILTERS' })
   }
 
-  const handleRemoveAllSorts = (value) => {
+  const handleRemoveAllSorts = () => {
     dispatch({ type: 'REMOVE_ALL_SORTS' })
   }
 
-  return (
-    <FilterSortContext.Provider
-      value={{
-        filters: state.filters,
-        sorts: state.sorts,
-        setSorts,
-        setFilters,
-        handleAddFilterItem,
-        handleAddSortItem,
-        handleDeleteFilterItem,
-        handleDeleteSortItem,
-        handleRemoveAllFilters,
-        handleRemoveAllSorts,
-      }}
-    >
-      {children}
-    </FilterSortContext.Provider>
-  )
+  const values = useMemo(() => {
+    return {
+      filters: state.filters,
+      sorts: state.sorts,
+      setSorts,
+      setFilters,
+      handleAddFilterItem,
+      handleAddSortItem,
+      handleDeleteFilterItem,
+      handleDeleteSortItem,
+      handleRemoveAllFilters,
+      handleRemoveAllSorts,
+    }
+  }, [state.filters, state.sorts])
+
+  return <FilterSortContext.Provider value={values}>{children}</FilterSortContext.Provider>
 }

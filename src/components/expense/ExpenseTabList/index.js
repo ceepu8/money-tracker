@@ -13,7 +13,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { PlusIcon, TableCellsIcon } from '@/components/icons'
 import { ButtonIcon } from '@/components/ui'
 import { cn, useTabs } from '@/utils'
-import ExpenseEditor from '../ExpenseEditor'
 import ExpenseTabTable from './ExpenseTabTable'
 import ExpenseTabTitle from './ExpenseTabTitle'
 
