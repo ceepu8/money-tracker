@@ -1,5 +1,5 @@
 import differenceBy from 'lodash/differenceBy'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { ChevronDownIcon, PlusIcon } from '@/components/icons'
 import { SortableList } from '@/components/sortable'
 import { Button } from '@/components/ui'
@@ -8,22 +8,20 @@ import defaultColumns from '@/data/columns.json'
 import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
-const FilterItem = ({ item, active }) => {
-  const { title, type } = item
+const FilterItem = memo(({ item, active }) => {
+  const { title, type } = item || {}
   const Icon = PROPERTY_BY_ICONS[type]
+
+  const buttonType = active ? 'primary' : 'default'
+  const icon = Icon && <Icon className="h-4 w-4" />
+
   return (
-    <Button
-      ghost
-      size="small"
-      shape="round"
-      type={active ? 'primary' : 'default'}
-      icon={Icon && <Icon className="h-4 w-4" />}
-    >
-      {title}
+    <Button ghost size="small" shape="round" type={buttonType} icon={icon}>
+      <span>{title}</span>
       <ChevronDownIcon className="ml-1 h-3 w-3" />
     </Button>
   )
-}
+})
 
 const FilterEditor = () => {
   const { filters: list, setFilters: setList, handleAddFilterItem } = useFilterSortContext()

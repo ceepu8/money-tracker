@@ -1,7 +1,8 @@
 'use client'
 
+import { Pressable } from '@react-aria/interactions'
 import { Input as AntdInput } from 'antd/lib'
-import { forwardRef, useDeferredValue, useMemo, useState } from 'react'
+import { forwardRef, memo, useDeferredValue, useMemo, useState } from 'react'
 import { Divider, Popover } from '@/components/ui'
 import { PROPERTY_BY_ICONS } from '@/constants'
 
@@ -17,21 +18,19 @@ const Input = forwardRef((props, ref) => {
   )
 })
 
-const ExpenseFilterItem = ({ item, onClick }) => {
-  const { title, type } = item
+const ExpenseFilterItem = memo(({ item, onClick }) => {
+  const { title, type } = item || {}
   const Icon = PROPERTY_BY_ICONS[type]
 
   return (
-    <li
-      className="-mx-2 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 hover:bg-[#ededed]"
-      role="presentation"
-      onClick={onClick}
-    >
-      {Icon && <Icon className="h-4 w-4" />}
-      <span>{title}</span>
-    </li>
+    <Pressable onPress={onClick}>
+      <li className="-mx-2 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 hover:bg-[#ededed]">
+        {Icon && <Icon className="h-4 w-4" />}
+        <span>{title}</span>
+      </li>
+    </Pressable>
   )
-}
+})
 
 const ExpenseFilterList = ({ list, addItem }) => {
   if (!list?.length) {
@@ -94,6 +93,7 @@ const FilterSortPopover = ({
       addItem={addItem}
     />
   )
+
   return (
     <Popover
       content={content}

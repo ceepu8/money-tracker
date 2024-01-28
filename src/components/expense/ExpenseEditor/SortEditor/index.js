@@ -1,5 +1,5 @@
 import differenceBy from 'lodash/differenceBy'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import {
   ArrowDownIcon,
   ArrowsUpDownIcon,
@@ -38,8 +38,8 @@ const AddSortPopover = ({ list, open, setOpen, onAddItem }) => {
   )
 }
 
-const SortItem = ({ item, onDeleteItem }) => {
-  const { id, title, isAscending } = item
+const SortItem = memo(({ item, onDeleteItem }) => {
+  const { id, title, isAscending } = item || {}
 
   return (
     <li key={id} className="flex-between flex-1 gap-x-2 text-xs text-[#7e7e7e]">
@@ -52,7 +52,7 @@ const SortItem = ({ item, onDeleteItem }) => {
       />
     </li>
   )
-}
+})
 
 const SortEditorContent = () => {
   const {

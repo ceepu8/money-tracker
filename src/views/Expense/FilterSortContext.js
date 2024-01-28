@@ -10,104 +10,83 @@ export const FilterSortContext = createContext(initialContextValues)
 export const useFilterSortContext = () => {
   const context = useContext(FilterSortContext)
 
-  if (context === undefined) {
-    throw new Error('useFilterSortContext must be used within a CustomThemeProvider')
+  if (!context) {
+    throw new Error('useFilterSortContext must be used within a FilterSortProvider')
   }
 
   return context
 }
 
-const deleteItem = (items, deleteId) => {
-  return items.filter((item) => item.id !== deleteId)
+const actions = {
+  setFilter: 'SET_FILTER',
+  setSort: 'SET_SORT',
+  addFilterItem: 'ADD_FILTER_ITEM',
+  deleteFilterItem: 'DELETE_FILTER_ITEM',
+  deleteSortItem: 'DELETE_SORT_ITEM',
+  addSortItem: 'ADD_SORT_ITEM',
+  removeAllFilters: 'REMOVE_ALL_FILTERS',
+  removeAllSorts: 'REMOVE_ALL_SORTS',
 }
+
+const deleteItem = (items, deleteId) => items.filter((item) => item.id !== deleteId)
 
 const taskReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_FILTER':
-      return {
-        ...state,
-        filters: action.payload,
-      }
-    case 'SET_SORT':
-      return {
-        ...state,
-        sorts: action.payload,
-      }
-    case 'ADD_FILTER_ITEM':
-      return {
-        ...state,
-        filters: [...state.filters, action.payload],
-      }
-    case 'DELETE_FILTER_ITEM':
-      return {
-        ...state,
-        filters: deleteItem(state.filters, action.payload),
-      }
-    case 'DELETE_SORT_ITEM':
-      return {
-        ...state,
-        sorts: deleteItem(state.sorts, action.payload),
-      }
-    case 'ADD_SORT_ITEM':
-      return {
-        ...state,
-        sorts: [...state.sorts, action.payload],
-      }
-    case 'REMOVE_ALL_FILTERS':
-      return {
-        ...state,
-        filters: [],
-      }
-    case 'REMOVE_ALL_SORTS':
-      return {
-        ...state,
-        sorts: [],
-      }
+    case actions.setFilter:
+      return { ...state, filters: action.payload }
+    case actions.setSort:
+      return { ...state, sorts: action.payload }
+    case actions.addFilterItem:
+      return { ...state, filters: [...state.filters, action.payload] }
+    case actions.deleteFilterItem:
+      return { ...state, filters: deleteItem(state.filters, action.payload) }
+    case actions.deleteSortItem:
+      return { ...state, sorts: deleteItem(state.sorts, action.payload) }
+    case actions.addSortItem:
+      return { ...state, sorts: [...state.sorts, action.payload] }
+    case actions.removeAllFilters:
+      return { ...state, filters: [] }
+    case actions.removeAllSorts:
+      return { ...state, sorts: [] }
     default:
       return state
   }
 }
 
 export const FilterSortProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(taskReducer, {
-    filters: [],
-    sorts: [],
-  })
-
-  const handleAddFilterItem = (value) => {
-    dispatch({ type: 'ADD_FILTER_ITEM', payload: value })
-  }
+  const [state, dispatch] = useReducer(taskReducer, initialContextValues)
 
   const setSorts = (value) => {
-    dispatch({ type: 'SET_SORT', payload: value })
+    dispatch({ type: actions.setSort, payload: value })
   }
-
   const setFilters = (value) => {
-    dispatch({ type: 'SET_FILTER', payload: value })
+    dispatch({ type: actions.setFilter, payload: value })
   }
 
+  const handleAddFilterItem = (value) => {
+    dispatch({ type: actions.addFilterItem, payload: value })
+  }
   const handleAddSortItem = (value) => {
-    dispatch({ type: 'ADD_SORT_ITEM', payload: value })
+    dispatch({ type: actions.addSortItem, payload: value })
   }
 
   const handleDeleteFilterItem = (value) => {
-    dispatch({ type: 'DELETE_FILTER_ITEM', payload: value })
+    dispatch({ type: actions.deleteFilterItem, payload: value })
   }
 
   const handleDeleteSortItem = (value) => {
-    dispatch({ type: 'DELETE_SORT_ITEM', payload: value })
+    dispatch({ type: actions.deleteSortItem, payload: value })
   }
 
   const handleRemoveAllFilters = () => {
-    dispatch({ type: 'REMOVE_ALL_FILTERS' })
+    dispatch({ type: actions.removeAllFilters })
   }
-
   const handleRemoveAllSorts = () => {
-    dispatch({ type: 'REMOVE_ALL_SORTS' })
+    dispatch({ type: actions.removeAllSorts })
   }
 
-  const values = useMemo(() => {
-    return {
+  const values = useMemo(
+    () => ({
       filters: state.filters,
       sorts: state.sorts,
       setSorts,
@@ -118,8 +97,9 @@ export const FilterSortProvider = ({ children }) => {
       handleDeleteSortItem,
       handleRemoveAllFilters,
       handleRemoveAllSorts,
-    }
-  }, [state.filters, state.sorts])
+    }),
+    [state.filters, state.sorts]
+  )
 
   return <FilterSortContext.Provider value={values}>{children}</FilterSortContext.Provider>
 }
