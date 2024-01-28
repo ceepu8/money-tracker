@@ -1,6 +1,6 @@
 'use client'
 
-import { Typography } from 'antd/lib'
+import { Typography } from 'antd'
 import { useState } from 'react'
 import { cn } from '@/utils'
 
