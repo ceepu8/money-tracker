@@ -1,20 +1,18 @@
 import { memo } from 'react'
-
-const { cn } = require('@/utils')
+import { cn } from '@/utils'
 
 const HeadCell = ({ item, first }) => {
-  const { dataIndex, title, width, icon: Icon } = item || {}
+  const { title, width, icon: Icon } = item || {}
 
   return (
     <div
+      style={{ width: `${width}px` }}
       className={cn(
-        'flex h-10 w-full cursor-pointer items-center gap-x-2 pl-2 text-sm hover:bg-gray-100',
+        'flex h-10 w-full cursor-pointer items-center gap-x-2 pl-2 hover:bg-gray-100',
         first && 'pl-8'
       )}
-      style={{ width: `${width}px` }}
-      key={dataIndex}
     >
-      {Icon && <Icon className="h-4 w-4" />}
+      {Icon && <Icon className="size-4" />}
       <span>{title}</span>
     </div>
   )

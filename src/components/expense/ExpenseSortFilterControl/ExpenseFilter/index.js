@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import { PlusIcon } from '@/components/icons'
+import FilterSortPopover from '@/components/popover/FilterSortPopover'
 import { Button } from '@/components/ui'
+import { useFilterSortContext } from '@/contexts/customs'
 import defaultColumns from '@/data/columns.json'
-import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
-import FilterSortPopover from '../FilterSortPopover'
 
 const ExpenseFilter = ({ extraFlag }) => {
   const { filters, handleAddFilterItem } = useFilterSortContext()
-  const [_hasExtra, onOpenExtra, _onCloseExtra, toggleExtra] = extraFlag
+  const [, onOpenExtra, , toggleExtra] = extraFlag
   const [open, setOpen] = useState(false)
 
   const isOpen = open && filters?.length === 0
@@ -27,7 +27,7 @@ const ExpenseFilter = ({ extraFlag }) => {
       type="text"
       size="medium"
       className="-mx-2 !justify-start"
-      icon={<PlusIcon className="h-5 w-5" />}
+      icon={<PlusIcon className="size-5" />}
     >
       Add advanced filter
     </Button>

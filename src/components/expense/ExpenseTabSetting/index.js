@@ -4,7 +4,7 @@ import { ButtonIcon } from '@/components/ui'
 const ExpenseTabSetting = () => {
   return (
     <div>
-      <ButtonIcon icon={<EllipsisHorizontalIcon className="h-4 w-4" />} />
+      <ButtonIcon icon={<EllipsisHorizontalIcon className="size-4" />} />
     </div>
   )
 }

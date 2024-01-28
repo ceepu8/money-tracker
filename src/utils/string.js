@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import queryString from 'query-string'
-import { locales } from '@/constants'
+import { locales } from '@/constants/common'
 
 export const parseQueryString = (s = '', options = {}) => {
   try {

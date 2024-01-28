@@ -12,7 +12,7 @@ module.exports = {
   bracketSameLine: false,
   endOfLine: 'auto',
   //
-  importOrder: ['^@(server|trpc)/(.*)$', '^@/(.*)$', '^[./]'],
+  importOrder: ['^@(server|trpc)/(.*)$', '^(react|next)', '^@/(.*)$', '^[./]'],
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
   importOrderBuiltinModulesToTop: true,
