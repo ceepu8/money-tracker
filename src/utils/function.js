@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { twMerge } from 'tailwind-merge'
-import { Routes } from '@/constants'
+import { Routes } from '@/constants/routes'
 
 export function cn(...inputs) {
   return twMerge(classNames(inputs))

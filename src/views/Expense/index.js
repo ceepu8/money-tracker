@@ -1,8 +1,8 @@
 'use client'
 
 import { HeadingTitle } from '@/components/common'
+import { FilterSortProvider } from '@/contexts/customs'
 import ExpenseTab from './ExpenseTab'
-import { FilterSortProvider } from './FilterSortContext'
 import TistTest from './TistTest'
 
 const ExpenseView = () => {

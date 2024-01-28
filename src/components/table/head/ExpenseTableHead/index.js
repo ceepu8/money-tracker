@@ -21,8 +21,8 @@ const ExpenseTableHead = ({ columns, setColumns }) => {
     <div className="flex min-w-max items-center border-b border-[#ededed] pl-8">
       <SortableList items={columns} onChange={setColumns} renderItem={renderItem} />
       <li className="flex w-[100px]">
-        <ButtonIcon type="text" icon={<PlusIcon className="h-4 w-4" />} />
-        <ButtonIcon type="text" icon={<MenuIcon className="h-4 w-4" />} />
+        <ButtonIcon type="text" icon={<PlusIcon className="size-4" />} />
+        <ButtonIcon type="text" icon={<MenuIcon className="size-4" />} />
       </li>
     </div>
   )

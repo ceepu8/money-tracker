@@ -9,7 +9,7 @@ import {
   PlusIcon,
 } from '@/components/icons'
 import { ExpenseTableHead } from '@/components/table/head'
-import { COLUMN_TYPE } from '@/constants'
+import { PROPERTY_TYPE } from '@/constants'
 import data from '@/data/expense.json'
 import TableBody from './TableBody'
 
@@ -21,7 +21,7 @@ const TableAddNewRow = ({ onClick }) => {
       className="sticky bottom-[-4px] left-0 z-20 flex h-10 w-full cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
     >
       <div className="sticky left-0 flex items-center gap-x-2 pl-4">
-        <PlusIcon className="h-4 w-4" />
+        <PlusIcon className="size-4" />
         <span>New</span>
       </div>
     </div>
@@ -36,7 +36,7 @@ const defaultColumns = [
   },
   {
     title: 'Description',
-    type: COLUMN_TYPE.TEXT,
+    type: PROPERTY_TYPE.TEXT,
     icon: MenuIcon,
     dataIndex: 'description',
     id: 'description',
@@ -45,7 +45,7 @@ const defaultColumns = [
   },
   {
     title: 'Amount',
-    type: COLUMN_TYPE.NUMBER,
+    type: PROPERTY_TYPE.NUMBER,
     icon: CalculatorIcon,
     dataIndex: 'amount',
     id: 'amount',
@@ -54,7 +54,7 @@ const defaultColumns = [
   },
   {
     title: 'Link',
-    type: COLUMN_TYPE.URL,
+    type: PROPERTY_TYPE.URL,
     icon: LinkIcon,
     dataIndex: 'link',
     id: 'link',
@@ -63,7 +63,7 @@ const defaultColumns = [
   },
   {
     title: 'Method',
-    type: COLUMN_TYPE.TEXT,
+    type: PROPERTY_TYPE.TEXT,
     icon: MenuIcon,
     dataIndex: 'method',
     id: 'method',
@@ -72,7 +72,7 @@ const defaultColumns = [
   },
   {
     title: 'Date',
-    type: COLUMN_TYPE.DATE,
+    type: PROPERTY_TYPE.DATE,
     icon: CalendarDaysIcon,
     dataIndex: 'date',
     id: 'date',
@@ -84,7 +84,7 @@ const defaultColumns = [
   },
   {
     title: 'Category',
-    type: COLUMN_TYPE.SELECT,
+    type: PROPERTY_TYPE.SELECT,
     icon: ChevronDownIcon,
     dataIndex: 'category',
     id: 'category',
@@ -93,7 +93,7 @@ const defaultColumns = [
   },
   {
     title: 'Status',
-    type: COLUMN_TYPE.STATUS,
+    type: PROPERTY_TYPE.STATUS,
     icon: CalendarDaysIcon,
     dataIndex: 'status',
     id: 'status',
@@ -102,7 +102,7 @@ const defaultColumns = [
   },
   {
     title: 'Details',
-    type: COLUMN_TYPE.TEXT,
+    type: PROPERTY_TYPE.TEXT,
     icon: MenuIcon,
     dataIndex: 'details',
     id: 'details',

@@ -52,7 +52,7 @@ const ExpenseTabSearch = ({ searchFlag }) => {
   return (
     <div className="flex items-center">
       <ButtonIcon
-        icon={<MagnifyingGlassIcon className="h-4 w-4" />}
+        icon={<MagnifyingGlassIcon className="size-4" />}
         className="shrink-0"
         onClick={toggleHasSearch}
       />

@@ -1,4 +1,4 @@
-import { Popover as AntdPopover } from 'antd/lib'
+import { Popover as AntdPopover } from 'antd'
 import isEmpty from 'lodash/isEmpty'
 
 const Popover = ({
