@@ -7,7 +7,8 @@ import { ChevronDownIcon, PlusIcon } from '@/components/icons'
 import { FilterSortPopover } from '@/components/popover'
 import { SortableList } from '@/components/sortable'
 import { Button } from '@/components/ui'
-import { ICON_BY_PROPERTY, POPOVER_BY_PROPERTY } from '@/constants'
+import { POPOVER_BY_PROPERTY } from '@/constants'
+import { PROPERTY_TYPE_ICONS } from '@/constants/icons'
 import defaultColumns from '@/data/columns.json'
 import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 
@@ -17,7 +18,7 @@ const FilterItem = ({ item }, ref) => {
   const [open, setOpen] = useState(false)
   const { isDragging } = useSortable({ id })
 
-  const Icon = ICON_BY_PROPERTY[type]
+  const Icon = PROPERTY_TYPE_ICONS[type]
   const Popover = POPOVER_BY_PROPERTY[type] || 'div'
 
   const buttonType = isActive ? 'primary' : 'default'

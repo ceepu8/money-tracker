@@ -4,7 +4,7 @@ import { Pressable } from '@react-aria/interactions'
 import { Input as AntdInput } from 'antd/lib'
 import { forwardRef, memo, useDeferredValue, useMemo, useState } from 'react'
 import { Divider, Popover } from '@/components/ui'
-import { ICON_BY_PROPERTY } from '@/constants'
+import { PROPERTY_TYPE_ICONS } from '@/constants/icons'
 
 const Input = forwardRef((props, ref) => {
   return (
@@ -20,7 +20,7 @@ const Input = forwardRef((props, ref) => {
 
 const ExpenseFilterItem = memo(({ item, onClick }) => {
   const { title, type } = item || {}
-  const Icon = ICON_BY_PROPERTY[type]
+  const Icon = PROPERTY_TYPE_ICONS[type]
 
   return (
     <Pressable onPress={onClick}>
