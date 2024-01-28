@@ -4,7 +4,7 @@ import { Pressable } from '@react-aria/interactions'
 import { Input as AntdInput } from 'antd/lib'
 import { forwardRef, memo, useDeferredValue, useMemo, useState } from 'react'
 import { Divider, Popover } from '@/components/ui'
-import { PROPERTY_BY_ICONS } from '@/constants'
+import { ICON_BY_PROPERTY } from '@/constants'
 
 const Input = forwardRef((props, ref) => {
   return (
@@ -20,7 +20,7 @@ const Input = forwardRef((props, ref) => {
 
 const ExpenseFilterItem = memo(({ item, onClick }) => {
   const { title, type } = item || {}
-  const Icon = PROPERTY_BY_ICONS[type]
+  const Icon = ICON_BY_PROPERTY[type]
 
   return (
     <Pressable onPress={onClick}>
@@ -75,30 +75,30 @@ const PopoverContent = ({ list, extraContent, inputPlaceholder, addItem }) => {
 }
 
 const FilterSortPopover = ({
-  extraContent,
-  open,
-  onOpenChange,
-  list,
-  children,
-  rootClassName,
   inputPlaceholder,
-  // items,
+  rootClassName,
+  extraContent,
+  onOpenChange,
+  children,
   addItem,
+  open,
+  list,
+  // items,
 }) => {
   const content = (
     <PopoverContent
-      list={list}
       extraContent={extraContent}
       inputPlaceholder={inputPlaceholder}
       addItem={addItem}
+      list={list}
     />
   )
 
   return (
     <Popover
-      content={content}
       rootClassName={rootClassName}
       onOpenChange={onOpenChange}
+      content={content}
       trigger="click"
       open={open}
     >

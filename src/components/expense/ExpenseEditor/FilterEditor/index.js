@@ -1,28 +1,41 @@
+'use client'
+
+import { useSortable } from '@dnd-kit/sortable'
 import differenceBy from 'lodash/differenceBy'
-import { memo, useEffect, useState } from 'react'
+import { forwardRef, memo, useEffect, useState } from 'react'
 import { ChevronDownIcon, PlusIcon } from '@/components/icons'
+import { FilterSortPopover } from '@/components/popover'
 import { SortableList } from '@/components/sortable'
 import { Button } from '@/components/ui'
-import { PROPERTY_BY_ICONS } from '@/constants'
+import { ICON_BY_PROPERTY, POPOVER_BY_PROPERTY } from '@/constants'
 import defaultColumns from '@/data/columns.json'
 import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
-import FilterSortPopover from '../../ExpenseSortFilterControl/FilterSortPopover'
 
-const FilterItem = memo(({ item, active }) => {
-  const { title, type } = item || {}
-  const Icon = PROPERTY_BY_ICONS[type]
+const FilterItem = ({ item }, ref) => {
+  const { id, title, type, isActive } = item || {}
 
-  const buttonType = active ? 'primary' : 'default'
+  const [open, setOpen] = useState(false)
+  const { isDragging } = useSortable({ id })
+
+  const Icon = ICON_BY_PROPERTY[type]
+  const Popover = POPOVER_BY_PROPERTY[type] || 'div'
+
+  const buttonType = isActive ? 'primary' : 'default'
   const icon = Icon && <Icon className="h-4 w-4" />
 
-  return (
-    <Button ghost size="small" shape="round" type={buttonType} icon={icon}>
-      <span>{title}</span>
-      <ChevronDownIcon className="ml-1 h-3 w-3" />
-    </Button>
-  )
-})
+  useEffect(() => {
+    if (isDragging) setOpen(false)
+  }, [isDragging])
 
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <Button ghost size="small" shape="round" type={buttonType} icon={icon}>
+        <span>{title}</span>
+        <ChevronDownIcon className="ml-1 h-3 w-3" />
+      </Button>
+    </Popover>
+  )
+}
 const FilterEditor = () => {
   const { filters: list, setFilters: setList, handleAddFilterItem } = useFilterSortContext()
 

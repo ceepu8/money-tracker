@@ -5,6 +5,7 @@ import {
   LinkIcon,
   MenuIcon,
 } from '@/components/icons'
+import { FilterDatePopover } from '@/components/popover'
 
 export const GENDER = {
   MALE: 'male',
@@ -70,11 +71,20 @@ export const PROPERTY_LIST = [
   },
 ]
 
-export const PROPERTY_BY_ICONS = {
+export const ICON_BY_PROPERTY = {
   text: MenuIcon,
   number: CalculatorIcon,
   url: LinkIcon,
   date: CalendarDaysIcon,
   select: ChevronDownIcon,
   status: CalendarDaysIcon,
+}
+
+export const POPOVER_BY_PROPERTY = {
+  // text: MenuIcon,
+  // number: CalculatorIcon,
+  // url: LinkIcon,
+  // select: ChevronDownIcon,
+  // status: CalendarDaysIcon,
+  date: FilterDatePopover,
 }

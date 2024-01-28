@@ -27,7 +27,11 @@ const SortableList = ({ items, type = 'horizontal', onChange, renderItem, classN
   const activeItem = useMemo(() => items.find((item) => item.id === active?.id), [active, items])
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 0.01,
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })

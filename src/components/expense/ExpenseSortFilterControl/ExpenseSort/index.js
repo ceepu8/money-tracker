@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { FilterSortPopover } from '@/components/popover'
 import { Button } from '@/components/ui'
 import defaultColumns from '@/data/columns.json'
 import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
-import FilterSortPopover from '../FilterSortPopover'
 
 const ExpenseSort = ({ extraFlag }) => {
   const { sorts, handleAddSortItem } = useFilterSortContext()

@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import { PlusIcon } from '@/components/icons'
+import { FilterSortPopover } from '@/components/popover'
 import { Button } from '@/components/ui'
 import defaultColumns from '@/data/columns.json'
 import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
-import FilterSortPopover from '../FilterSortPopover'
 
 const ExpenseFilter = ({ extraFlag }) => {
   const { filters, handleAddFilterItem } = useFilterSortContext()
