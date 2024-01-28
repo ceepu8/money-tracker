@@ -1,10 +1,7 @@
 import { Toaster } from 'sonner'
 import { useDayjsLocale } from '@/configs/dayjs'
 import { useYupValidate } from '@/configs/yup'
-import AntdProvider from '@/contexts/AntdProvider'
-import AuthProvider from '@/contexts/AuthProvider'
-import ThemeProvider from '@/contexts/ThemeProvider'
-import WrapBalancerProvider from '@/contexts/WrapBalancerProvider'
+import { AntdProvider, AuthProvider, ThemeProvider, WrapBalancerProvider } from '@/contexts/libs'
 
 export default function AppProviders({ children, locale }) {
   useDayjsLocale(locale)

@@ -1,4 +1,4 @@
-import { SortEditorPopover } from '@/components/popover'
+import SortEditorPopover from '@/components/popover/SortEditorPopover'
 
 const SortEditor = () => {
   return <SortEditorPopover />

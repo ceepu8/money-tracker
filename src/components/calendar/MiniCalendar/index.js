@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import times from 'lodash/times'
 import { useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
-import { ButtonIcon } from '@/components/ui'
+import ButtonIcon from '@/components/ui/ButtonIcon'
 import { cn } from '@/utils'
 
 const CalendarDayItem = ({ value, isCurrent, isThisMonth, isFuture, className }) => {
@@ -33,13 +33,13 @@ const MiniCalendarControl = ({ onPrevMonth, onNextMonth }) => {
         type="text"
         size="small"
         onClick={onPrevMonth}
-        icon={<ChevronLeftIcon className="h-4 w-4" />}
+        icon={<ChevronLeftIcon className="size-4" />}
       />
       <ButtonIcon
         type="text"
         size="small"
         onClick={onNextMonth}
-        icon={<ChevronRightIcon className="h-4 w-4" />}
+        icon={<ChevronRightIcon className="size-4" />}
       />
     </div>
   )
@@ -94,7 +94,7 @@ const MiniCalendarBody = ({ pivot, month }) => {
 
 const MiniCalendar = () => {
   // day/ week/ month/ year
-  const [active, setActive] = useState('day')
+  // const [active, setActive] = useState('day')
 
   const currentMonth = dayjs()
   const [month, setMonth] = useState(currentMonth)

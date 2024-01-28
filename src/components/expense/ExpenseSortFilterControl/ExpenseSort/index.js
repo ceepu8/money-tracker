@@ -1,15 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { FilterSortPopover } from '@/components/popover'
+import FilterSortPopover from '@/components/popover/FilterSortPopover'
 import { Button } from '@/components/ui'
+import { useFilterSortContext } from '@/contexts/customs'
 import defaultColumns from '@/data/columns.json'
-import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 
 const ExpenseSort = ({ extraFlag }) => {
   const { sorts, handleAddSortItem } = useFilterSortContext()
 
-  const [_hasExtra, onOpenExtra, _onCloseExtra, toggleExtra] = extraFlag
+  const [, onOpenExtra, , toggleExtra] = extraFlag
   const [open, setOpen] = useState(false)
 
   const isOpen = open && sorts?.length === 0

@@ -1,9 +1,10 @@
 'use client'
 
 import { Pressable } from '@react-aria/interactions'
-import { Input as AntdInput } from 'antd/lib'
+import { Input as AntdInput } from 'antd'
 import { forwardRef, memo, useDeferredValue, useMemo, useState } from 'react'
-import { Divider, Popover } from '@/components/ui'
+import Divider from '@/components/ui/Divider'
+import Popover from '@/components/ui/Popover'
 import { PROPERTY_TYPE_ICONS } from '@/constants/icons'
 
 const Input = forwardRef((props, ref) => {
@@ -25,7 +26,7 @@ const ExpenseFilterItem = memo(({ item, onClick }) => {
   return (
     <Pressable onPress={onClick}>
       <li className="-mx-2 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 hover:bg-[#ededed]">
-        {Icon && <Icon className="h-4 w-4" />}
+        {Icon && <Icon className="size-4" />}
         <span>{title}</span>
       </li>
     </Pressable>

@@ -1,5 +1,3 @@
-import { FilterDatePopover } from '@/components/popover'
-
 export const GENDER = {
   MALE: 'male',
   FEMALE: 'female',
@@ -17,13 +15,4 @@ export const PROPERTY_TYPE = {
   URL: 'url',
   CHECKBOX: 'checkbox',
   EMAIL: 'email',
-}
-
-export const POPOVER_BY_PROPERTY = {
-  // text: MenuIcon,
-  // number: CalculatorIcon,
-  // url: LinkIcon,
-  // select: ChevronDownIcon,
-  // status: CalendarDaysIcon,
-  date: FilterDatePopover,
 }

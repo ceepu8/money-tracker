@@ -5,17 +5,7 @@ const initialContextValues = {
   sorts: [],
 }
 
-export const FilterSortContext = createContext(initialContextValues)
-
-export const useFilterSortContext = () => {
-  const context = useContext(FilterSortContext)
-
-  if (!context) {
-    throw new Error('useFilterSortContext must be used within a FilterSortProvider')
-  }
-
-  return context
-}
+const FilterSortContext = createContext(initialContextValues)
 
 const actions = {
   setFilter: 'SET_FILTER',
@@ -51,6 +41,16 @@ const taskReducer = (state, action) => {
     default:
       return state
   }
+}
+
+export const useFilterSortContext = () => {
+  const context = useContext(FilterSortContext)
+
+  if (!context) {
+    throw new Error('useFilterSortContext must be used within a FilterSortProvider')
+  }
+
+  return context
 }
 
 export const FilterSortProvider = ({ children }) => {

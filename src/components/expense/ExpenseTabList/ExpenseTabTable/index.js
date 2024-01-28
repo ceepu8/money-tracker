@@ -21,7 +21,7 @@ const TableAddNewRow = ({ onClick }) => {
       className="sticky bottom-[-4px] left-0 z-20 flex h-10 w-full cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
     >
       <div className="sticky left-0 flex items-center gap-x-2 pl-4">
-        <PlusIcon className="h-4 w-4" />
+        <PlusIcon className="size-4" />
         <span>New</span>
       </div>
     </div>

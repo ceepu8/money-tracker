@@ -1,9 +1,8 @@
 import { memo } from 'react'
-
-const { cn } = require('@/utils')
+import { cn } from '@/utils'
 
 const HeadCell = ({ item, first }) => {
-  const { dataIndex, title, width, icon: Icon } = item || {}
+  const { title, width, icon: Icon } = item || {}
 
   return (
     <div
@@ -13,7 +12,7 @@ const HeadCell = ({ item, first }) => {
         first && 'pl-8'
       )}
     >
-      {Icon && <Icon className="h-4 w-4" />}
+      {Icon && <Icon className="size-4" />}
       <span>{title}</span>
     </div>
   )

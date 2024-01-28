@@ -53,7 +53,7 @@ const ExpenseTabTitle = ({ children, icon: Icon }) => {
 
   return (
     <button type="button" onClick={onClick} className="flex items-center gap-x-2 px-2 py-1">
-      <Icon className="h-4 w-4" />
+      <Icon className="size-4" />
       <span
         ref={spanRef}
         className={cn('max-w-[80px] overflow-hidden truncate text-sm', isEditing && 'hidden')}

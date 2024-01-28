@@ -12,11 +12,11 @@ import {
   TrashIcon,
   XMarkIcon,
 } from '@/components/icons'
-import { FilterSortPopover } from '@/components/popover'
+import FilterSortPopover from '@/components/popover/FilterSortPopover'
 import { SortableList } from '@/components/sortable'
 import { Button, ButtonIcon, Popover } from '@/components/ui'
+import { useFilterSortContext } from '@/contexts/customs'
 import defaultColumns from '@/data/columns.json'
-import { useFilterSortContext } from '@/views/Expense/FilterSortContext'
 
 const AddSortPopover = ({ list, open, setOpen, onAddItem }) => {
   return (
@@ -31,7 +31,7 @@ const AddSortPopover = ({ list, open, setOpen, onAddItem }) => {
       <Button
         type="text"
         size="small"
-        icon={<PlusIcon className="h-4 w-4" />}
+        icon={<PlusIcon className="size-4" />}
         className="!-mx-2 !justify-start"
       >
         Add sort
@@ -48,7 +48,7 @@ const SortItem = memo(({ item, onDeleteItem }) => {
       <span className="flex-1">{title}</span>
       <span className="flex-1">{isAscending ? 'Ascending' : 'Descending'}</span>
       <ButtonIcon
-        icon={<XMarkIcon className="h-3.5 w-3.5 text-[#7e7e7e]" />}
+        icon={<XMarkIcon className="size-3.5 text-[#7e7e7e]" />}
         onClick={() => onDeleteItem(id)}
         size="small"
       />
@@ -89,7 +89,7 @@ const SortEditorContent = () => {
       <SortableList.Item id={item.id}>
         <div className="flex items-center gap-x-2">
           <SortableList.DragHandle>
-            <SixDotsVerticalIcon className="h-3 w-3 fill-[#7e7e7e]" />
+            <SixDotsVerticalIcon className="size-3 fill-[#7e7e7e]" />
           </SortableList.DragHandle>
           <SortItem key={item.id} item={item} onDeleteItem={onDeleteItem} />
         </div>
@@ -115,7 +115,7 @@ const SortEditorContent = () => {
         size="small"
         onClick={onRemoveAllSorts}
         className="!-mx-2 !justify-start"
-        icon={<TrashIcon className="h-4 w-4" />}
+        icon={<TrashIcon className="size-4" />}
       >
         Delete sort
       </Button>
@@ -133,9 +133,9 @@ const SortEditorPopover = () => {
 
   const element =
     list?.length > 1 ? (
-      <Button icon={<ArrowsUpDownIcon className="h-3 w-3" />} size="small" shape="round" ghost>
+      <Button icon={<ArrowsUpDownIcon className="size-3" />} size="small" shape="round" ghost>
         <span>{list.length} sorts</span>
-        <ChevronDownIcon className="ml-1 h-3 w-3" />
+        <ChevronDownIcon className="ml-1 size-3" />
       </Button>
     ) : (
       <Button
@@ -143,11 +143,11 @@ const SortEditorPopover = () => {
         shape="round"
         ghost
         icon={
-          isAscending ? <ArrowUpIcon className="h-3 w-3" /> : <ArrowDownIcon className="h-3 w-3" />
+          isAscending ? <ArrowUpIcon className="size-3" /> : <ArrowDownIcon className="size-3" />
         }
       >
         {title}
-        <ChevronDownIcon className="ml-1 h-3 w-3" />
+        <ChevronDownIcon className="ml-1 size-3" />
       </Button>
     )
 

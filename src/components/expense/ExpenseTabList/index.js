@@ -8,8 +8,8 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Tabs } from 'antd'
-import { cloneElement } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { cloneElement } from 'react'
 import { PlusIcon, TableCellsIcon } from '@/components/icons'
 import { ButtonIcon } from '@/components/ui'
 import { cn, useTabs } from '@/utils'
@@ -58,7 +58,7 @@ const AddTabButton = ({ onClick }) => {
   return (
     <ButtonIcon
       size="medium"
-      icon={<PlusIcon className="h-4 w-4 text-gray-500" />}
+      icon={<PlusIcon className="size-4 text-gray-500" />}
       onClick={onClick}
     />
   )

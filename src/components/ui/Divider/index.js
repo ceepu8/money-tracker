@@ -1,4 +1,4 @@
-import { Divider as AntdDivider } from 'antd/lib'
+import { Divider as AntdDivider } from 'antd'
 
 const Divider = ({ children, className, style, ...props }) => {
   return (
