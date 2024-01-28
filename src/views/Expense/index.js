@@ -3,6 +3,7 @@
 import { HeadingTitle } from '@/components/common'
 import ExpenseTab from './ExpenseTab'
 import { FilterSortProvider } from './FilterSortContext'
+import TistTest from './TistTest'
 
 const ExpenseView = () => {
   const onChangeTitle = () => {}
@@ -13,6 +14,7 @@ const ExpenseView = () => {
       <FilterSortProvider>
         <ExpenseTab />
       </FilterSortProvider>
+      <TistTest />
     </div>
   )
 }

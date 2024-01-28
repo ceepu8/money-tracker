@@ -187,8 +187,9 @@
 #expense-table .ant-form-item .ant-form-item-control-input {
   @apply min-h-[38px];
 }
+
 /* BUTTON */
-.ant-btn {
+/* .ant-btn {
   @apply !flex !items-center !text-sm;
 }
 
@@ -209,14 +210,19 @@
 
 .ant-btn-text:not(:disabled):not(.ant-btn-disabled):hover {
   @apply !text-[rgb(35,_131,_226)];
-}
+} */
 
 /* INPUT */
 
-#_input_.ant-input {
+/* #_input_.ant-input {
   @apply bg-[#f7f7f5] py-1 focus-within:shadow-[0_0_0_2px_rgba(5,_145,_255,_0.2)];
 }
 
 #_input_.ant-input.ant-input-sm {
   @apply py-1;
+} */
+
+/* SELECT */
+.ant-select {
+  @apply h-12 w-full;
 }
