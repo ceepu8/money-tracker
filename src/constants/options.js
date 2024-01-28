@@ -12,3 +12,37 @@ export const PROPERTY_TYPE_OPTIONS = Object.values(PROPERTY_TYPE).map((type) => 
   icon: PROPERTY_TYPE_ICONS[type],
   type,
 }))
+
+export const DATE_RANGE_OPTIONS = [
+  {
+    value: 'past',
+    label: 'Past',
+  },
+  {
+    value: 'this',
+    label: 'This',
+  },
+  {
+    value: 'next',
+    label: 'Next',
+  },
+]
+
+export const TIME_UNIT_OPTIONS = [
+  {
+    value: 'day',
+    label: 'Day',
+  },
+  {
+    value: 'week',
+    label: 'Week',
+  },
+  {
+    value: 'month',
+    label: 'Month',
+  },
+  {
+    value: 'year',
+    label: 'Year',
+  },
+]

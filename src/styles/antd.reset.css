@@ -220,3 +220,22 @@
 #_input_.ant-input.ant-input-sm {
   @apply py-1;
 }
+
+/* SELECT */
+
+.ant-select-single.ant-select-lg .ant-select-selector {
+  @apply !text-base;
+}
+
+.ant-select-single .ant-select-selector {
+  @apply !text-sm;
+}
+
+.ant-select-dropdown .ant-select-item {
+  @apply !text-sm;
+}
+
+[class^='ant-select'],
+[class*='ant-select'] {
+  font-size: inherit;
+}

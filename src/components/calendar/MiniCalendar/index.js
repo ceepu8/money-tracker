@@ -11,7 +11,7 @@ const CalendarDayItem = ({ value, isCurrent, isThisMonth, isFuture, className })
   return (
     <span
       className={cn(
-        'w-8 border-[2px] border-transparent text-center leading-[28px]',
+        'w-8 border-[2px] border-transparent text-center text-sm leading-[28px]',
         'cursor-pointer',
         isThisMonth ? 'font-medium text-gray-700' : 'text-gray-400',
         isCurrent
@@ -114,8 +114,8 @@ const MiniCalendar = () => {
 
   return (
     <div className="flex flex-col rounded-md bg-white">
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-medium">{dayjs(month).format('MMM YYYY')}</span>
+      <div className="flex items-center justify-between px-2">
+        <span className="text-sm font-semibold">{dayjs(month).format('MMM YYYY')}</span>
         <MiniCalendarControl onPrevMonth={onPrevMonth} onNextMonth={onNextMonth} />
       </div>
 

@@ -9,11 +9,10 @@ import { SortableList } from '@/components/sortable'
 import { Button } from '@/components/ui'
 import { PROPERTY_TYPE_ICONS } from '@/constants/icons'
 import { useFilterSortContext } from '@/contexts/customs'
-//
 import defaultColumns from '@/data/columns.json'
 import { PROPERTY_TYPE_POPOVER } from '@/utils/popover'
 
-const FilterItem = memo(({ item }, ref) => {
+const FilterItem = memo(({ item }) => {
   const { id, title, type, isActive } = item || {}
 
   const [open, setOpen] = useState(false)
@@ -30,7 +29,7 @@ const FilterItem = memo(({ item }, ref) => {
   }, [isDragging])
 
   return (
-    <Popover ref={ref} open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen}>
       <Button ghost size="small" shape="round" type={buttonType} icon={icon}>
         <span>{title}</span>
         <ChevronDownIcon className="ml-1 size-3" />
