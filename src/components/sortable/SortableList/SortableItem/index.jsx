@@ -52,7 +52,7 @@ export const SortableItem = ({ children, id }) => {
   }
   return (
     <SortableItemContext.Provider value={context}>
-      <li ref={setNodeRef} style={style}>
+      <li ref={setNodeRef} style={style} className="list-none">
         {children}
       </li>
     </SortableItemContext.Provider>

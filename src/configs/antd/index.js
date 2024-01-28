@@ -4,9 +4,10 @@ export const configTheme = {
     fontSize: 16,
     fontFamily: 'var(--font-sans)',
 
-    colorBorder: 'var(--accent)',
+    colorBorder: 'rgba(55, 53, 47, 0.16)',
 
-    colorPrimary: 'var(-primary)',
+    colorPrimary: '#1b84e2',
+
     colorBgBase: '#fff',
     colorTextBase: 'var(--text-primary)',
     colorBgContainer: '#fff',

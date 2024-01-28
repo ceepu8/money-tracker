@@ -9,12 +9,19 @@ import {
   horizontalListSortingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import React, { useMemo, useState } from 'react'
+import { cn } from '@/utils'
 import { DragHandle, SortableItem } from './SortableItem'
 import SortableOverlay from './SortableOverlay'
 
-const SortableList = ({ items, onChange, renderItem }) => {
+const SORTING_TYPE = {
+  horizontal: horizontalListSortingStrategy,
+  vertical: verticalListSortingStrategy,
+}
+
+const SortableList = ({ items, type = 'horizontal', onChange, renderItem, className }) => {
   const [active, setActive] = useState(null)
 
   const activeItem = useMemo(() => items.find((item) => item.id === active?.id), [active, items])
@@ -49,8 +56,14 @@ const SortableList = ({ items, onChange, renderItem }) => {
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
     >
-      <SortableContext items={items} strategy={horizontalListSortingStrategy}>
-        <ul className="flex flex-row flex-nowrap p-0">
+      <SortableContext items={items} strategy={SORTING_TYPE[type]}>
+        <ul
+          className={cn(
+            'flex flex-nowrap p-0',
+            type === 'horizontal' ? 'flex-row' : 'flex-col',
+            className
+          )}
+        >
           {items.map((item, index) => (
             <React.Fragment key={item.id}>{renderItem(item, index)}</React.Fragment>
           ))}

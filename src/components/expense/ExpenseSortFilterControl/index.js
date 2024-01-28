@@ -1,11 +1,11 @@
 import ExpenseFilter from './ExpenseFilter'
 import ExpenseSort from './ExpenseSort'
 
-const ExpenseSortFilterControl = () => {
+const ExpenseSortFilterControl = ({ extraFlag }) => {
   return (
     <div className="flex items-center">
-      <ExpenseFilter />
-      <ExpenseSort />
+      <ExpenseFilter extraFlag={extraFlag} />
+      <ExpenseSort extraFlag={extraFlag} />
     </div>
   )
 }

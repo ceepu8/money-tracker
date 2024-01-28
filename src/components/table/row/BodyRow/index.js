@@ -4,19 +4,19 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Form } from 'antd'
 import { Children, cloneElement, forwardRef, memo, useEffect, useState } from 'react'
-import { MenuIcon } from '@/components/icons'
+import { SixDotsVerticalIcon } from '@/components/icons'
 import { TableContext } from '../../context'
 
 const DraggingRow = forwardRef((props, ref) => {
   return (
     <div className="flex-center h-10">
-      <MenuIcon
-        className="h-4 w-4 shrink-0"
-        ref={ref}
+      <SixDotsVerticalIcon
+        className="h-4 w-4 shrink-0 fill-[#7e7e7e]"
         style={{
           touchAction: 'none',
           cursor: 'move',
         }}
+        ref={ref}
         {...props}
       />
     </div>

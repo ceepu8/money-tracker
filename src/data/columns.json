@@ -1,0 +1,69 @@
+[
+    {
+        "dataIndex": "description",
+        "editable": true,
+        "id": "description",
+        "title": "Description",
+        "type": "text",
+        "width": 320
+    },
+    {
+        "dataIndex": "amount",
+        "editable": true,
+        "id": "amount",
+        "title": "Amount",
+        "type": "number",
+        "width": 100
+    },
+    {
+        "dataIndex": "link",
+        "editable": true,
+        "id": "link",
+        "title": "Link",
+        "type": "url",
+        "width": 100
+    },
+    {
+        "dataIndex": "method",
+        "editable": true,
+        "id": "method",
+        "title": "Method",
+        "type": "text",
+        "width": 100
+    },
+    {
+        "dataIndex": "date",
+        "editable": true,
+        "id": "date",
+        "title": "Date",
+        "type": "date",
+        "width": 150
+    },
+    {
+        "dataIndex": "category",
+        "editable": true,
+        "icon": "chevron-down",
+        "id": "select",
+        "title": "Category",
+        "type": "select",
+        "width": 120
+    },
+    {
+        "dataIndex": "status",
+        "editable": true,
+        "icon": "calendar",
+        "id": "status",
+        "title": "Status",
+        "type": "status",
+        "width": 120
+    },
+    {
+        "dataIndex": "details",
+        "editable": true,
+        "icon": "menu",
+        "id": "details",
+        "title": "Details",
+        "type": "text",
+        "width": 320
+    }
+]
