@@ -50,7 +50,7 @@ const FilterEditor = () => {
   }
 
   useEffect(() => {
-    const newFilters = differenceBy(leftFilters, list, 'id')
+    const newFilters = differenceBy(defaultColumns, list, 'id')
     setLeftFilters(newFilters)
   }, [list])
 

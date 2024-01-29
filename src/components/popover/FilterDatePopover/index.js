@@ -1,11 +1,14 @@
+import { useSortable } from '@dnd-kit/sortable'
 import { useState } from 'react'
 import { MiniCalendar } from '@/components/calendar'
 import { EllipsisHorizontalIcon, MenuIcon, TrashIcon } from '@/components/icons'
 import { Button, ButtonIcon, Popover } from '@/components/ui'
 import Select from '@/components/ui/Select'
 import { DATE_RANGE_OPTIONS, TIME_UNIT_OPTIONS } from '@/constants'
+import { useFilterSortContext } from '@/contexts/customs'
 
 const SettingPopover = () => {
+  const { handleDeleteFilterItem } = useFilterSortContext()
   return (
     <div className="-m-2 flex flex-col">
       <Button
@@ -14,6 +17,7 @@ const SettingPopover = () => {
         size="medium"
         className="!justify-start"
         icon={<TrashIcon className="size-4" />}
+        onClick={() => handleDeleteFilterItem('date')}
       >
         Delete Filter
       </Button>
