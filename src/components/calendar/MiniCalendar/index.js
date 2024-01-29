@@ -4,29 +4,13 @@ import dayjs from 'dayjs'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import utc from 'dayjs/plugin/utc'
 import times from 'lodash/times'
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import ButtonIcon from '@/components/ui/ButtonIcon'
-import { cn } from '@/utils'
+import { cn, getActiveByRange, getEndByRange, getFirstByRange, getWeekFromDate } from '@/utils'
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(utc)
-
-export function getWeekFromDate(date) {
-  const inputDate = dayjs(date).startOf('day')
-  const startOfWeek = inputDate.startOf('week')
-  const endOfWeek = inputDate.endOf('week')
-
-  const week = []
-  let currentDate = startOfWeek
-
-  while (currentDate.isSameOrBefore(endOfWeek)) {
-    week.push(currentDate)
-    currentDate = currentDate.add(1, 'day')
-  }
-
-  return week
-}
 
 const MiniCalendarControl = ({ onPrevMonth, onNextMonth }) => {
   return (
@@ -52,13 +36,16 @@ const CalendarDayItem = memo(
     return (
       <div
         className={cn(
-          'w-9 border-[2px] border-transparent p-0.5 text-center text-sm leading-[28px] hover:border-blue',
-          'cursor-pointer',
-          isFuture && 'cursor-default font-normal text-gray-400 hover:border-transparent',
-          isThisMonth && 'font-medium text-gray-700',
-          isActive && 'cursor-pointer bg-[rgba(35,_131,_226,_0.15)] hover:border-blue',
-          isFirst && 'rounded-l bg-blue text-white',
-          isEnd && 'rounded-r bg-blue text-white',
+          'w-8 border-[2px] border-transparent p-0.5 text-center text-sm leading-[24px]',
+          'cursor-pointer hover:rounded hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
+          isFuture && 'cursor-default hover:border-transparent hover:bg-transparent',
+          isThisMonth && !isFuture ? 'text-gray-700' : 'text-gray-400',
+          isActive &&
+            'cursor-pointer bg-[rgba(35,_131,_226,_0.15)] hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
+          isActive && isFuture && 'text-gray-700',
+          isActive && isFuture && !isThisMonth && 'text-gray-400',
+          isFirst && 'rounded-l bg-blue text-white hover:rounded-r-none hover:bg-blue',
+          isEnd && 'rounded-r bg-blue text-white hover:rounded-l-none hover:bg-blue',
           className
         )}
       >
@@ -74,56 +61,6 @@ const CalendarDayItem = memo(
     )
   }
 )
-
-const getActiveByRange = (day, activeRange) => {
-  switch (activeRange) {
-    case 'this-day':
-      return dayjs().isSame(day, 'date')
-    case 'this-week':
-      return dayjs().isSame(day, 'week')
-    case 'this-month':
-      return dayjs().isSame(day, 'month')
-    case 'this-year':
-      return dayjs().isSame(day, 'year')
-
-    default:
-      return false
-  }
-}
-
-const rangeWeek = getWeekFromDate(dayjs())
-
-const getFirstByRange = (day, activeRange) => {
-  switch (activeRange) {
-    case 'this-day':
-      return dayjs().isSame(day, 'date')
-    case 'this-week':
-      return dayjs(rangeWeek[0]).isSame(day, 'date')
-    case 'this-month':
-      return dayjs().startOf('month').isSame(day, 'day')
-    case 'this-year':
-      return dayjs().startOf('year').isSame(day, 'day')
-
-    default:
-      return false
-  }
-}
-
-const getEndByRange = (day, activeRange) => {
-  switch (activeRange) {
-    case 'this-day':
-      return dayjs().isSame(day, 'date')
-    case 'this-week':
-      return dayjs(rangeWeek[6]).isSame(day, 'date')
-    case 'this-month':
-      return dayjs().endOf('month').isSame(day, 'day')
-    case 'this-year':
-      return dayjs().endOf('year').isSame(day, 'day')
-
-    default:
-      return false
-  }
-}
 
 const CalendarDayList = ({ pivot, month, activeRange }) => {
   let start = pivot
@@ -143,9 +80,9 @@ const CalendarDayList = ({ pivot, month, activeRange }) => {
         isFuture={isFuture}
         isCurrent={isCurrent}
         isThisMonth={isThisMonth}
-        isActive={getActiveByRange(day, activeRange)}
-        isFirst={getFirstByRange(day, activeRange)}
         isEnd={getEndByRange(day, activeRange)}
+        isFirst={getFirstByRange(day, activeRange)}
+        isActive={getActiveByRange(day, activeRange)}
       />
     )
   }
