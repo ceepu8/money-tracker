@@ -1,29 +1,31 @@
 'use client'
 
 import dayjs from 'dayjs'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import utc from 'dayjs/plugin/utc'
 import times from 'lodash/times'
-import { useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import ButtonIcon from '@/components/ui/ButtonIcon'
 import { cn } from '@/utils'
 
-const CalendarDayItem = ({ value, isCurrent, isThisMonth, isFuture, className }) => {
-  return (
-    <span
-      className={cn(
-        'w-8 border-[2px] border-transparent text-center text-sm leading-[28px]',
-        'cursor-pointer',
-        isThisMonth ? 'font-medium text-gray-700' : 'text-gray-400',
-        isCurrent
-          ? 'rounded-full bg-red-500 text-white hover:bg-red-500/80'
-          : 'rounded bg-white hover:border-blue',
-        isFuture && 'cursor-default font-normal text-gray-400 hover:border-transparent',
-        className
-      )}
-    >
-      {dayjs(value).format('D')}
-    </span>
-  )
+dayjs.extend(isSameOrBefore)
+dayjs.extend(utc)
+
+export function getWeekFromDate(date) {
+  const inputDate = dayjs(date).startOf('day')
+  const startOfWeek = inputDate.startOf('week')
+  const endOfWeek = inputDate.endOf('week')
+
+  const week = []
+  let currentDate = startOfWeek
+
+  while (currentDate.isSameOrBefore(endOfWeek)) {
+    week.push(currentDate)
+    currentDate = currentDate.add(1, 'day')
+  }
+
+  return week
 }
 
 const MiniCalendarControl = ({ onPrevMonth, onNextMonth }) => {
@@ -45,10 +47,88 @@ const MiniCalendarControl = ({ onPrevMonth, onNextMonth }) => {
   )
 }
 
-const CalendarDayList = ({ pivot, month }) => {
+const CalendarDayItem = memo(
+  ({ value, isActive, isCurrent, isThisMonth, isFuture, isFirst, isEnd, className }) => {
+    return (
+      <div
+        className={cn(
+          'w-9 border-[2px] border-transparent p-0.5 text-center text-sm leading-[28px] hover:border-blue',
+          'cursor-pointer',
+          isFuture && 'cursor-default font-normal text-gray-400 hover:border-transparent',
+          isThisMonth && 'font-medium text-gray-700',
+          isActive && 'cursor-pointer bg-[rgba(35,_131,_226,_0.15)] hover:border-blue',
+          isFirst && 'rounded-l bg-blue text-white',
+          isEnd && 'rounded-r bg-blue text-white',
+          className
+        )}
+      >
+        <p
+          className={cn(
+            'h-full w-full',
+            isCurrent && !isFirst && !isEnd && 'rounded-full bg-red-500 text-white'
+          )}
+        >
+          {dayjs(value).format('D')}
+        </p>
+      </div>
+    )
+  }
+)
+
+const getActiveByRange = (day, activeRange) => {
+  switch (activeRange) {
+    case 'this-day':
+      return dayjs().isSame(day, 'date')
+    case 'this-week':
+      return dayjs().isSame(day, 'week')
+    case 'this-month':
+      return dayjs().isSame(day, 'month')
+    case 'this-year':
+      return dayjs().isSame(day, 'year')
+
+    default:
+      return false
+  }
+}
+
+const rangeWeek = getWeekFromDate(dayjs())
+
+const getFirstByRange = (day, activeRange) => {
+  switch (activeRange) {
+    case 'this-day':
+      return dayjs().isSame(day, 'date')
+    case 'this-week':
+      return dayjs(rangeWeek[0]).isSame(day, 'date')
+    case 'this-month':
+      return dayjs().startOf('month').isSame(day, 'day')
+    case 'this-year':
+      return dayjs().startOf('year').isSame(day, 'day')
+
+    default:
+      return false
+  }
+}
+
+const getEndByRange = (day, activeRange) => {
+  switch (activeRange) {
+    case 'this-day':
+      return dayjs().isSame(day, 'date')
+    case 'this-week':
+      return dayjs(rangeWeek[6]).isSame(day, 'date')
+    case 'this-month':
+      return dayjs().endOf('month').isSame(day, 'day')
+    case 'this-year':
+      return dayjs().endOf('year').isSame(day, 'day')
+
+    default:
+      return false
+  }
+}
+
+const CalendarDayList = ({ pivot, month, activeRange }) => {
   let start = pivot
 
-  const renderItem = (index) => {
+  const renderItem = () => {
     const day = start.add(1, 'day')
     start = start.add(1, 'day')
 
@@ -58,19 +138,22 @@ const CalendarDayList = ({ pivot, month }) => {
 
     return (
       <CalendarDayItem
-        key={index}
+        key={day}
         value={day}
+        isFuture={isFuture}
         isCurrent={isCurrent}
         isThisMonth={isThisMonth}
-        isFuture={isFuture}
+        isActive={getActiveByRange(day, activeRange)}
+        isFirst={getFirstByRange(day, activeRange)}
+        isEnd={getEndByRange(day, activeRange)}
       />
     )
   }
 
-  return <div className="grid grid-cols-7 gap-x-1">{times(42, renderItem)}</div>
+  return <div className="grid grid-cols-7">{times(42, renderItem)}</div>
 }
 
-const MiniCalendarBody = ({ pivot, month }) => {
+const MiniCalendarBody = ({ pivot, month, activeRange }) => {
   const DAY_OF_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
   const renderItem = (day) => {
@@ -87,17 +170,13 @@ const MiniCalendarBody = ({ pivot, month }) => {
   return (
     <div>
       <div className="flex w-full justify-between">{DAY_OF_WEEK.map(renderItem)}</div>
-      <CalendarDayList pivot={pivot} month={month} />
+      <CalendarDayList pivot={pivot} month={month} activeRange={activeRange} />
     </div>
   )
 }
 
-const MiniCalendar = () => {
-  // day/ week/ month/ year
-  // const [active, setActive] = useState('day')
-
-  const currentMonth = dayjs()
-  const [month, setMonth] = useState(currentMonth)
+const MiniCalendar = ({ defaultActiveRange }) => {
+  const [month, setMonth] = useState(dayjs())
 
   const onPrevMonth = () => {
     setMonth(() => month.subtract(1, 'month'))
@@ -120,7 +199,7 @@ const MiniCalendar = () => {
       </div>
 
       <div className="flex-1">
-        <MiniCalendarBody pivot={pivot} month={month} />
+        <MiniCalendarBody pivot={pivot} month={month} activeRange={defaultActiveRange} />
       </div>
     </div>
   )

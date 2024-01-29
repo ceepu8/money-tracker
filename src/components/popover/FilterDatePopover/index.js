@@ -6,8 +6,8 @@ import Select from '@/components/ui/Select'
 import { DATE_RANGE_OPTIONS, TIME_UNIT_OPTIONS } from '@/constants'
 
 const FilterDatePopoverContent = () => {
-  const [dateRange, setDateRange] = useState(DATE_RANGE_OPTIONS[1])
-  const [timeUnit, setTimeUnit] = useState(TIME_UNIT_OPTIONS[2])
+  const [dateRange, setDateRange] = useState('this')
+  const [timeUnit, setTimeUnit] = useState('month')
 
   const handleSetDateRange = (value) => {
     setDateRange(value)
@@ -16,6 +16,7 @@ const FilterDatePopoverContent = () => {
   const handleSetTimeUnit = (value) => {
     setTimeUnit(value)
   }
+
   return (
     <div className="flex flex-col gap-y-2">
       <div className="flex-between">
@@ -43,7 +44,7 @@ const FilterDatePopoverContent = () => {
           }}
         />
       </div>
-      <MiniCalendar />
+      <MiniCalendar defaultActiveRange={`${dateRange}-${timeUnit}`} />
       <p className="text-center text-xs text-[#7e7e7e]">Filter will update with the current date</p>
     </div>
   )

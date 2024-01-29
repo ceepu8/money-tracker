@@ -8,7 +8,7 @@ const ExpenseView = () => {
   const onChangeTitle = () => {}
 
   return (
-    <div className="mx-auto max-w-[1200px] overflow-hidden pt-12">
+    <div className="mx-auto max-w-[1200px] overflow-hidden px-4 pt-12">
       <HeadingTitle label="Expense" editable onChange={onChangeTitle} />
       <FilterSortProvider>
         <ExpenseTab />
