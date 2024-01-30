@@ -5,7 +5,12 @@ import { THEME } from '@/constants'
 
 export default function ThemeProvider({ children, ...props }) {
   return (
-    <NextThemesProvider attribute="data-theme" defaultTheme={THEME.LIGHT} enableSystem {...props}>
+    <NextThemesProvider
+      attribute="data-theme"
+      defaultTheme={THEME.PINKY_LADY}
+      enableSystem
+      {...props}
+    >
       {children}
     </NextThemesProvider>
   )

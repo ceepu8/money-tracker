@@ -1,5 +1,4 @@
-import { Select } from 'antd'
-import { Button, Input } from '@/components/ui'
+import { Button, Input, Select } from '@/components/ui'
 
 const TistTest = () => {
   return (
