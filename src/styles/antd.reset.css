@@ -243,3 +243,9 @@
 [class*='ant-select'] {
   font-size: inherit;
 }
+
+/* input */
+[class^='ant-input-number'],
+[class*=' ant-input-number'] {
+  font-size: inherit;
+}

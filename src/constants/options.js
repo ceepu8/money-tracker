@@ -19,12 +19,12 @@ export const DATE_RANGE_OPTIONS = [
     label: 'Past',
   },
   {
-    value: 'this',
-    label: 'This',
-  },
-  {
     value: 'next',
     label: 'Next',
+  },
+  {
+    value: 'this',
+    label: 'This',
   },
 ]
 

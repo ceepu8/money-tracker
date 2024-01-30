@@ -2,10 +2,11 @@ import { useSortable } from '@dnd-kit/sortable'
 import { useState } from 'react'
 import { MiniCalendar } from '@/components/calendar'
 import { EllipsisHorizontalIcon, MenuIcon, TrashIcon } from '@/components/icons'
-import { Button, ButtonIcon, Popover } from '@/components/ui'
+import { Button, ButtonIcon, InputNumber, Popover } from '@/components/ui'
 import Select from '@/components/ui/Select'
 import { DATE_RANGE_OPTIONS, TIME_UNIT_OPTIONS } from '@/constants'
 import { useFilterSortContext } from '@/contexts/customs'
+import { cn } from '@/utils'
 
 const SettingPopover = () => {
   const { handleDeleteFilterItem } = useFilterSortContext()
@@ -36,8 +37,10 @@ const SettingPopover = () => {
 
 const FilterDatePopoverContent = () => {
   const [open, setOpen] = useState(false)
+
   const [dateRange, setDateRange] = useState('this')
   const [timeUnit, setTimeUnit] = useState('month')
+  const [count, setCount] = useState(1)
 
   const handleSetDateRange = (value) => {
     setDateRange(value)
@@ -45,6 +48,10 @@ const FilterDatePopoverContent = () => {
 
   const handleSetTimeUnit = (value) => {
     setTimeUnit(value)
+  }
+
+  const handleSetCount = (value) => {
+    setCount(value)
   }
 
   return (
@@ -61,28 +68,44 @@ const FilterDatePopoverContent = () => {
           <ButtonIcon icon={<EllipsisHorizontalIcon className="size-5" />} />
         </Popover>
       </div>
-      <div className="grid grid-cols-3 gap-x-1">
-        <Select
-          defaultValue={dateRange}
-          options={DATE_RANGE_OPTIONS}
-          handleChange={handleSetDateRange}
-          dropdownStyle={{
-            width: 180,
-            fontSize: '14px',
-          }}
-        />
-        <Select
-          defaultValue={timeUnit}
-          options={TIME_UNIT_OPTIONS}
-          handleChange={handleSetTimeUnit}
-          className="col-span-2"
-          dropdownStyle={{
-            width: 180,
-            fontSize: '14px',
-          }}
-        />
+      <div className="flex gap-x-1">
+        <div className="flex-grow-0">
+          <Select
+            defaultValue={dateRange}
+            options={DATE_RANGE_OPTIONS}
+            handleChange={handleSetDateRange}
+            style={{ minWidth: '74px' }}
+            dropdownStyle={{
+              width: 180,
+              fontSize: '14px',
+            }}
+          />
+        </div>
+
+        {dateRange === 'past' || dateRange === 'next' ? (
+          <InputNumber
+            min={0}
+            size="small"
+            placeholder=""
+            defaultValue={count}
+            onChange={handleSetCount}
+          />
+        ) : null}
+
+        <div className="w-full flex-grow-[2]">
+          <Select
+            defaultValue={timeUnit}
+            options={TIME_UNIT_OPTIONS}
+            handleChange={handleSetTimeUnit}
+            style={{ width: '100%' }}
+            dropdownStyle={{
+              width: 180,
+              fontSize: '14px',
+            }}
+          />
+        </div>
       </div>
-      <MiniCalendar defaultActiveRange={`${dateRange}-${timeUnit}`} />
+      <MiniCalendar defaultActiveRange={`${dateRange}-${timeUnit}`} count={count} />
       <p className="text-center text-xs text-[#7e7e7e]">Filter will update with the current date</p>
     </div>
   )
@@ -90,7 +113,12 @@ const FilterDatePopoverContent = () => {
 
 const FilterDatePopover = ({ children, open, onOpenChange }) => {
   return (
-    <Popover open={open} onOpenChange={onOpenChange} content={<FilterDatePopoverContent />}>
+    <Popover
+      rootClassName="w-[256px]"
+      open={open}
+      onOpenChange={onOpenChange}
+      content={<FilterDatePopoverContent />}
+    >
       {children}
     </Popover>
   )
