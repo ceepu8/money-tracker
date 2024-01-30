@@ -1,4 +1,4 @@
-import { GENDER, PROPERTY_TYPE } from './types'
+import { DATE_RANGE_TYPE, GENDER, PROPERTY_TYPE, TIME_UNIT_TYPE } from './types'
 
 export const GENDER_TEXT = {
   [GENDER.MALE]: 'gender.male',
@@ -17,4 +17,17 @@ export const PROPERTY_TYPE_TEXT = {
   [PROPERTY_TYPE.URL]: 'URL',
   [PROPERTY_TYPE.CHECKBOX]: 'Checkbox',
   [PROPERTY_TYPE.EMAIL]: 'Email',
+}
+
+export const DATE_RANGE_TEXT = {
+  [DATE_RANGE_TYPE.PAST]: 'Past',
+  [DATE_RANGE_TYPE.NEXT]: 'Next',
+  [DATE_RANGE_TYPE.THIS]: 'This',
+}
+
+export const TIME_UNIT_TEXT = {
+  [TIME_UNIT_TYPE.DAY]: 'day',
+  [TIME_UNIT_TYPE.WEEK]: 'week',
+  [TIME_UNIT_TYPE.MONTH]: 'month',
+  [TIME_UNIT_TYPE.YEAR]: 'year',
 }

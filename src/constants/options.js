@@ -1,6 +1,6 @@
 import { PROPERTY_TYPE_ICONS } from './icons'
-import { PROPERTY_TYPE_TEXT } from './texts'
-import { GENDER, PROPERTY_TYPE } from './types'
+import { DATE_RANGE_TEXT, PROPERTY_TYPE_TEXT, TIME_UNIT_TEXT } from './texts'
+import { DATE_RANGE_TYPE, GENDER, PROPERTY_TYPE, TIME_UNIT_TYPE } from './types'
 
 export const GENDER_OPTIONS = Object.values(GENDER).map((gender) => ({
   label: `gender.${gender}`,
@@ -13,36 +13,12 @@ export const PROPERTY_TYPE_OPTIONS = Object.values(PROPERTY_TYPE).map((type) => 
   type,
 }))
 
-export const DATE_RANGE_OPTIONS = [
-  {
-    value: 'past',
-    label: 'Past',
-  },
-  {
-    value: 'next',
-    label: 'Next',
-  },
-  {
-    value: 'this',
-    label: 'This',
-  },
-]
+export const DATE_RANGE_OPTIONS = Object.values(DATE_RANGE_TYPE).map((type) => ({
+  label: DATE_RANGE_TEXT[type],
+  value: type,
+}))
 
-export const TIME_UNIT_OPTIONS = [
-  {
-    value: 'day',
-    label: 'Day',
-  },
-  {
-    value: 'week',
-    label: 'Week',
-  },
-  {
-    value: 'month',
-    label: 'Month',
-  },
-  {
-    value: 'year',
-    label: 'Year',
-  },
-]
+export const TIME_UNIT_OPTIONS = Object.values(TIME_UNIT_TYPE).map((type) => ({
+  label: TIME_UNIT_TEXT[type],
+  value: type,
+}))

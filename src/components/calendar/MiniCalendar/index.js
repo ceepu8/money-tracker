@@ -7,14 +7,7 @@ import times from 'lodash/times'
 import { memo, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import ButtonIcon from '@/components/ui/ButtonIcon'
-import {
-  cn,
-  getActiveByRange,
-  getEndByRange,
-  getFirstByRange,
-  getPastActiveRange,
-  getWeekFromDate,
-} from '@/utils'
+import { cn, getActiveByRange, getEndByRange, getFirstByRange } from '@/utils'
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(utc)
@@ -69,7 +62,7 @@ const CalendarDayItem = memo(
   }
 )
 
-const CalendarDayList = ({ pivot, month, activeRange, count }) => {
+const CalendarDayList = ({ pivot, month, dateRange, timeUnit, count }) => {
   let start = pivot
 
   const renderItem = () => {
@@ -87,9 +80,9 @@ const CalendarDayList = ({ pivot, month, activeRange, count }) => {
         isFuture={isFuture}
         isCurrent={isCurrent}
         isThisMonth={isThisMonth}
-        isEnd={getEndByRange(day, count, activeRange)}
-        isFirst={getFirstByRange(day, count, activeRange)}
-        isActive={getActiveByRange(day, count, activeRange)}
+        isActive={getActiveByRange(day, count, dateRange, timeUnit)}
+        isFirst={getFirstByRange(day, count, dateRange, timeUnit)}
+        isEnd={getEndByRange(day, count, dateRange, timeUnit)}
       />
     )
   }
@@ -97,29 +90,33 @@ const CalendarDayList = ({ pivot, month, activeRange, count }) => {
   return <div className="grid grid-cols-7 gap-x-0">{times(42, renderItem)}</div>
 }
 
-const MiniCalendarBody = ({ pivot, month, activeRange, count }) => {
-  const DAY_OF_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-
-  const renderItem = (day) => {
+const MiniCalendarBody = ({ pivot, month, dateRange, timeUnit, count }) => {
+  const renderItem = (index) => {
     return (
       <span
+        key={index}
         className="w-8 text-center text-xs font-semibold leading-[32px] text-[#7e7e7e]"
-        key={day}
       >
-        {day}
+        {dayjs().day(index).format('dd')}
       </span>
     )
   }
 
   return (
     <div>
-      <div className="flex w-full justify-between">{DAY_OF_WEEK.map(renderItem)}</div>
-      <CalendarDayList pivot={pivot} month={month} activeRange={activeRange} count={count} />
+      <div className="flex w-full justify-between">{times(6, renderItem)}</div>
+      <CalendarDayList
+        pivot={pivot}
+        month={month}
+        dateRange={dateRange}
+        timeUnit={timeUnit}
+        count={count}
+      />
     </div>
   )
 }
 
-const MiniCalendar = ({ defaultActiveRange, count }) => {
+const MiniCalendar = ({ dateRange, timeUnit, count }) => {
   const [month, setMonth] = useState(dayjs())
 
   const onPrevMonth = () => {
@@ -146,8 +143,9 @@ const MiniCalendar = ({ defaultActiveRange, count }) => {
         <MiniCalendarBody
           pivot={pivot}
           month={month}
-          activeRange={defaultActiveRange}
           count={count}
+          dateRange={dateRange}
+          timeUnit={timeUnit}
         />
       </div>
     </div>
