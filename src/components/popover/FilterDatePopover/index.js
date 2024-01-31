@@ -4,7 +4,7 @@ import { EllipsisHorizontalIcon, MenuIcon, TrashIcon } from '@/components/icons'
 import { Button, ButtonIcon, InputNumber, Popover } from '@/components/ui'
 import Select from '@/components/ui/Select'
 import { DATE_RANGE_OPTIONS, TIME_UNIT_OPTIONS } from '@/constants'
-import { useFilterSortContext } from '@/contexts/customs'
+import { FilterDateProvider, useFilterDateContext, useFilterSortContext } from '@/contexts/customs'
 
 const ExtraSettingPopoverContent = () => {
   const { handleDeleteFilterItem } = useFilterSortContext()
@@ -34,14 +34,9 @@ const ExtraSettingPopoverContent = () => {
   )
 }
 
-const DateRangeControl = ({
-  dateRange,
-  handleSetDateRange,
-  count,
-  handleSetCount,
-  timeUnit,
-  handleSetTimeUnit,
-}) => {
+const DateRangeControl = () => {
+  const { dateRange, timeUnit, count, setDateRange, setTimeUnit, setCount } = useFilterDateContext()
+
   const dropdownStyle = {
     width: 180,
     fontSize: '14px',
@@ -53,7 +48,7 @@ const DateRangeControl = ({
         <Select
           defaultValue={dateRange}
           options={DATE_RANGE_OPTIONS}
-          handleChange={handleSetDateRange}
+          handleChange={setDateRange}
           style={{ minWidth: '74px' }}
           dropdownStyle={dropdownStyle}
         />
@@ -66,7 +61,7 @@ const DateRangeControl = ({
           size="small"
           placeholder=""
           defaultValue={count}
-          onChange={handleSetCount}
+          onChange={setCount}
         />
       ) : null}
 
@@ -74,7 +69,7 @@ const DateRangeControl = ({
         <Select
           defaultValue={timeUnit}
           options={TIME_UNIT_OPTIONS}
-          handleChange={handleSetTimeUnit}
+          handleChange={setTimeUnit}
           style={{ width: '100%' }}
           dropdownStyle={dropdownStyle}
         />
@@ -86,21 +81,7 @@ const DateRangeControl = ({
 const FilterDatePopoverContent = () => {
   const [open, setOpen] = useState(false)
 
-  const [dateRange, setDateRange] = useState('this')
-  const [timeUnit, setTimeUnit] = useState('month')
-  const [count, setCount] = useState(1)
-
-  const handleSetDateRange = (value) => {
-    setDateRange(value)
-  }
-
-  const handleSetTimeUnit = (value) => {
-    setTimeUnit(value)
-  }
-
-  const handleSetCount = (value) => {
-    setCount(value)
-  }
+  const { dateRange, timeUnit, count } = useFilterDateContext()
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -116,14 +97,7 @@ const FilterDatePopoverContent = () => {
           <ButtonIcon icon={<EllipsisHorizontalIcon className="size-5" />} />
         </Popover>
       </div>
-      <DateRangeControl
-        dateRange={dateRange}
-        timeUnit={timeUnit}
-        count={count}
-        handleSetDateRange={handleSetDateRange}
-        handleSetTimeUnit={handleSetTimeUnit}
-        handleSetCount={handleSetCount}
-      />
+      <DateRangeControl />
       <MiniCalendar dateRange={dateRange} timeUnit={timeUnit} count={count} />
       <p className="text-center text-xs text-[#7e7e7e]">Filter will update with the current date</p>
     </div>
@@ -132,14 +106,16 @@ const FilterDatePopoverContent = () => {
 
 const FilterDatePopover = ({ children, open, onOpenChange }) => {
   return (
-    <Popover
-      rootClassName="w-[256px]"
-      open={open}
-      onOpenChange={onOpenChange}
-      content={<FilterDatePopoverContent />}
-    >
-      {children}
-    </Popover>
+    <FilterDateProvider>
+      <Popover
+        rootClassName="w-[256px]"
+        open={open}
+        onOpenChange={onOpenChange}
+        content={<FilterDatePopoverContent />}
+      >
+        {children}
+      </Popover>
+    </FilterDateProvider>
   )
 }
 
