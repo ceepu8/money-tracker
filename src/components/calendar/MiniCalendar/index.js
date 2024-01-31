@@ -70,7 +70,7 @@ const CalendarDayList = ({ pivot, month, dateRange, timeUnit, count }) => {
     start = start.add(1, 'day')
 
     const isCurrent = dayjs().isSame(day, 'date')
-    const isThisMonth = dayjs(month).isSame(day, 'month')
+    const isThisMonth = month.isSame(day, 'month')
     const isFuture = day.diff(dayjs(), 'date') > 0
 
     return (
@@ -90,7 +90,10 @@ const CalendarDayList = ({ pivot, month, dateRange, timeUnit, count }) => {
   return <div className="grid grid-cols-7 gap-x-0">{times(42, renderItem)}</div>
 }
 
-const MiniCalendarBody = ({ pivot, month, dateRange, timeUnit, count }) => {
+const MiniCalendarBody = ({ month, dateRange, timeUnit, count }) => {
+  // subtract 1 because we start on Sunday
+  const pivot = month.startOf('month').startOf('week').subtract(1, 'day')
+
   const renderItem = (index) => {
     return (
       <span
@@ -127,11 +130,6 @@ const MiniCalendar = ({ dateRange, timeUnit, count }) => {
     setMonth(() => month.add(1, 'month'))
   }
 
-  const startDayOfMonth = dayjs(month).startOf('month').day()
-  const startDateOfMonth = dayjs(month).startOf('month')
-
-  const pivot = dayjs(startDateOfMonth).subtract(startDayOfMonth + 1, 'day')
-
   return (
     <div className="flex flex-col rounded-md bg-white">
       <div className="flex items-center justify-between px-2">
@@ -140,13 +138,7 @@ const MiniCalendar = ({ dateRange, timeUnit, count }) => {
       </div>
 
       <div className="flex-1">
-        <MiniCalendarBody
-          pivot={pivot}
-          month={month}
-          count={count}
-          dateRange={dateRange}
-          timeUnit={timeUnit}
-        />
+        <MiniCalendarBody month={month} count={count} dateRange={dateRange} timeUnit={timeUnit} />
       </div>
     </div>
   )

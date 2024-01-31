@@ -31,3 +31,10 @@ export const TIME_UNIT_TEXT = {
   [TIME_UNIT_TYPE.MONTH]: 'month',
   [TIME_UNIT_TYPE.YEAR]: 'year',
 }
+
+export const PLURAL_TIME_UNIT_TEXT = {
+  [TIME_UNIT_TYPE.DAY]: 'days',
+  [TIME_UNIT_TYPE.WEEK]: 'weeks',
+  [TIME_UNIT_TYPE.MONTH]: 'months',
+  [TIME_UNIT_TYPE.YEAR]: 'years',
+}
