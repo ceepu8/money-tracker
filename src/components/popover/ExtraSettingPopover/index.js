@@ -40,7 +40,7 @@ const ExtraSettingPopover = ({ open, onOpenChange, onDelete, onAdvancedFilter })
       placement="rightTop"
       rootClassName="w-[240px]"
     >
-      <ButtonIcon icon={<EllipsisHorizontalIcon className="size-5" />} />
+      <ButtonIcon size="small" icon={<EllipsisHorizontalIcon className="size-5" />} />
     </Popover>
   )
 }

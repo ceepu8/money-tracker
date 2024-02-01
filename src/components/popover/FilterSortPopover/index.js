@@ -25,7 +25,7 @@ const ExpenseFilterItem = memo(({ item, onClick }) => {
 
   return (
     <Pressable onPress={onClick}>
-      <li className="-mx-2 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 hover:bg-[#ededed]">
+      <li className="-mx-1 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 text-sm hover:bg-[#ededed]">
         {Icon && <Icon className="size-4" />}
         <span>{title}</span>
       </li>

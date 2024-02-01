@@ -14,6 +14,7 @@ const Popover = ({
   open,
   onOpenChange,
   style,
+  content,
   ...props
 }) => {
   const _arrow = !isEmpty(arrow) && {
@@ -57,6 +58,7 @@ const Popover = ({
       style={style}
       rootClassName={rootClassName}
       className={className}
+      content={<div className="-mx-1 -my-1.5">{content}</div>}
       {...props}
     >
       {children}

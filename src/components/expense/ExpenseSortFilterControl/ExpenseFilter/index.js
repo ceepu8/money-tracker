@@ -26,7 +26,7 @@ const ExpenseFilter = ({ extraFlag }) => {
     <Button
       type="text"
       size="medium"
-      className="-mx-2 !justify-start"
+      className="-mx-1 !justify-start"
       icon={<PlusIcon className="size-5" />}
     >
       Add advanced filter
