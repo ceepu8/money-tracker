@@ -4,6 +4,7 @@ import {
   ArrowUpIcon,
   CalculatorIcon,
   CalendarDaysIcon,
+  CheckIcon,
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -73,4 +74,5 @@ export {
   ArrowUpIcon,
   ArrowDownIcon,
   ArrowsUpDownIcon,
+  CheckIcon,
 }
