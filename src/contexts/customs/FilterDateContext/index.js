@@ -43,12 +43,15 @@ export const FilterDateProvider = ({ children }) => {
   const setDateRange = (value) => {
     dispatch({ type: actions.setDateRange, payload: value })
   }
+
   const setTimeUnit = (value) => {
     dispatch({ type: actions.setTimeUnit, payload: value })
   }
+
   const setCount = (value) => {
     dispatch({ type: actions.setCount, payload: value })
   }
+
   const values = useMemo(
     () => ({
       dateRange: state.dateRange,

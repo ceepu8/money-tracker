@@ -7,7 +7,9 @@ import times from 'lodash/times'
 import { memo, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import ButtonIcon from '@/components/ui/ButtonIcon'
-import { cn, getActiveByRange, getEndByRange, getFirstByRange } from '@/utils'
+import { useDayjsLocale } from '@/configs/dayjs'
+import { FORMAT_STRING } from '@/constants'
+import { cn, formatDate, getActiveByRange, getEndByRange, getFirstByRange } from '@/utils'
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(utc)
@@ -100,14 +102,14 @@ const MiniCalendarBody = ({ month, dateRange, timeUnit, count }) => {
         key={index}
         className="w-8 text-center text-xs font-semibold leading-[32px] text-[#7e7e7e]"
       >
-        {dayjs().day(index).format('dd')}
+        {formatDate(dayjs().day(index), FORMAT_STRING.dd)}
       </span>
     )
   }
 
   return (
     <div>
-      <div className="flex w-full justify-between">{times(6, renderItem)}</div>
+      <div className="flex w-full justify-between">{times(7, renderItem)}</div>
       <CalendarDayList
         pivot={pivot}
         month={month}

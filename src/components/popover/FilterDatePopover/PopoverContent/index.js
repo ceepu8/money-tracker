@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { MiniCalendar } from '@/components/calendar'
-import { EllipsisHorizontalIcon, MenuIcon, TrashIcon } from '@/components/icons'
-import { Button, ButtonIcon, InputNumber, Popover } from '@/components/ui'
+import { InputNumber } from '@/components/ui'
 import Select from '@/components/ui/Select'
 import {
   DATE_RANGE_OPTIONS,
@@ -10,34 +9,7 @@ import {
   TIME_UNIT_OPTIONS,
 } from '@/constants'
 import { useFilterDateContext, useFilterSortContext } from '@/contexts/customs'
-
-const ExtraSettingPopoverContent = () => {
-  const { handleDeleteFilterItem } = useFilterSortContext()
-
-  return (
-    <div className="-m-2 flex flex-col">
-      <Button
-        block
-        type="text"
-        size="medium"
-        className="!justify-start"
-        icon={<TrashIcon className="size-4" />}
-        onClick={() => handleDeleteFilterItem('date')}
-      >
-        Delete Filter
-      </Button>
-      <Button
-        block
-        type="text"
-        size="medium"
-        className="!justify-start"
-        icon={<MenuIcon className="size-4" />}
-      >
-        Add to advanced filter
-      </Button>
-    </div>
-  )
-}
+import ExtraSettingPopover from '../../ExtraSettingPopover'
 
 const DateRangeControl = () => {
   const { dateRange, timeUnit, count, setDateRange, setTimeUnit, setCount } = useFilterDateContext()
@@ -86,20 +58,17 @@ const DateRangeControl = () => {
 }
 
 const PopoverContentHeader = () => {
+  const { handleDeleteFilterItem } = useFilterSortContext()
   const [open, setOpen] = useState(false)
 
   return (
     <div className="flex-between">
       <span className="text-xs font-medium text-[#7e7e7e]">Start date is relative to today</span>
-      <Popover
+      <ExtraSettingPopover
         open={open}
         onOpenChange={setOpen}
-        content={<ExtraSettingPopoverContent />}
-        placement="rightTop"
-        rootClassName="w-[240px]"
-      >
-        <ButtonIcon icon={<EllipsisHorizontalIcon className="size-5" />} />
-      </Popover>
+        onDelete={() => handleDeleteFilterItem('date')}
+      />
     </div>
   )
 }

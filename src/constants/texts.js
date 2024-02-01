@@ -19,6 +19,14 @@ export const PROPERTY_TYPE_TEXT = {
   [PROPERTY_TYPE.EMAIL]: 'Email',
 }
 
+// email === text === URL
+// number
+// select === multi-select
+// files and media -> no
+// checkbox
+// status
+// date
+
 export const DATE_RANGE_TEXT = {
   [DATE_RANGE_TYPE.PAST]: 'Past',
   [DATE_RANGE_TYPE.NEXT]: 'Next',
