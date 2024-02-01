@@ -1,4 +1,4 @@
-import { DATE_RANGE_TYPE, GENDER, PROPERTY_TYPE, TIME_UNIT_TYPE } from './types'
+import { DATE_RANGE_TYPE, GENDER, PROPERTY_TYPE, TEXT_FILTER_TYPE, TIME_UNIT_TYPE } from './types'
 
 export const GENDER_TEXT = {
   [GENDER.MALE]: 'gender.male',
@@ -45,4 +45,15 @@ export const PLURAL_TIME_UNIT_TEXT = {
   [TIME_UNIT_TYPE.WEEK]: 'weeks',
   [TIME_UNIT_TYPE.MONTH]: 'months',
   [TIME_UNIT_TYPE.YEAR]: 'years',
+}
+
+export const TEXT_FILTER_TEXT = {
+  [TEXT_FILTER_TYPE.IS]: 'Is',
+  [TEXT_FILTER_TYPE.IS_NOT]: 'Is not',
+  [TEXT_FILTER_TYPE.CONTAINS]: 'Contains',
+  [TEXT_FILTER_TYPE.DOES_NOT_CONTAIN]: 'Does not contain',
+  [TEXT_FILTER_TYPE.STARTS_WITH]: 'Starts with',
+  [TEXT_FILTER_TYPE.ENDS_WITH]: 'Ends with',
+  [TEXT_FILTER_TYPE.IS_EMPTY]: 'Is empty',
+  [TEXT_FILTER_TYPE.IS_NOT_EMPTY]: 'Is not empty',
 }

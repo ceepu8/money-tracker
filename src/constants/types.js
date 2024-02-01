@@ -29,3 +29,14 @@ export const TIME_UNIT_TYPE = {
   MONTH: 'month',
   YEAR: 'year',
 }
+
+export const TEXT_FILTER_TYPE = {
+  IS: 'is',
+  IS_NOT: 'isNot',
+  CONTAINS: 'contains',
+  DOES_NOT_CONTAIN: 'doesNotContain',
+  STARTS_WITH: 'startsWith',
+  ENDS_WITH: 'endsWith',
+  IS_EMPTY: 'isEmpty',
+  IS_NOT_EMPTY: 'isNotEmpty',
+}

@@ -1,6 +1,12 @@
 import { PROPERTY_TYPE_ICONS } from './icons'
-import { DATE_RANGE_TEXT, PLURAL_TIME_UNIT_TEXT, PROPERTY_TYPE_TEXT, TIME_UNIT_TEXT } from './texts'
-import { DATE_RANGE_TYPE, GENDER, PROPERTY_TYPE, TIME_UNIT_TYPE } from './types'
+import {
+  DATE_RANGE_TEXT,
+  PLURAL_TIME_UNIT_TEXT,
+  PROPERTY_TYPE_TEXT,
+  TEXT_FILTER_TEXT,
+  TIME_UNIT_TEXT,
+} from './texts'
+import { DATE_RANGE_TYPE, GENDER, PROPERTY_TYPE, TEXT_FILTER_TYPE, TIME_UNIT_TYPE } from './types'
 
 export const GENDER_OPTIONS = Object.values(GENDER).map((gender) => ({
   label: `gender.${gender}`,
@@ -25,5 +31,10 @@ export const TIME_UNIT_OPTIONS = Object.values(TIME_UNIT_TYPE).map((type) => ({
 
 export const PLURAL_TIME_UNIT_OPTIONS = Object.values(TIME_UNIT_TYPE).map((type) => ({
   label: PLURAL_TIME_UNIT_TEXT[type],
+  value: type,
+}))
+
+export const TEXT_FILTER_OPTIONS = Object.values(TEXT_FILTER_TYPE).map((type) => ({
+  label: TEXT_FILTER_TEXT[type],
   value: type,
 }))
