@@ -4,6 +4,7 @@ import {
   NUMBER_FILTER_TEXT,
   PLURAL_TIME_UNIT_TEXT,
   PROPERTY_TYPE_TEXT,
+  SELECT_FILTER_TEXT,
   TEXT_FILTER_TEXT,
   TIME_UNIT_TEXT,
 } from './texts'
@@ -12,6 +13,7 @@ import {
   GENDER,
   NUMBER_FILTER_TYPE,
   PROPERTY_TYPE,
+  SELECT_FILTER_TYPE,
   TEXT_FILTER_TYPE,
   TIME_UNIT_TYPE,
 } from './types'
@@ -49,5 +51,10 @@ export const TEXT_FILTER_OPTIONS = Object.values(TEXT_FILTER_TYPE).map((type) =>
 
 export const NUMBER_FILTER_OPTIONS = Object.values(NUMBER_FILTER_TYPE).map((type) => ({
   label: NUMBER_FILTER_TEXT[type],
+  value: type,
+}))
+
+export const SELECT_FILTER_OPTIONS = Object.values(SELECT_FILTER_TYPE).map((type) => ({
+  label: SELECT_FILTER_TEXT[type],
   value: type,
 }))

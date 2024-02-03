@@ -51,3 +51,10 @@ export const NUMBER_FILTER_TYPE = {
   IS_EMPTY: 'isEmpty',
   IS_NOT_EMPTY: 'isNotEmpty',
 }
+
+export const SELECT_FILTER_TYPE = {
+  IS: 'is',
+  IS_NOT: 'isNot',
+  IS_EMPTY: 'isEmpty',
+  IS_NOT_EMPTY: 'isNotEmpty',
+}
