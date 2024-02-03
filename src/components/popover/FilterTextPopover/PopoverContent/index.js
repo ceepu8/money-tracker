@@ -28,8 +28,8 @@ const FilterTextPopoverContent = ({ item }) => {
       <Input
         prefix={<MenuIcon className="size-3" />}
         size="small"
-        name="password"
-        label="Password"
+        name="text"
+        label="text"
         placeholder="Type a value..."
       />
     </div>
