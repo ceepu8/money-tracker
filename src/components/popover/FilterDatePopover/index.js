@@ -8,7 +8,7 @@ const FilterDatePopover = ({ children, open, onOpenChange }) => {
       <Popover
         open={open}
         onOpenChange={onOpenChange}
-        rootClassName="w-[256px]"
+        rootClassName="w-[260px]"
         content={<FilterDatePopoverContent />}
       >
         {children}

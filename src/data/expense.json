@@ -1,9 +1,9 @@
 [
     {
-        "amount": "32",
-        "category": "Beverages",
+        "amount": "240",
+        "category": "Clothing/Accessories",
         "date": "2024-01-22T03:34:56.956Z",
-        "description": "Task 0",
+        "description": "Buy mom a new handbag!",
         "details": "Details",
         "key": "0",
         "link": "Link",
@@ -12,13 +12,57 @@
     },
     {
         "amount": "32",
-        "category": "Beverages",
+        "category": "Gifts",
         "date": "2024-01-22T03:34:56.956Z",
-        "description": "Task 1",
+        "description": "Buy Thanh a new birthday present",
         "details": "Details",
         "key": "1",
         "link": "Link",
         "method": "Shopee",
+        "status": "Completed"
+    },
+    {
+        "amount": "20",
+        "category": "Pet",
+        "date": "2024-01-27T03:34:56.956Z",
+        "description": "Take LiLi to pet shop",
+        "details": "Details",
+        "key": "2",
+        "link": "Link",
+        "method": "Cash",
+        "status": "Completed"
+    },
+    {
+        "amount": "2000",
+        "category": "Merchandise",
+        "date": "2024-01-26T03:34:56.956Z",
+        "description": "Buy a new iPhone Pro Max 15",
+        "details": "Details",
+        "key": "3",
+        "link": "Link",
+        "method": "Cash",
+        "status": "Completed"
+    },
+    {
+        "amount": "200",
+        "category": "Gifts",
+        "date": "2024-01-29T03:34:56.956Z",
+        "description": "Buy parents Tet gifts",
+        "details": "Details",
+        "key": "4",
+        "link": "Link",
+        "method": "Cash",
+        "status": "Completed"
+    },
+    {
+        "amount": "100",
+        "category": "Household goods",
+        "date": "2024-01-31T03:34:56.956Z",
+        "description": "Buy a new starbuck cup!",
+        "details": "Details",
+        "key": "5",
+        "link": "Link",
+        "method": "Cash",
         "status": "Completed"
     }
 ]
