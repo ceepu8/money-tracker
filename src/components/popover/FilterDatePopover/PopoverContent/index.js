@@ -23,7 +23,7 @@ const DateRangeControl = () => {
 
   return (
     <div className="flex gap-x-1">
-      <div className="flex-grow-0">
+      <div className="grow-0">
         <Select
           value={dateRange}
           options={DATE_RANGE_OPTIONS}
@@ -44,7 +44,7 @@ const DateRangeControl = () => {
         />
       ) : null}
 
-      <div className="w-full flex-grow-[2]">
+      <div className="w-full grow-[2]">
         <Select
           value={timeUnit}
           options={isPluralTimeUnit ? PLURAL_TIME_UNIT_OPTIONS : TIME_UNIT_OPTIONS}

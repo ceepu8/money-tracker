@@ -290,3 +290,7 @@
   @apply size-[10px] h-[14px];
   inset-inline-end: 2px;
 }
+
+.filter_popover.filter_select_popover #_input_ {
+  @apply !h-[18px] !border-none !bg-[#f7f7f5] !px-0.5 !leading-[18px] !shadow-none;
+}
