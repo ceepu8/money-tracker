@@ -7,7 +7,7 @@ const FilterSelectPopover = ({ children, open, onOpenChange, item }) => {
       open={open}
       onOpenChange={onOpenChange}
       rootClassName="w-[260px]"
-      content={<FilterSelectPopoverContent item={item} open={open} />}
+      content={<FilterSelectPopoverContent item={item} />}
     >
       {children}
     </Popover>

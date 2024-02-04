@@ -1,5 +1,6 @@
 import { EllipsisHorizontalIcon, MenuIcon, TrashIcon } from '@/components/icons'
 import { Button, ButtonIcon, Popover } from '@/components/ui'
+import { cn } from '@/utils'
 
 const ExtraSettingPopoverContent = ({ onDelete, onAdvancedFilter }) => {
   return (
@@ -28,16 +29,17 @@ const ExtraSettingPopoverContent = ({ onDelete, onAdvancedFilter }) => {
   )
 }
 
-const ExtraSettingPopover = ({ open, onOpenChange, onDelete, onAdvancedFilter }) => {
+const ExtraSettingPopover = ({ open, onOpenChange, onDelete, onAdvancedFilter, className }) => {
   return (
     <Popover
       open={open}
+      className={className}
       onOpenChange={onOpenChange}
+      placement="rightTop"
+      rootClassName="w-[240px]"
       content={
         <ExtraSettingPopoverContent onDelete={onDelete} onAdvancedFilter={onAdvancedFilter} />
       }
-      placement="rightTop"
-      rootClassName="w-[240px]"
     >
       <ButtonIcon size="small" icon={<EllipsisHorizontalIcon className="size-5" />} />
     </Popover>
