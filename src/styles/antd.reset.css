@@ -215,12 +215,12 @@
 
 .ant-input-affix-wrapper,
 .ant-input-number-affix-wrapper {
-  @apply !bg-[#f7f7f5];
+  @apply !bg-light-gray;
 }
 
 .ant-input,
 .ant-input-number {
-  @apply bg-[#f7f7f5] focus-within:shadow-[0_0_0_2px_rgba(5,_145,_255,_0.2)];
+  @apply bg-light-gray focus-within:shadow-[0_0_0_2px_rgba(5,_145,_255,_0.2)];
 }
 
 .ant-input.ant-input-sm {
@@ -269,7 +269,7 @@
     .ant-pagination-size-changer
   ):hover
   .ant-select-selector {
-  @apply bg-[#f7f7f5];
+  @apply bg-light-gray;
 }
 
 .filter_popover
@@ -292,5 +292,5 @@
 }
 
 .filter_popover.filter_select_popover #_input_ {
-  @apply !h-[18px] !border-none !bg-[#f7f7f5] !px-0.5 !leading-[18px] !shadow-none;
+  @apply !bg-light-gray !h-[18px] !border-none !px-0.5 !leading-[18px] !shadow-none;
 }

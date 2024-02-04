@@ -28,6 +28,8 @@ module.exports = {
 
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
+
+        'light-gray': 'var(--light-gray)',
       },
       textColor: {
         // dùng chung với colors luôn vậy
