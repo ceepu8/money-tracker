@@ -37,19 +37,33 @@ const TextCell = ({ editable, children, dataIndex, record, handleSave }) => {
     childNode = editing ? (
       <Form.Item
         name={dataIndex}
+        className="absolute left-0 top-0 z-20 w-full min-w-[240px]"
         style={{
           margin: 0,
         }}
       >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} style={{ fontSize: 14 }} />
+        <Input
+          ref={inputRef}
+          onPressEnter={save}
+          onBlur={save}
+          style={{ fontSize: 14, transition: 'none' }}
+        />
       </Form.Item>
     ) : (
-      <span role="presentation" onClick={toggleEdit} className="truncate px-2 text-sm">
+      <div
+        role="presentation"
+        onClick={toggleEdit}
+        className="w-full truncate px-2 text-sm leading-[41px]"
+      >
         {children}
-      </span>
+      </div>
     )
   }
-  return <td className="ant-table-cell">{childNode}</td>
+  return (
+    <td height="32" className="ant-table-cell relative">
+      {childNode}
+    </td>
+  )
 }
 
 export default memo(TextCell)

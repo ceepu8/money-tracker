@@ -54,14 +54,14 @@ const DateCell = ({ children }) => {
   const childNode = children
 
   return (
-    <td className="ant-table-cell">
+    <td height="32" className="ant-table-cell">
       <Popover
         open={open}
         placement="bottomLeft"
         onOpenChange={setOpen}
         content={<PopoverContent />}
       >
-        <span className="truncate px-2 text-sm">{children}</span>
+        <div className="truncate px-2 text-sm leading-[41px]">{children}</div>
       </Popover>
     </td>
   )
