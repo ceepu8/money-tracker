@@ -1,11 +1,11 @@
 import { Typography } from 'antd'
 import { MenuIcon } from '@/components/icons'
 import { InputNumber, Select } from '@/components/ui'
-import { NUMBER_FILTER_OPTIONS } from '@/constants'
+import { FILTER_NUMBER_OPTIONS } from '@/constants'
 import ExtraSettingPopover from '../../ExtraSettingPopover'
 
-const FilterNumberPopoverContent = ({ item }) => {
-  const { title } = item || {}
+const FilterNumberPopoverContent = ({ content }) => {
+  const { title } = content || {}
   return (
     <div className="filter_popover flex flex-col gap-y-1">
       <div className="flex items-center">
@@ -13,8 +13,8 @@ const FilterNumberPopoverContent = ({ item }) => {
           {title}
         </Typography.Text>
         <Select
-          defaultValue={NUMBER_FILTER_OPTIONS[0].value}
-          options={NUMBER_FILTER_OPTIONS}
+          defaultValue={FILTER_NUMBER_OPTIONS[0].value}
+          options={FILTER_NUMBER_OPTIONS}
           dropdownStyle={{
             width: 180,
             fontSize: '12px',

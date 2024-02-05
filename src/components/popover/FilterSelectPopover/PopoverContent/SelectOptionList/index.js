@@ -1,5 +1,5 @@
 import { Checkbox } from 'antd'
-import { COLOR_CODE_BY_TYPES } from '@/constants'
+import { FILTER_SELECT_COLOR } from '@/constants'
 
 const SelectOptionList = ({ setValue, list, checkedList, setCheckedList }) => {
   const onChange = (e) => {
@@ -20,8 +20,8 @@ const SelectOptionList = ({ setValue, list, checkedList, setCheckedList }) => {
     const { id, label, color } = item || {}
 
     const style = {
-      color: COLOR_CODE_BY_TYPES[color].TEXT_COLOR.RGBA,
-      backgroundColor: COLOR_CODE_BY_TYPES[color].BADGE_COLOR.RGBA,
+      color: FILTER_SELECT_COLOR[color].TEXT_COLOR.RGBA,
+      backgroundColor: FILTER_SELECT_COLOR[color].BADGE_COLOR.RGBA,
     }
 
     return (

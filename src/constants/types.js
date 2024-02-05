@@ -30,7 +30,7 @@ export const TIME_UNIT_TYPE = {
   YEAR: 'year',
 }
 
-export const TEXT_FILTER_TYPE = {
+export const FILTER_TEXT_TYPE = {
   IS: 'is',
   IS_NOT: 'isNot',
   CONTAINS: 'contains',
@@ -41,7 +41,7 @@ export const TEXT_FILTER_TYPE = {
   IS_NOT_EMPTY: 'isNotEmpty',
 }
 
-export const NUMBER_FILTER_TYPE = {
+export const FILTER_NUMBER_TYPE = {
   EQUAL: 'equal',
   NOT_EQUAL: 'notEqual',
   GREATER_THAN: 'greaterThan',
@@ -52,9 +52,22 @@ export const NUMBER_FILTER_TYPE = {
   IS_NOT_EMPTY: 'isNotEmpty',
 }
 
-export const SELECT_FILTER_TYPE = {
+export const FILTER_SELECT_TYPE = {
   IS: 'is',
   IS_NOT: 'isNot',
   IS_EMPTY: 'isEmpty',
   IS_NOT_EMPTY: 'isNotEmpty',
+}
+
+export const COLOR_TYPES = {
+  RED: 'red',
+  PINK: 'pink',
+  PURPLE: 'purple',
+  BLUE: 'blue',
+  GREEN: 'green',
+  YELLOW: 'yellow',
+  ORANGE: 'orange',
+  BROWN: 'brown',
+  GRAY: 'gray',
+  LIGHT_GRAY: 'lightGray',
 }

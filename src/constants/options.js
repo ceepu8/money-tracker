@@ -1,20 +1,23 @@
+import { FILTER_SELECT_COLOR } from './colors'
 import { PROPERTY_TYPE_ICONS } from './icons'
 import {
+  COLOR_TEXTS,
   DATE_RANGE_TEXT,
-  NUMBER_FILTER_TEXT,
+  FILTER_NUMBER_TEXT,
+  FILTER_SELECT_TEXT,
+  FILTER_TEXT_TEXT,
   PLURAL_TIME_UNIT_TEXT,
   PROPERTY_TYPE_TEXT,
-  SELECT_FILTER_TEXT,
-  TEXT_FILTER_TEXT,
   TIME_UNIT_TEXT,
 } from './texts'
 import {
+  COLOR_TYPES,
   DATE_RANGE_TYPE,
+  FILTER_NUMBER_TYPE,
+  FILTER_SELECT_TYPE,
+  FILTER_TEXT_TYPE,
   GENDER,
-  NUMBER_FILTER_TYPE,
   PROPERTY_TYPE,
-  SELECT_FILTER_TYPE,
-  TEXT_FILTER_TYPE,
   TIME_UNIT_TYPE,
 } from './types'
 
@@ -44,17 +47,23 @@ export const PLURAL_TIME_UNIT_OPTIONS = Object.values(TIME_UNIT_TYPE).map((type)
   value: type,
 }))
 
-export const TEXT_FILTER_OPTIONS = Object.values(TEXT_FILTER_TYPE).map((type) => ({
-  label: TEXT_FILTER_TEXT[type],
+export const FILTER_TEXT_OPTIONS = Object.values(FILTER_TEXT_TYPE).map((type) => ({
+  label: FILTER_TEXT_TEXT[type],
   value: type,
 }))
 
-export const NUMBER_FILTER_OPTIONS = Object.values(NUMBER_FILTER_TYPE).map((type) => ({
-  label: NUMBER_FILTER_TEXT[type],
+export const FILTER_NUMBER_OPTIONS = Object.values(FILTER_NUMBER_TYPE).map((type) => ({
+  label: FILTER_NUMBER_TEXT[type],
   value: type,
 }))
 
-export const SELECT_FILTER_OPTIONS = Object.values(SELECT_FILTER_TYPE).map((type) => ({
-  label: SELECT_FILTER_TEXT[type],
+export const FILTER_SELECT_OPTIONS = Object.values(FILTER_SELECT_TYPE).map((type) => ({
+  label: FILTER_SELECT_TEXT[type],
+  value: type,
+}))
+
+export const FILTER_SELECT_COLOR_OPTIONS = Object.values(COLOR_TYPES).map((type) => ({
+  colorCode: FILTER_SELECT_COLOR[type],
+  label: COLOR_TEXTS[type],
   value: type,
 }))

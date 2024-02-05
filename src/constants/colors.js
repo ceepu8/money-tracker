@@ -1,30 +1,6 @@
-export const COLOR_TYPES = {
-  RED: 'red',
-  PINK: 'pink',
-  PURPLE: 'purple',
-  BLUE: 'blue',
-  GREEN: 'green',
-  YELLOW: 'yellow',
-  ORANGE: 'orange',
-  BROWN: 'brown',
-  GRAY: 'gray',
-  LIGHT_GRAY: 'lightGray',
-}
+import { COLOR_TYPES } from './types'
 
-export const COLOR_TEXTS = {
-  [COLOR_TYPES.RED]: 'Red',
-  [COLOR_TYPES.PINK]: 'Pink',
-  [COLOR_TYPES.PURPLE]: 'Purple',
-  [COLOR_TYPES.BLUE]: 'Blue',
-  [COLOR_TYPES.GREEN]: 'Green',
-  [COLOR_TYPES.YELLOW]: 'Yellow',
-  [COLOR_TYPES.ORANGE]: 'Orange',
-  [COLOR_TYPES.BROWN]: 'Brown',
-  [COLOR_TYPES.GRAY]: 'Gray',
-  [COLOR_TYPES.LIGHT_GRAY]: 'Light gray',
-}
-
-// export const COLOR_CODE_BY_TYPES = {
+// export const FILTER_SELECT_COLOR = {
 //   [COLOR_TYPES.RED]: {
 //     100: {
 //       RGBA: 'rgb(255, 239, 237, 1)',
@@ -247,7 +223,7 @@ export const COLOR_TEXTS = {
 //   },
 // }
 
-export const COLOR_CODE_BY_TYPES = {
+export const FILTER_SELECT_COLOR = {
   [COLOR_TYPES.RED]: {
     BOX_COLOR: {
       RGBA: 'rgba(255, 239, 237, 1)',
@@ -389,9 +365,3 @@ export const COLOR_CODE_BY_TYPES = {
     },
   },
 }
-
-export const COLOR_OPTIONS = Object.values(COLOR_TYPES).map((type) => ({
-  colorCode: COLOR_CODE_BY_TYPES[type],
-  label: COLOR_TEXTS[type],
-  value: type,
-}))

@@ -2,7 +2,7 @@ import { Pressable } from '@react-aria/interactions'
 import { memo, useDeferredValue, useEffect, useRef } from 'react'
 import { XMarkIcon } from '@/components/icons'
 import { ButtonIcon, Input } from '@/components/ui'
-import { COLOR_CODE_BY_TYPES } from '@/constants'
+import { FILTER_SELECT_COLOR } from '@/constants'
 import { useBackspaceDetection } from '@/hooks/shared'
 import { cn } from '@/utils'
 
@@ -10,8 +10,8 @@ const TagItem = memo(({ item, onDeleteItem }) => {
   const { id, label, color } = item || {}
 
   const style = {
-    color: COLOR_CODE_BY_TYPES[color].TEXT_COLOR.RGBA,
-    backgroundColor: COLOR_CODE_BY_TYPES[color].BADGE_COLOR.RGBA,
+    color: FILTER_SELECT_COLOR[color].TEXT_COLOR.RGBA,
+    backgroundColor: FILTER_SELECT_COLOR[color].BADGE_COLOR.RGBA,
   }
 
   return (

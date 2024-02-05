@@ -2,7 +2,7 @@ import { Typography } from 'antd'
 import { useMemo, useState } from 'react'
 import ExtraSettingPopover from '@/components/popover/ExtraSettingPopover'
 import { Select } from '@/components/ui'
-import { SELECT_FILTER_OPTIONS } from '@/constants'
+import { FILTER_SELECT_OPTIONS } from '@/constants'
 import DUMMY_DATA from '@/data/category-select-list.json'
 import SelectOptionList from './SelectOptionList'
 import SelectTagInput from './SelectTagInput'
@@ -17,8 +17,8 @@ const PopoverHeader = ({ title }) => {
         {title}
       </Typography.Text>
       <Select
-        options={SELECT_FILTER_OPTIONS}
-        defaultValue={SELECT_FILTER_OPTIONS[0].value}
+        options={FILTER_SELECT_OPTIONS}
+        defaultValue={FILTER_SELECT_OPTIONS[0].value}
         dropdownStyle={{ width: 180, fontSize: '12px' }}
       />
       <ExtraSettingPopover
@@ -30,7 +30,7 @@ const PopoverHeader = ({ title }) => {
   )
 }
 
-const useSelectTagInput = ({ list }) => {
+const useSelectTagInput = (list) => {
   const [checkedList, setCheckedList] = useState([])
   const [value, setValue] = useState('')
 
