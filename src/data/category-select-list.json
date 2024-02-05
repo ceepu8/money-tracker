@@ -1,0 +1,59 @@
+{
+    "dataIndex": "category",
+    "editable": true,
+    "icon": "chevron-down",
+    "id": "select",
+    "selectList": [
+        {
+            "color": "red",
+            "id": "1",
+            "label": "Restaurants/Coffee",
+            "value": "Restaurants/Coffee"
+        },
+        {
+            "color": "green",
+            "id": "2",
+            "label": "Groceries",
+            "value": "Groceries"
+        },
+        {
+            "color": "yellow",
+            "id": "3",
+            "label": "Household Goods",
+            "value": "Household Goods"
+        },
+        {
+            "color": "purple",
+            "id": "4",
+            "label": "Gifts",
+            "value": "Gifts"
+        },
+        {
+            "color": "orange",
+            "id": "5",
+            "label": "Medical",
+            "value": "Medical"
+        },
+        {
+            "color": "blue",
+            "id": "6",
+            "label": "Pet",
+            "value": "Pet"
+        },
+        {
+            "color": "gray",
+            "id": "7",
+            "label": "Clothing/Accessories",
+            "value": "Clothing/Accessories"
+        },
+        {
+            "color": "pink",
+            "id": "8",
+            "label": "Skincare/Cosmetc Products",
+            "value": "Skincare/Cosmetic Products"
+        }
+    ],
+    "title": "Category",
+    "type": "select",
+    "width": 120
+}

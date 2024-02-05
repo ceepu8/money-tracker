@@ -7,7 +7,6 @@ import times from 'lodash/times'
 import { memo, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import ButtonIcon from '@/components/ui/ButtonIcon'
-import { useDayjsLocale } from '@/configs/dayjs'
 import { FORMAT_STRING } from '@/constants'
 import { cn, formatDate, getActiveByRange, getEndByRange, getFirstByRange } from '@/utils'
 
@@ -53,7 +52,7 @@ const CalendarDayItem = memo(
       >
         <p
           className={cn(
-            'h-full w-full',
+            'size-full',
             isCurrent && !isFirst && !isEnd && 'rounded-full bg-red-500 text-white'
           )}
         >

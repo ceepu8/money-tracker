@@ -1,10 +1,15 @@
-import FilterDatePopover from '@/components/popover/FilterDatePopover'
+import {
+  FilterDatePopover,
+  FilterNumberPopover,
+  FilterSelectPopover,
+  FilterTextPopover,
+} from '@/components/popover'
 
 export const PROPERTY_TYPE_POPOVER = {
-  // text: MenuIcon,
-  // number: CalculatorIcon,
-  // url: LinkIcon,
-  // select: ChevronDownIcon,
   // status: CalendarDaysIcon,
   date: FilterDatePopover,
+  text: FilterTextPopover,
+  url: FilterTextPopover,
+  number: FilterNumberPopover,
+  select: FilterSelectPopover,
 }

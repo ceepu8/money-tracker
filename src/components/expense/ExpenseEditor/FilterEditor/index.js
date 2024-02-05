@@ -29,7 +29,7 @@ const FilterItem = memo(({ item }) => {
   }, [isDragging])
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} content={item}>
       <Button ghost size="small" shape="round" type={buttonType} icon={icon}>
         <span>{title}</span>
         <ChevronDownIcon className="ml-1 size-3" />

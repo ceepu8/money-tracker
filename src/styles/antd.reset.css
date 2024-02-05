@@ -213,14 +213,20 @@
 
 /* INPUT */
 
-#_input_.ant-input {
-  @apply bg-[#f7f7f5] py-1 focus-within:shadow-[0_0_0_2px_rgba(5,_145,_255,_0.2)];
+.ant-input-affix-wrapper,
+.ant-input-number-affix-wrapper {
+  @apply !bg-light-gray;
 }
 
-#_input_.ant-input.ant-input-sm {
-  @apply py-1;
+.ant-input,
+.ant-input-number {
+  @apply bg-light-gray focus-within:shadow-[0_0_0_2px_rgba(5,_145,_255,_0.2)];
 }
 
+.ant-input.ant-input-sm {
+  @apply !h-7 !text-sm;
+}
+/* .ant-input-number.ant-input-number-sm */
 /* SELECT */
 
 .ant-select-single.ant-select-lg .ant-select-selector {
@@ -248,4 +254,43 @@
 [class^='ant-input-number'],
 [class*=' ant-input-number'] {
   font-size: inherit;
+}
+
+.filter_popover .ant-select-single {
+  @apply h-[18px];
+}
+
+.filter_popover .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  @apply rounded border-none px-1;
+}
+
+.filter_popover
+  .ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(
+    .ant-pagination-size-changer
+  ):hover
+  .ant-select-selector {
+  @apply bg-light-gray;
+}
+
+.filter_popover
+  .ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(
+    .ant-select-customize-input
+  ):not(.ant-pagination-size-changer)
+  .ant-select-selector {
+  @apply shadow-none;
+}
+
+.filter_popover .ant-select-single .ant-select-selector .ant-select-selection-item,
+.ant-select-single .ant-select-selector .ant-select-selection-placeholder {
+  @apply text-xs font-bold lowercase leading-[18px];
+  padding-inline-end: 10px;
+}
+
+.filter_popover .ant-select .ant-select-arrow {
+  @apply size-[10px] h-[14px];
+  inset-inline-end: 2px;
+}
+
+.filter_popover.filter_select_popover #_input_ {
+  @apply !bg-light-gray !h-[18px] !border-none !px-0.5 !leading-[18px] !shadow-none;
 }
