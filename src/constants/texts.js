@@ -1,5 +1,6 @@
 import {
   COLOR_TYPES,
+  DATE_FORMAT_TYPES,
   DATE_RANGE_TYPE,
   FILTER_NUMBER_TYPE,
   FILTER_SELECT_TYPE,
@@ -96,4 +97,12 @@ export const COLOR_TEXTS = {
   [COLOR_TYPES.BROWN]: 'Brown',
   [COLOR_TYPES.GRAY]: 'Gray',
   [COLOR_TYPES.LIGHT_GRAY]: 'Light gray',
+}
+
+export const DATE_FORMAT_TEXT = {
+  [DATE_FORMAT_TYPES.FULL_DATE]: 'Full date',
+  [DATE_FORMAT_TYPES.MONTH_DAY_YEAR]: 'Month/Day/Year',
+  [DATE_FORMAT_TYPES.DAY_MONTH_YEAR]: 'Day/Month/Year',
+  [DATE_FORMAT_TYPES.YEAR_MONTH_DAY]: 'Year/Month/Day',
+  [DATE_FORMAT_TYPES.RELATIVE]: 'Relative',
 }

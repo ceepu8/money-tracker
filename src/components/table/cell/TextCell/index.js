@@ -2,15 +2,15 @@ import { Form, Input } from 'antd'
 import { memo, useContext, useEffect, useRef, useState } from 'react'
 import { TableContext } from '../../context'
 
-const TextCell = ({ title, editable, children, dataIndex, record, handleSave, ...restProps }) => {
+const TextCell = ({ editable, children, dataIndex, record, handleSave }) => {
   const [editing, setEditing] = useState(false)
   const inputRef = useRef(null)
   const form = useContext(TableContext)
+
   useEffect(() => {
-    if (editing) {
-      inputRef.current.focus()
-    }
+    inputRef.current?.focus()
   }, [editing])
+
   const toggleEdit = () => {
     setEditing(!editing)
     form.setFieldsValue({
@@ -30,24 +30,26 @@ const TextCell = ({ title, editable, children, dataIndex, record, handleSave, ..
       //   console.log('Save failed:', errInfo)
     }
   }
+
   let childNode = children
+
   if (editable) {
     childNode = editing ? (
       <Form.Item
+        name={dataIndex}
         style={{
           margin: 0,
         }}
-        name={dataIndex}
       >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+        <Input ref={inputRef} onPressEnter={save} onBlur={save} style={{ fontSize: 14 }} />
       </Form.Item>
     ) : (
-      <div role="presentation" onClick={toggleEdit} className="editable-cell-value-wrap">
+      <span role="presentation" onClick={toggleEdit} className="truncate px-2 text-sm">
         {children}
-      </div>
+      </span>
     )
   }
-  return <td {...restProps}>{childNode}</td>
+  return <td className="ant-table-cell">{childNode}</td>
 }
 
 export default memo(TextCell)

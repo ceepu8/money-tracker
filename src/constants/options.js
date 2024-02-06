@@ -1,7 +1,9 @@
 import { FILTER_SELECT_COLOR } from './colors'
+import { DATE_FORMAT_FORMATS } from './formats'
 import { PROPERTY_TYPE_ICONS } from './icons'
 import {
   COLOR_TEXTS,
+  DATE_FORMAT_TEXT,
   DATE_RANGE_TEXT,
   FILTER_NUMBER_TEXT,
   FILTER_SELECT_TEXT,
@@ -12,6 +14,7 @@ import {
 } from './texts'
 import {
   COLOR_TYPES,
+  DATE_FORMAT_TYPES,
   DATE_RANGE_TYPE,
   FILTER_NUMBER_TYPE,
   FILTER_SELECT_TYPE,
@@ -66,4 +69,10 @@ export const FILTER_SELECT_COLOR_OPTIONS = Object.values(COLOR_TYPES).map((type)
   colorCode: FILTER_SELECT_COLOR[type],
   label: COLOR_TEXTS[type],
   value: type,
+}))
+
+export const DATE_FORMAT_OPTIONS = Object.values(DATE_FORMAT_TYPES).map((type) => ({
+  value: type,
+  format: DATE_FORMAT_FORMATS[type],
+  label: DATE_FORMAT_TEXT[type],
 }))

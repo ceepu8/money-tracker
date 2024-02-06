@@ -156,10 +156,6 @@
   padding-right: 32px;
 }
 
-#expense-table .ant-table-wrapper .ant-table-cell {
-  @apply p-0;
-}
-
 #expense-table
   .ant-table-container
   .ant-table-content
@@ -181,9 +177,6 @@
   @apply bg-transparent;
 }
 
-#expense-table .ant-table-wrapper .ant-table-pagination.ant-pagination {
-  /* margin: 16px 0px 0px 0px; */
-}
 #expense-table .common-title.ant-input-outlined:focus,
 #expense-table .ant-input-outlined:focus-within {
   @apply !h-[40px] border-none p-2;
@@ -303,3 +296,5 @@
 .filter_popover.filter_select_popover #_input_ {
   @apply !h-[18px] !border-none !bg-light-gray !px-0.5 !leading-[18px] !shadow-none;
 }
+
+/* TABLE */

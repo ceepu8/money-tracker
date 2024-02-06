@@ -8,6 +8,7 @@ import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  ClockIcon,
   EllipsisHorizontalIcon,
   LinkIcon,
   MagnifyingGlassIcon,
@@ -75,4 +76,5 @@ export {
   ArrowDownIcon,
   ArrowsUpDownIcon,
   CheckIcon,
+  ClockIcon,
 }

@@ -71,3 +71,11 @@ export const COLOR_TYPES = {
   GRAY: 'gray',
   LIGHT_GRAY: 'lightGray',
 }
+
+export const DATE_FORMAT_TYPES = {
+  FULL_DATE: 'fullDate',
+  MONTH_DAY_YEAR: 'monthDayYear',
+  DAY_MONTH_YEAR: 'dayMonthYear',
+  YEAR_MONTH_DAY: 'yearMonthDay',
+  RELATIVE: 'relative',
+}
