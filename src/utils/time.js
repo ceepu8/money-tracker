@@ -6,33 +6,12 @@ import weekOfYear from 'dayjs/plugin/weekOfYear'
 import isNumber from 'lodash/isNumber'
 import maxBy from 'lodash/maxBy'
 import minBy from 'lodash/minBy'
-import { DATE_RANGE_TYPE, FORMAT_STRING } from '@/constants'
+import { DATE_RANGE_TYPE, FORMAT_STRING, TIME_UNIT_TYPE } from '@/constants'
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(utc)
 dayjs.extend(isBetween)
 dayjs.extend(weekOfYear)
-
-export const getActiveByRange = (day, count, dateRange, timeUnit) => {
-  const start = dayjs()
-  let end
-  switch (dateRange) {
-    case DATE_RANGE_TYPE.THIS:
-      return dayjs().isSame(day, timeUnit)
-
-    case DATE_RANGE_TYPE.PAST:
-      end = dayjs().subtract(count, timeUnit)
-      break
-
-    case DATE_RANGE_TYPE.NEXT:
-      end = dayjs().add(count, timeUnit)
-      break
-
-    default:
-      return false
-  }
-  return dayjs(day).isBetween(start, end, 'day', '[]')
-}
 
 export const getFirstByRange = (day, time, dateRange, timeUnit) => {
   switch (dateRange) {
@@ -66,6 +45,34 @@ export const getEndByRange = (day, time, dateRange, timeUnit) => {
   }
 }
 
+export const getDateRange = (dateRange, timeUnit, count) => {
+  let start, end
+
+  switch (dateRange) {
+    case DATE_RANGE_TYPE.THIS:
+      start = dayjs().startOf(timeUnit)
+      end = dayjs().endOf(timeUnit)
+      break
+
+    case DATE_RANGE_TYPE.PAST:
+      start = dayjs().subtract(count, timeUnit)
+      end = dayjs()
+      break
+
+    case DATE_RANGE_TYPE.NEXT:
+      start = dayjs()
+      end = dayjs().add(count, timeUnit)
+      break
+
+    default:
+      break
+  }
+
+  return {
+    startDate: start,
+    endDate: end,
+  }
+}
 export const formatDate = (date, unit) => (date ? dayjs(date).format(unit) : '')
 
 export const formatDateDash = (date) => formatDate(date, FORMAT_STRING.date_dash)

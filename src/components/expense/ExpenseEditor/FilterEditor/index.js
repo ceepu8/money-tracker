@@ -58,12 +58,11 @@ const FilterEditor = () => {
     return (
       <SortableList.Item id={item.id}>
         <SortableList.DragHandle>
-          <FilterItem item={item} />
+          <FilterItem key={item.id} item={item} />
         </SortableList.DragHandle>
       </SortableList.Item>
     )
   }
-
   return (
     <div className="flex items-center gap-x-1">
       <SortableList className="gap-x-2" items={list} onChange={setList} renderItem={renderItem} />

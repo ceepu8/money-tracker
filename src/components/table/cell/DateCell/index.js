@@ -8,16 +8,15 @@ import { DATE_FORMAT_OPTIONS } from '@/constants'
 
 const PopoverContent = memo(({ record }) => {
   const { date } = record || {}
-  const [value, setValue] = useState(dayjs())
 
-  console.log(date)
+  const [value, setValue] = useState(dayjs(date))
 
   return (
     <div className="flex flex-col gap-y-1">
       <Form.Item style={{ marginBottom: 0 }}>
         <Input value={value.format('DD/MM/YYYY')} size="small" placeholder="" />
       </Form.Item>
-      <MiniCalendar startDate={dayjs(date)} />
+      <MiniCalendar startDate={dayjs(date)} endDate={dayjs(date)} />
       <Divider className="m-0" />
       <Button
         size="small"

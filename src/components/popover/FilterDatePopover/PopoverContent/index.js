@@ -9,6 +9,7 @@ import {
   TIME_UNIT_OPTIONS,
 } from '@/constants'
 import { useFilterDateContext, useFilterSortContext } from '@/contexts/customs'
+import { getDateRange } from '@/utils'
 import ExtraSettingPopover from '../../ExtraSettingPopover'
 
 const DateRangeControl = () => {
@@ -82,11 +83,13 @@ const PopoverContentFooter = () => {
 const PopoverContent = () => {
   const { dateRange, timeUnit, count } = useFilterDateContext()
 
+  const startEndDates = getDateRange(dateRange, timeUnit, count)
+
   return (
     <div className="flex flex-col gap-y-2">
       <PopoverContentHeader />
       <DateRangeControl />
-      <MiniCalendar dateRange={dateRange} timeUnit={timeUnit} count={count} />
+      <MiniCalendar {...{ ...startEndDates }} />
       <PopoverContentFooter />
     </div>
   )

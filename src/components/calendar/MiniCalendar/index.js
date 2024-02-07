@@ -33,21 +33,26 @@ const MiniCalendarControl = ({ onPrevMonth, onNextMonth }) => {
 }
 
 const CalendarDayItem = memo(
-  ({ value, isActive, isCurrent, isThisMonth, isFuture, isFirst, isEnd, className }) => {
+  ({ value, isCurrent, isThisMonth, isFuture, isActive, isFirst, isEnd, isBetween, className }) => {
     return (
       <div
         className={cn(
           'w-full border-[2px] border-transparent p-0.5 text-center text-sm leading-[24px]',
           'cursor-pointer hover:rounded hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
+
           isFuture && 'cursor-default hover:border-transparent hover:bg-transparent',
-          isThisMonth && !isFuture ? 'text-gray-700' : 'text-gray-400',
-          isActive &&
+
+          isBetween &&
             'cursor-pointer bg-[rgba(35,_131,_226,_0.15)] hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
-          // isActive && isFuture && 'text-gray-700',
-          // isActive && isFuture && !isThisMonth && 'text-gray-400',
-          // isFirst && 'rounded-l bg-blue text-white hover:rounded-r-none hover:bg-blue',
-          // isEnd && 'rounded-r bg-blue text-white hover:rounded-l-none hover:bg-blue',
-          isActive && 'rounded bg-blue text-white hover:bg-blue',
+
+          isThisMonth && 'text-gray-700',
+          (isFuture || !isThisMonth) && 'text-gray-400',
+          isFuture && isBetween && isThisMonth && 'text-gray-700',
+
+          isFirst && 'rounded-l bg-blue text-white hover:rounded-r-none hover:bg-blue',
+          isEnd && 'rounded-r bg-blue text-white hover:rounded-l-none hover:bg-blue',
+          isFirst && isEnd && 'rounded bg-blue text-white hover:bg-blue',
+
           className
         )}
       >
@@ -64,7 +69,7 @@ const CalendarDayItem = memo(
   }
 )
 
-const CalendarDayList = ({ endDate, startDate, pivot, month, dateRange, timeUnit, count }) => {
+const CalendarDayList = ({ endDate, startDate, pivot, month }) => {
   let start = pivot
 
   const renderItem = () => {
@@ -83,16 +88,9 @@ const CalendarDayList = ({ endDate, startDate, pivot, month, dateRange, timeUnit
         isCurrent={isCurrent}
         isThisMonth={isThisMonth}
         isActive={dayjs(day).isSame(startDate, 'date')}
-        isBetween={dayjs(day).isBetween(startDate, endDate ?? startDate, 'day', '[]')}
         isFirst={dayjs(day).isSame(startDate, 'date')}
         isEnd={dayjs(day).isSame(endDate, 'date')}
-        // isActive={
-        //   activeDate
-        //     ? activeDate.isSame(day, 'date')
-        //     : getActiveByRange(day, count, dateRange, timeUnit)
-        // }
-        // isFirst={getFirstByRange(day, count, dateRange, timeUnit)}
-        // isEnd={getEndByRange(day, count, dateRange, timeUnit)}
+        isBetween={dayjs(day).isBetween(startDate, endDate ?? startDate, 'day', '[]')}
       />
     )
   }
@@ -100,7 +98,7 @@ const CalendarDayList = ({ endDate, startDate, pivot, month, dateRange, timeUnit
   return <div className="grid grid-cols-7 gap-x-0">{times(42, renderItem)}</div>
 }
 
-const MiniCalendarBody = ({ startDate, endDate, month, dateRange, timeUnit, count }) => {
+const MiniCalendarBody = ({ startDate, endDate, month }) => {
   // subtract 1 because we start on Sunday
   const pivot = month.startOf('month').startOf('week').subtract(1, 'day')
 
@@ -118,22 +116,13 @@ const MiniCalendarBody = ({ startDate, endDate, month, dateRange, timeUnit, coun
   return (
     <div>
       <div className="flex w-full justify-between">{times(7, renderItem)}</div>
-      <CalendarDayList
-        pivot={pivot}
-        month={month}
-        dateRange={dateRange}
-        timeUnit={timeUnit}
-        count={count}
-        startDate={startDate}
-        endDate={endDate}
-      />
+      <CalendarDayList pivot={pivot} month={month} startDate={startDate} endDate={endDate} />
     </div>
   )
 }
 
-const MiniCalendar = ({ startDate, endDate, dateRange, timeUnit, count }) => {
-  const defaultMonth = startDate ?? dayjs()
-  const [month, setMonth] = useState(defaultMonth)
+const MiniCalendar = ({ startDate, endDate }) => {
+  const [month, setMonth] = useState(startDate.startOf('month') || dayjs().startOf('month'))
 
   const onPrevMonth = () => {
     setMonth(() => month.subtract(1, 'month'))
@@ -151,14 +140,7 @@ const MiniCalendar = ({ startDate, endDate, dateRange, timeUnit, count }) => {
       </div>
 
       <div className="flex-1">
-        <MiniCalendarBody
-          month={month}
-          count={count}
-          timeUnit={timeUnit}
-          dateRange={dateRange}
-          startDate={startDate}
-          endDate={endDate}
-        />
+        <MiniCalendarBody month={month} startDate={startDate} endDate={endDate} />
       </div>
     </div>
   )
