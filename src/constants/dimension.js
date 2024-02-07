@@ -1,4 +1,4 @@
-const POPOVER_WIDTH = {
+export const POPOVER_WIDTH = {
   EXTRA_SMALL: '220px',
   SMALL: '240px',
   MEDIUM: '260px',

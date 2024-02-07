@@ -49,7 +49,7 @@ const useSelectTagInput = (list) => {
   }
 }
 
-const FilterSelectPopoverContent = ({ item }) => {
+const FilterSelectPopoverContent = ({ item: _item }) => {
   const { title, selectList } = DUMMY_DATA || {}
 
   const { checkedList, setCheckedList, value, setValue, filterList } = useSelectTagInput(selectList)

@@ -1,6 +1,5 @@
 import { EllipsisHorizontalIcon, MenuIcon, TrashIcon } from '@/components/icons'
 import { Button, ButtonIcon, Popover } from '@/components/ui'
-import { cn } from '@/utils'
 
 const ExtraSettingPopoverContent = ({ onDelete, onAdvancedFilter }) => {
   return (

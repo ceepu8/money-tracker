@@ -122,7 +122,7 @@ const defaultColumns = [
 const ExpenseTabTable = () => {
   const [dataSource, setDataSource] = useState(data)
   const [columns, setColumns] = useState(defaultColumns)
-  const [count, setCount] = useState(2)
+  const [count, setCount] = useState(defaultColumns.length)
 
   // const handleDelete = (key) => {
   //   const newData = dataSource.filter((item) => item.key !== key)

@@ -19,13 +19,17 @@ const TableBody = ({ dataSource, setDataSource, columns, handleSave }) => {
     }
     return {
       ...col,
-      onCell: (record) => ({
-        record,
-        editable: col.editable,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        handleSave,
-      }),
+      onCell: (record) => {
+        return {
+          record,
+          editable: col.editable,
+          dataIndex: col.dataIndex,
+          title: col.title,
+          type: col.type,
+          // item: col,
+          handleSave,
+        }
+      },
     }
   })
 
