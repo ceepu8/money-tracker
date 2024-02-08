@@ -5,7 +5,11 @@ import TextCell from '../TextCell'
 
 const BodyCell = ({ type, item, children, editable, dataIndex, record }) => {
   if (type === 'date') {
-    return <DateCell item={item}>{children}</DateCell>
+    return (
+      <DateCell item={item} record={record}>
+        {children}
+      </DateCell>
+    )
   }
 
   if (type === 'select') {

@@ -94,8 +94,8 @@ const defaultColumns = [
       const { color, label } = item || {}
 
       const style = {
-        color: FILTER_SELECT_COLOR[color].TEXT_COLOR.RGBA,
-        backgroundColor: FILTER_SELECT_COLOR[color].BADGE_COLOR.RGBA,
+        color: FILTER_SELECT_COLOR[color]?.TEXT_COLOR.RGBA,
+        backgroundColor: FILTER_SELECT_COLOR[color]?.BADGE_COLOR.RGBA,
       }
       return (
         <span style={style} className="block w-fit max-w-full truncate rounded px-1 text-sm">

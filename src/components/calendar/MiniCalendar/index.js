@@ -43,10 +43,11 @@ const CalendarDayItem = memo(
           isThisMonth && !isFuture ? 'text-gray-700' : 'text-gray-400',
           isActive &&
             'cursor-pointer bg-[rgba(35,_131,_226,_0.15)] hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
-          isActive && isFuture && 'text-gray-700',
-          isActive && isFuture && !isThisMonth && 'text-gray-400',
-          isFirst && 'rounded-l bg-blue text-white hover:rounded-r-none hover:bg-blue',
-          isEnd && 'rounded-r bg-blue text-white hover:rounded-l-none hover:bg-blue',
+          // isActive && isFuture && 'text-gray-700',
+          // isActive && isFuture && !isThisMonth && 'text-gray-400',
+          // isFirst && 'rounded-l bg-blue text-white hover:rounded-r-none hover:bg-blue',
+          // isEnd && 'rounded-r bg-blue text-white hover:rounded-l-none hover:bg-blue',
+          isActive && 'rounded bg-blue text-white hover:bg-blue',
           className
         )}
       >
@@ -63,7 +64,7 @@ const CalendarDayItem = memo(
   }
 )
 
-const CalendarDayList = ({ pivot, month, dateRange, timeUnit, count }) => {
+const CalendarDayList = ({ endDate, startDate, pivot, month, dateRange, timeUnit, count }) => {
   let start = pivot
 
   const renderItem = () => {
@@ -81,9 +82,17 @@ const CalendarDayList = ({ pivot, month, dateRange, timeUnit, count }) => {
         isFuture={isFuture}
         isCurrent={isCurrent}
         isThisMonth={isThisMonth}
-        isActive={getActiveByRange(day, count, dateRange, timeUnit)}
-        isFirst={getFirstByRange(day, count, dateRange, timeUnit)}
-        isEnd={getEndByRange(day, count, dateRange, timeUnit)}
+        isActive={dayjs(day).isSame(startDate, 'date')}
+        isBetween={dayjs(day).isBetween(startDate, endDate ?? startDate, 'day', '[]')}
+        isFirst={dayjs(day).isSame(startDate, 'date')}
+        isEnd={dayjs(day).isSame(endDate, 'date')}
+        // isActive={
+        //   activeDate
+        //     ? activeDate.isSame(day, 'date')
+        //     : getActiveByRange(day, count, dateRange, timeUnit)
+        // }
+        // isFirst={getFirstByRange(day, count, dateRange, timeUnit)}
+        // isEnd={getEndByRange(day, count, dateRange, timeUnit)}
       />
     )
   }
@@ -91,7 +100,7 @@ const CalendarDayList = ({ pivot, month, dateRange, timeUnit, count }) => {
   return <div className="grid grid-cols-7 gap-x-0">{times(42, renderItem)}</div>
 }
 
-const MiniCalendarBody = ({ month, dateRange, timeUnit, count }) => {
+const MiniCalendarBody = ({ startDate, endDate, month, dateRange, timeUnit, count }) => {
   // subtract 1 because we start on Sunday
   const pivot = month.startOf('month').startOf('week').subtract(1, 'day')
 
@@ -115,13 +124,16 @@ const MiniCalendarBody = ({ month, dateRange, timeUnit, count }) => {
         dateRange={dateRange}
         timeUnit={timeUnit}
         count={count}
+        startDate={startDate}
+        endDate={endDate}
       />
     </div>
   )
 }
 
-const MiniCalendar = ({ dateRange, timeUnit, count }) => {
-  const [month, setMonth] = useState(dayjs())
+const MiniCalendar = ({ startDate, endDate, dateRange, timeUnit, count }) => {
+  const defaultMonth = startDate ?? dayjs()
+  const [month, setMonth] = useState(defaultMonth)
 
   const onPrevMonth = () => {
     setMonth(() => month.subtract(1, 'month'))
@@ -139,7 +151,14 @@ const MiniCalendar = ({ dateRange, timeUnit, count }) => {
       </div>
 
       <div className="flex-1">
-        <MiniCalendarBody month={month} count={count} dateRange={dateRange} timeUnit={timeUnit} />
+        <MiniCalendarBody
+          month={month}
+          count={count}
+          timeUnit={timeUnit}
+          dateRange={dateRange}
+          startDate={startDate}
+          endDate={endDate}
+        />
       </div>
     </div>
   )

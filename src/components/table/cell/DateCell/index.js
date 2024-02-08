@@ -6,15 +6,18 @@ import { ClockIcon } from '@/components/icons'
 import { Button, Divider, Input, Popover } from '@/components/ui'
 import { DATE_FORMAT_OPTIONS } from '@/constants'
 
-const PopoverContent = memo(() => {
+const PopoverContent = memo(({ record }) => {
+  const { date } = record || {}
   const [value, setValue] = useState(dayjs())
+
+  console.log(date)
 
   return (
     <div className="flex flex-col gap-y-1">
       <Form.Item style={{ marginBottom: 0 }}>
         <Input value={value.format('DD/MM/YYYY')} size="small" placeholder="" />
       </Form.Item>
-      <MiniCalendar />
+      <MiniCalendar startDate={dayjs(date)} />
       <Divider className="m-0" />
       <Button
         size="small"
@@ -48,7 +51,7 @@ const PopoverContent = memo(() => {
   )
 })
 
-const DateCell = ({ children }) => {
+const DateCell = ({ record, children }) => {
   const [open, setOpen] = useState(false)
 
   const childNode = children
@@ -59,7 +62,7 @@ const DateCell = ({ children }) => {
         open={open}
         placement="bottomLeft"
         onOpenChange={setOpen}
-        content={<PopoverContent />}
+        content={<PopoverContent record={record} />}
       >
         <div className="truncate px-2 text-sm leading-[41px]">{children}</div>
       </Popover>
