@@ -93,7 +93,7 @@ export const INCLUDE_TIME_REMIND_TYPES = {
   AT_TIME_OF_EVENT: 'atTimeOfEvent',
   FIVE_MINUTES_BEFORE: 'fiveMinutesBefore',
   TEN_MINUTES_BEFORE: 'tenMinutesBefore',
-  FIFTEEN_MINUTES_BEFORE: 'fiveMinutesBefore',
+  FIFTEEN_MINUTES_BEFORE: 'fifteenMinutesBefore',
   THIRTY_MINUTES_BEFORE: 'thirtyMinutesBefore',
   ONE_HOUR_BEFORE: 'oneHourBefore',
   TWO_HOURS_BEFORE: 'twoHoursBefore',

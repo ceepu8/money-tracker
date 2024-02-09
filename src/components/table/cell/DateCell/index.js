@@ -3,16 +3,9 @@ import { Form } from 'antd'
 import dayjs from 'dayjs'
 import { memo, useState } from 'react'
 import { MiniCalendar } from '@/components/calendar'
-import { Menu } from '@/components/common'
-import FormItem from '@/components/form/FormItem'
-import { ChevronDownIcon, ClockIcon } from '@/components/icons'
+import { ClockIcon } from '@/components/icons'
 import { Button, Divider, Input, Popover, Switch } from '@/components/ui'
-import {
-  INCLUDE_TIME_REMIND_OPTIONS,
-  INCLUDE_TIME_REMIND_TEXTS,
-  NOT_INCLUDE_TIME_REMIND_OPTIONS,
-  NOT_INCLUDE_TIME_REMIND_TEXTS,
-} from '@/constants'
+import RemindSettingSelect from './RemindSettingSelect'
 
 const BaseSwitch = ({ id, name, children, value, onChange }) => {
   const toggleSwitch = () => {
@@ -25,49 +18,9 @@ const BaseSwitch = ({ id, name, children, value, onChange }) => {
         <label htmlFor={id} className="cursor-pointer text-sm">
           {children}
         </label>
-        <Switch id={id} name={name} size="small" onChange={onChange} value={value} />
+        <Switch id={id} name={name} size="small" value={value} />
       </div>
     </Pressable>
-  )
-}
-
-const RemindSettingPopover = ({ isIncludeTime }) => {
-  const OPTIONS = isIncludeTime ? INCLUDE_TIME_REMIND_OPTIONS : NOT_INCLUDE_TIME_REMIND_OPTIONS
-  const TEXTS = isIncludeTime ? INCLUDE_TIME_REMIND_TEXTS : NOT_INCLUDE_TIME_REMIND_TEXTS
-
-  const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(OPTIONS[0].value)
-
-  const handleChangeValue = (value) => {
-    setValue(value)
-    setOpen(false)
-  }
-
-  const popoverContent = <Menu list={OPTIONS} value={value} onChange={handleChangeValue} />
-
-  return (
-    <Popover
-      open={open}
-      placement="right"
-      rootClassName="w-[250px]"
-      onOpenChange={setOpen}
-      content={popoverContent}
-    >
-      <Button
-        size="small"
-        type="text"
-        className="!justify-start"
-        icon={<ClockIcon className="size-3.5" />}
-      >
-        <div className="flex-between flex-1">
-          <span>Remind</span>
-          <div className="flex items-center gap-x-1 text-[rgba(55,_53,_47,_0.65)]">
-            <span>{TEXTS[value]}</span>
-            <ChevronDownIcon className="size-3" />
-          </div>
-        </div>
-      </Button>
-    </Popover>
   )
 }
 
@@ -88,7 +41,7 @@ const DateCellSetting = memo(({ item }) => {
 
       <Divider className="m-0" />
 
-      <RemindSettingPopover isIncludeTime={includeTimeChecked} />
+      <RemindSettingSelect isIncludeTime={includeTimeChecked} />
 
       <Divider className="m-0" />
 
