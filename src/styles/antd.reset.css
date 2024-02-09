@@ -297,4 +297,16 @@
   @apply !h-[18px] !border-none !bg-light-gray !px-0.5 !leading-[18px] !shadow-none;
 }
 
-/* TABLE */
+/* SWITCH */
+
+#filter-date-cell .ant-switch {
+  @apply !bg-[rgba(0,_0,_0,_0.25)];
+}
+
+#filter-date-cell .ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+  @apply !bg-[#43a5f0];
+}
+
+#filter-date-cell .ant-switch.ant-switch-checked {
+  @apply !bg-[#43a5f0];
+}

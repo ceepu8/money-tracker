@@ -8,6 +8,8 @@ import {
   FILTER_NUMBER_TEXT,
   FILTER_SELECT_TEXT,
   FILTER_TEXT_TEXT,
+  INCLUDE_TIME_REMIND_TEXTS,
+  NOT_INCLUDE_TIME_REMIND_TEXTS,
   PLURAL_TIME_UNIT_TEXT,
   PROPERTY_TYPE_TEXT,
   TIME_UNIT_TEXT,
@@ -20,6 +22,8 @@ import {
   FILTER_SELECT_TYPE,
   FILTER_TEXT_TYPE,
   GENDER,
+  INCLUDE_TIME_REMIND_TYPES,
+  NOT_INCLUDE_TIME_REMIND_TYPES,
   PROPERTY_TYPE,
   TIME_UNIT_TYPE,
 } from './types'
@@ -75,4 +79,16 @@ export const DATE_FORMAT_OPTIONS = Object.values(DATE_FORMAT_TYPES).map((type) =
   value: type,
   format: DATE_FORMAT_FORMATS[type],
   label: DATE_FORMAT_TEXT[type],
+}))
+
+export const NOT_INCLUDE_TIME_REMIND_OPTIONS = Object.values(NOT_INCLUDE_TIME_REMIND_TYPES).map(
+  (type) => ({
+    value: type,
+    label: NOT_INCLUDE_TIME_REMIND_TEXTS[type],
+  })
+)
+
+export const INCLUDE_TIME_REMIND_OPTIONS = Object.values(INCLUDE_TIME_REMIND_TYPES).map((type) => ({
+  value: type,
+  label: INCLUDE_TIME_REMIND_TEXTS[type],
 }))

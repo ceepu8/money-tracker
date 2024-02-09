@@ -6,7 +6,7 @@ import weekOfYear from 'dayjs/plugin/weekOfYear'
 import isNumber from 'lodash/isNumber'
 import maxBy from 'lodash/maxBy'
 import minBy from 'lodash/minBy'
-import { DATE_RANGE_TYPE, FORMAT_STRING, TIME_UNIT_TYPE } from '@/constants'
+import { DATE_RANGE_TYPE, FORMAT_STRING } from '@/constants'
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(utc)
@@ -46,7 +46,8 @@ export const getEndByRange = (day, time, dateRange, timeUnit) => {
 }
 
 export const getDateRange = (dateRange, timeUnit, count) => {
-  let start, end
+  let start
+  let end
 
   switch (dateRange) {
     case DATE_RANGE_TYPE.THIS:

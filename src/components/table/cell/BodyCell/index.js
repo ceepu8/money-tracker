@@ -27,4 +27,4 @@ const BodyCell = ({ type, item, children, editable, dataIndex, record }) => {
   )
 }
 
-export default BodyCell
+export default memo(BodyCell)

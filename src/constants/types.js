@@ -79,3 +79,24 @@ export const DATE_FORMAT_TYPES = {
   YEAR_MONTH_DAY: 'yearMonthDay',
   RELATIVE: 'relative',
 }
+
+export const NOT_INCLUDE_TIME_REMIND_TYPES = {
+  NONE: 'none',
+  ON_DAY_OF_EVENT: 'onDayOfEvent',
+  ONE_DAY_BEFORE: 'oneDayBefore',
+  TWO_DAYS_BEFORE: 'twoDaysBefore',
+  ONE_WEEK_BEFORE: 'oneWeekBefore',
+}
+
+export const INCLUDE_TIME_REMIND_TYPES = {
+  NONE: 'none',
+  AT_TIME_OF_EVENT: 'atTimeOfEvent',
+  FIVE_MINUTES_BEFORE: 'fiveMinutesBefore',
+  TEN_MINUTES_BEFORE: 'tenMinutesBefore',
+  FIFTEEN_MINUTES_BEFORE: 'fiveMinutesBefore',
+  THIRTY_MINUTES_BEFORE: 'thirtyMinutesBefore',
+  ONE_HOUR_BEFORE: 'oneHourBefore',
+  TWO_HOURS_BEFORE: 'twoHoursBefore',
+  ONE_DAY_BEFORE: 'oneDayBefore',
+  TWO_DAYS_BEFORE: 'twoDaysBefore',
+}

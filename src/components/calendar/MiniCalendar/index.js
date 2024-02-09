@@ -8,7 +8,7 @@ import { memo, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import ButtonIcon from '@/components/ui/ButtonIcon'
 import { FORMAT_STRING } from '@/constants'
-import { cn, formatDate, getActiveByRange, getEndByRange, getFirstByRange } from '@/utils'
+import { cn, formatDate } from '@/utils'
 
 dayjs.extend(isSameOrBefore)
 dayjs.extend(utc)
