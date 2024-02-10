@@ -20,9 +20,9 @@ const TableAddNewRow = ({ onClick }) => {
       onClick={onClick}
       className="sticky bottom-[-4px] left-0 z-20 flex h-10 w-full cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
     >
-      <div className="sticky left-0 flex items-center gap-x-2 pl-4">
+      <div className="sticky left-0 flex items-center gap-x-2 pl-4 text-[rgba(55,_53,_47,_0.5)]">
         <PlusIcon className="size-4" />
-        <span>New</span>
+        <span className="text-sm">New</span>
       </div>
     </div>
   )

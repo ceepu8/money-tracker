@@ -58,7 +58,7 @@ const FilterEditor = () => {
     return (
       <SortableList.Item id={item.id}>
         <SortableList.DragHandle>
-          <FilterItem key={item.id} item={item} />
+          <FilterItem item={item} />
         </SortableList.DragHandle>
       </SortableList.Item>
     )

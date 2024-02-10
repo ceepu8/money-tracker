@@ -13,38 +13,6 @@ dayjs.extend(utc)
 dayjs.extend(isBetween)
 dayjs.extend(weekOfYear)
 
-export const getFirstByRange = (day, time, dateRange, timeUnit) => {
-  switch (dateRange) {
-    case DATE_RANGE_TYPE.THIS:
-      return dayjs().startOf(timeUnit).isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.PAST:
-      return dayjs().subtract(time, timeUnit).isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.NEXT:
-      return dayjs().isSame(day, 'date')
-
-    default:
-      return false
-  }
-}
-
-export const getEndByRange = (day, time, dateRange, timeUnit) => {
-  switch (dateRange) {
-    case DATE_RANGE_TYPE.THIS:
-      return dayjs().endOf(timeUnit).isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.PAST:
-      return dayjs().isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.NEXT:
-      return dayjs().add(time, timeUnit).isSame(day, 'date')
-
-    default:
-      return false
-  }
-}
-
 export const getDateRange = (dateRange, timeUnit, count) => {
   let start
   let end

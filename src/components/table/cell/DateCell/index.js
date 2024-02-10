@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { memo, useState } from 'react'
 import { MiniCalendar } from '@/components/calendar'
 import { Button, Divider, Input, Popover, Switch } from '@/components/ui'
+import { FORMAT_STRING } from '@/constants'
 import DateFormatTimezoneSelect from './DateFormatTimezoneSelect'
 import RemindSelect from './RemindSelect'
 
@@ -34,7 +35,7 @@ const DateCellSetting = memo(({ item }) => {
   return (
     <div id="filter-date-cell" className="flex flex-col gap-y-1">
       <Form.Item style={{ marginBottom: 0 }}>
-        <Input value={value.format('DD/MM/YYYY')} size="small" placeholder="" />
+        <Input value={value.format(FORMAT_STRING.day_month_year)} size="small" placeholder="" />
       </Form.Item>
 
       <MiniCalendar date={value} onChangeDate={setValue} />
