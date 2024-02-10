@@ -85,29 +85,25 @@ const CalendarDayItem = memo(
   }
 )
 
-const CalendarDayList = ({ date, onChangeDate, endDate, startDate, pivot, month }) => {
-  let start = pivot
+const CalendarDayList = ({ date, onChangeDate, endDate, startDate, month }) => {
+  const pivot = month.startOf('week')
 
   const handleChangeDate = (value) => {
     onChangeDate?.(value)
   }
 
-  const renderItem = () => {
-    const day = start.add(1, 'day')
-    start = start.add(1, 'day')
+  const renderItem = (index) => {
+    const day = pivot.add(index, 'day')
 
     const isCurrent = dayjs().isSame(day, 'date')
     const isThisMonth = month.isSame(day, 'month')
     const isFuture = day.diff(dayjs(), 'date') > 0
 
-    const isBetween =
-      startDate && endDate && !date
-        ? dayjs(day).isBetween(startDate, endDate ?? startDate, 'day', '[]')
-        : false
+    const isBetween = startDate && endDate && dayjs(day).isBetween(startDate, endDate, 'day', '[]')
 
-    const isFirst = startDate && !date ? dayjs(day).isSame(startDate, 'date') : false
-    const isEnd = endDate && !date ? dayjs(day).isSame(endDate, 'date') : false
-    const isActive = date ? dayjs(day).isSame(date, 'date') : false
+    const isFirst = startDate && dayjs(day).isSame(startDate, 'date')
+    const isEnd = endDate && dayjs(day).isSame(endDate, 'date')
+    const isActive = date && dayjs(day).isSame(date, 'date')
 
     return (
       <CalendarDayItem
@@ -129,9 +125,6 @@ const CalendarDayList = ({ date, onChangeDate, endDate, startDate, pivot, month 
 }
 
 const MiniCalendarBody = ({ date, onChangeDate, startDate, endDate, month }) => {
-  // subtract 1 because we start on Sunday
-  const pivot = month.startOf('month').startOf('week').subtract(1, 'day')
-
   const renderItem = (index) => {
     return (
       <span
@@ -147,7 +140,6 @@ const MiniCalendarBody = ({ date, onChangeDate, startDate, endDate, month }) => 
     <div>
       <div className="flex w-full justify-between">{times(7, renderItem)}</div>
       <CalendarDayList
-        pivot={pivot}
         date={date}
         onChangeDate={onChangeDate}
         month={month}
