@@ -52,14 +52,13 @@ const CalendarDayItem = memo(
           'w-full border-[2px] border-transparent p-0.5 text-center text-sm leading-[24px]',
           'cursor-pointer hover:rounded hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
 
-          isFuture && 'cursor-default hover:border-transparent hover:bg-transparent',
-
           isBetween &&
             'cursor-pointer bg-[rgba(35,_131,_226,_0.15)] hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
 
-          isThisMonth && 'text-gray-700',
-          (isFuture || !isThisMonth) && 'text-gray-400',
-          isFuture && isBetween && isThisMonth && 'text-gray-700',
+          (isFuture || !isThisMonth) &&
+            'cursor-default text-gray-400 hover:border-transparent hover:bg-transparent',
+          !isThisMonth && 'text-gray-400',
+          isFuture && isThisMonth && isBetween && 'text-gray-700',
 
           isFirst && 'rounded-l bg-blue text-white hover:rounded-r-none hover:bg-blue',
           isEnd && 'rounded-r bg-blue text-white hover:rounded-l-none hover:bg-blue',
@@ -95,15 +94,19 @@ const CalendarDayList = ({ date, onChangeDate, endDate, startDate, month }) => {
   const renderItem = (index) => {
     const day = pivot.add(index, 'day')
 
+    // always checked
     const isCurrent = dayjs().isSame(day, 'date')
     const isThisMonth = month.isSame(day, 'month')
-    const isFuture = day.diff(dayjs(), 'date') > 0
 
-    const isBetween = startDate && endDate && dayjs(day).isBetween(startDate, endDate, 'day', '[]')
-
-    const isFirst = startDate && dayjs(day).isSame(startDate, 'date')
-    const isEnd = endDate && dayjs(day).isSame(endDate, 'date')
+    // when only date received as prop, no future checked, no first, end , between checked for styling.
     const isActive = date && dayjs(day).isSame(date, 'date')
+
+    // when startDate and endDate received as props, no date checked.
+    const isFuture = !date ? day.diff(dayjs(), 'date') > 0 : false
+    const isBetween =
+      !date && startDate && endDate && dayjs(day).isBetween(startDate, endDate, 'day', '[]')
+    const isFirst = !date && startDate && dayjs(day).isSame(startDate, 'date')
+    const isEnd = !date && endDate && dayjs(day).isSame(endDate, 'date')
 
     return (
       <CalendarDayItem
