@@ -37,7 +37,7 @@ const DateCellSetting = memo(({ item }) => {
         <Input value={value.format('DD/MM/YYYY')} size="small" placeholder="" />
       </Form.Item>
 
-      <MiniCalendar startDate={dayjs(date)} endDate={dayjs(date)} />
+      <MiniCalendar date={value} onChangeDate={setValue} />
 
       <Divider className="m-0" />
 
