@@ -3,7 +3,8 @@ import { DATE_FORMAT_FORMATS } from './formats'
 import { PROPERTY_TYPE_ICONS } from './icons'
 import {
   COLOR_TEXTS,
-  DATE_FORMAT_TEXT,
+  DATE_FORMAT_AND_TIMEZONE_TEXTS,
+  DATE_FORMAT_TEXTS,
   DATE_RANGE_TEXT,
   FILTER_NUMBER_TEXT,
   FILTER_SELECT_TEXT,
@@ -16,6 +17,7 @@ import {
 } from './texts'
 import {
   COLOR_TYPES,
+  DATE_FORMAT_AND_TIMEZONE_TYPES,
   DATE_FORMAT_TYPES,
   DATE_RANGE_TYPE,
   FILTER_NUMBER_TYPE,
@@ -75,12 +77,6 @@ export const FILTER_SELECT_COLOR_OPTIONS = Object.values(COLOR_TYPES).map((type)
   value: type,
 }))
 
-export const DATE_FORMAT_OPTIONS = Object.values(DATE_FORMAT_TYPES).map((type) => ({
-  value: type,
-  format: DATE_FORMAT_FORMATS[type],
-  label: DATE_FORMAT_TEXT[type],
-}))
-
 export const NOT_INCLUDE_TIME_REMIND_OPTIONS = Object.values(NOT_INCLUDE_TIME_REMIND_TYPES).map(
   (type) => ({
     value: type,
@@ -91,4 +87,17 @@ export const NOT_INCLUDE_TIME_REMIND_OPTIONS = Object.values(NOT_INCLUDE_TIME_RE
 export const INCLUDE_TIME_REMIND_OPTIONS = Object.values(INCLUDE_TIME_REMIND_TYPES).map((type) => ({
   value: type,
   label: INCLUDE_TIME_REMIND_TEXTS[type],
+}))
+
+export const DATE_FORMAT_AND_TIMEZONE_OPTIONS = Object.values(DATE_FORMAT_AND_TIMEZONE_TYPES).map(
+  (type) => ({
+    value: type,
+    label: DATE_FORMAT_AND_TIMEZONE_TEXTS[type],
+  })
+)
+
+export const DATE_FORMAT_OPTIONS = Object.values(DATE_FORMAT_TYPES).map((type) => ({
+  value: type,
+  format: DATE_FORMAT_FORMATS[type],
+  label: DATE_FORMAT_TEXTS[type],
 }))

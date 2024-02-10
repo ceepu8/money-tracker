@@ -9,7 +9,7 @@ import {
   NOT_INCLUDE_TIME_REMIND_TEXTS,
 } from '@/constants'
 
-const RemindSettingSelect = ({ isIncludeTime }) => {
+const RemindSelect = ({ isIncludeTime }) => {
   const OPTIONS = isIncludeTime ? INCLUDE_TIME_REMIND_OPTIONS : NOT_INCLUDE_TIME_REMIND_OPTIONS
   const TEXTS = isIncludeTime ? INCLUDE_TIME_REMIND_TEXTS : NOT_INCLUDE_TIME_REMIND_TEXTS
 
@@ -56,4 +56,4 @@ const RemindSettingSelect = ({ isIncludeTime }) => {
   )
 }
 
-export default RemindSettingSelect
+export default RemindSelect

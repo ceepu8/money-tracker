@@ -3,9 +3,9 @@ import { Form } from 'antd'
 import dayjs from 'dayjs'
 import { memo, useState } from 'react'
 import { MiniCalendar } from '@/components/calendar'
-import { ClockIcon } from '@/components/icons'
 import { Button, Divider, Input, Popover, Switch } from '@/components/ui'
-import RemindSettingSelect from './RemindSettingSelect'
+import DateFormatTimezoneSelect from './DateFormatTimezoneSelect'
+import RemindSelect from './RemindSelect'
 
 const BaseSwitch = ({ id, name, children, value, onChange }) => {
   const toggleSwitch = () => {
@@ -41,7 +41,7 @@ const DateCellSetting = memo(({ item }) => {
 
       <Divider className="m-0" />
 
-      <RemindSettingSelect isIncludeTime={includeTimeChecked} />
+      <RemindSelect isIncludeTime={includeTimeChecked} />
 
       <Divider className="m-0" />
 
@@ -54,14 +54,8 @@ const DateCellSetting = memo(({ item }) => {
       </BaseSwitch>
 
       <Divider className="m-0" />
-      <Button
-        size="small"
-        type="text"
-        className="!justify-start"
-        icon={<ClockIcon className="size-3.5" />}
-      >
-        Date format & timezone
-      </Button>
+
+      <DateFormatTimezoneSelect />
 
       <Divider className="m-0" />
 

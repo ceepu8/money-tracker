@@ -72,14 +72,6 @@ export const COLOR_TYPES = {
   LIGHT_GRAY: 'lightGray',
 }
 
-export const DATE_FORMAT_TYPES = {
-  FULL_DATE: 'fullDate',
-  MONTH_DAY_YEAR: 'monthDayYear',
-  DAY_MONTH_YEAR: 'dayMonthYear',
-  YEAR_MONTH_DAY: 'yearMonthDay',
-  RELATIVE: 'relative',
-}
-
 export const NOT_INCLUDE_TIME_REMIND_TYPES = {
   NONE: 'none',
   ON_DAY_OF_EVENT: 'onDayOfEvent',
@@ -99,4 +91,18 @@ export const INCLUDE_TIME_REMIND_TYPES = {
   TWO_HOURS_BEFORE: 'twoHoursBefore',
   ONE_DAY_BEFORE: 'oneDayBefore',
   TWO_DAYS_BEFORE: 'twoDaysBefore',
+}
+
+export const DATE_FORMAT_TYPES = {
+  FULL_DATE: 'fullDate',
+  MONTH_DAY_YEAR: 'monthDayYear',
+  DAY_MONTH_YEAR: 'dayMonthYear',
+  YEAR_MONTH_DAY: 'yearMonthDay',
+  RELATIVE: 'relative',
+}
+
+export const DATE_FORMAT_AND_TIMEZONE_TYPES = {
+  DATE_FORMAT: 'dateFormat',
+  TIME_FORMAT: 'timeFormat',
+  TIMEZONE: 'timezone',
 }
