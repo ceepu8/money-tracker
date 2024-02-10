@@ -21,7 +21,7 @@ const MenuItem = ({ children, item, isActive, isDisabled, onClick, className, ..
         )}
         {...props}
       >
-        {children ? children : <span>{label}</span>}
+        {children || <span>{label}</span>}
         {isActive && <CheckIcon className="size-3" />}
       </li>
     </Pressable>

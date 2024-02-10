@@ -16,8 +16,8 @@ const RemindSelect = ({ isIncludeTime }) => {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(OPTIONS[0].value)
 
-  const handleChangeValue = (value) => {
-    setValue(value)
+  const handleChangeValue = (val) => {
+    setValue(val)
     setOpen(false)
   }
 

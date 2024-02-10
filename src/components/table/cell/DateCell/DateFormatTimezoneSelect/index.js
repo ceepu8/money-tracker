@@ -43,8 +43,8 @@ const DateFormatTimezoneSelect = () => {
   const popoverContent = (
     <Menu>
       <DateFormatSelect />
-      <Menu.Item item={DATE_FORMAT_AND_TIMEZONE_OPTIONS[1]} isDisabled={true} />
-      <Menu.Item item={DATE_FORMAT_AND_TIMEZONE_OPTIONS[2]} isDisabled={true} />
+      <Menu.Item item={DATE_FORMAT_AND_TIMEZONE_OPTIONS[1]} isDisabled />
+      <Menu.Item item={DATE_FORMAT_AND_TIMEZONE_OPTIONS[2]} isDisabled />
     </Menu>
   )
 
