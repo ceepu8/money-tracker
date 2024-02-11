@@ -15,7 +15,7 @@ const Tag = memo(({ item, size = 'small', onRemove, style, className, ...props }
     <div
       style={style}
       className={cn(
-        'flex-center w-max truncate rounded pl-1',
+        'flex w-max items-center truncate rounded pl-1',
         !onRemove && 'pr-1',
         sizeClassName[size],
         className

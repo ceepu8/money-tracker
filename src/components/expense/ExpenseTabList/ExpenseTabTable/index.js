@@ -9,6 +9,7 @@ import {
   PlusIcon,
 } from '@/components/icons'
 import { ExpenseTableHead } from '@/components/table/head'
+import { Tag } from '@/components/ui'
 import { FILTER_SELECT_COLOR, PROPERTY_TYPE } from '@/constants'
 import data from '@/data/expense.json'
 import TableBody from './TableBody'
@@ -91,17 +92,12 @@ const defaultColumns = [
     width: 120,
     editable: true,
     render: (item) => {
-      const { color, label } = item || {}
-
+      const { color } = item || {}
       const style = {
         color: FILTER_SELECT_COLOR[color]?.TEXT_COLOR.RGBA,
         backgroundColor: FILTER_SELECT_COLOR[color]?.BADGE_COLOR.RGBA,
       }
-      return (
-        <span style={style} className="block w-fit max-w-full truncate rounded px-1 text-sm">
-          {label}
-        </span>
-      )
+      return <Tag size="medium" style={style} item={item} />
     },
   },
   {

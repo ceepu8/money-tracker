@@ -310,3 +310,7 @@
 #filter-date-cell .ant-switch.ant-switch-checked {
   @apply !bg-[#43a5f0];
 }
+
+#single-select-input #_input_ {
+  @apply !h-[18px] !border-none !bg-light-gray !px-0.5 !leading-[18px] !shadow-none;
+}

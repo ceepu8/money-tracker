@@ -14,8 +14,7 @@ const MenuItem = ({ children, item, isActive, isDisabled, onClick, className, ..
     <Pressable onPress={handleOnPress}>
       <li
         className={cn(
-          'flex-between h-7 cursor-pointer rounded px-2 transition-colors hover:bg-[rgba(55,_53,_47_,0.08)]',
-          'text-sm',
+          'flex-between menu-item',
           isDisabled ? 'cursor-default opacity-50 hover:bg-transparent' : '',
           className
         )}
