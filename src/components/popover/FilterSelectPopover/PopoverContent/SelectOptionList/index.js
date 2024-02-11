@@ -1,4 +1,5 @@
 import { Checkbox } from 'antd'
+import { Tag } from '@/components/ui'
 import { FILTER_SELECT_COLOR } from '@/constants'
 
 const SelectOptionList = ({ setValue, list, checkedList, setCheckedList }) => {
@@ -32,17 +33,14 @@ const SelectOptionList = ({ setValue, list, checkedList, setCheckedList }) => {
         onChange={onChange}
         className="flex min-h-7 cursor-pointer items-center gap-x-1 rounded px-2 transition-colors hover:bg-[rgba(55,_53,_47,_0.08)]"
       >
-        <span style={style} className="block h-5 w-full truncate rounded px-2 text-sm leading-5">
-          {label}
-        </span>
+        <Tag size="medium" style={style} item={item} />
       </Checkbox>
     )
   }
 
   return (
     <Checkbox.Group value={checkedList} className="flex flex-col">
-      {(list || []).map(renderCheckboxItem)}
-      {!list.length && <p className="text-xs">No result.</p>}
+      {!list.length ? <p className="text-xs">No result.</p> : list.map(renderCheckboxItem)}
     </Checkbox.Group>
   )
 }
