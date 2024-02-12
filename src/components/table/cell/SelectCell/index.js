@@ -1,65 +1,26 @@
-import { Pressable } from '@react-aria/interactions'
 import { Typography } from 'antd'
 import { memo, useState } from 'react'
-import { EllipsisHorizontalIcon, SixDotsVerticalIcon } from '@/components/icons'
 import { SortableList } from '@/components/sortable'
-import { ButtonIcon, Popover, Tag } from '@/components/ui'
-import { FILTER_SELECT_COLOR } from '@/constants'
+import { Popover } from '@/components/ui'
 import data from '@/data/category-select-list.json'
+import SelectItem from './SelectItem'
 import SingleSelectTagInput from './SingleSelectTagInput'
 
 const { selectList } = data
 
-const PopoverContent = memo(({ item, onClick }) => {
+const PopoverContent = memo(({ item }) => {
   const [list, setList] = useState(selectList)
 
-  const handleSelect = (e) => {
-    onClick?.(item)
-    console.log('parent click')
-  }
+  const handleSelect = (e) => {}
 
   const renderItem = (item) => {
-    const { id, color } = item || {}
-
-    const style = {
-      color: FILTER_SELECT_COLOR[color].TEXT_COLOR.RGBA,
-      backgroundColor: FILTER_SELECT_COLOR[color].BADGE_COLOR.RGBA,
-    }
-
     return (
-      <SortableList.Item id={id}>
-        <Pressable onPress={handleSelect}>
-          <div className="menu-item flex items-center gap-x-2">
-            <SortableList.DragHandle>
-              <SixDotsVerticalIcon className="size-3 fill-[#7e7e7e]" />
-            </SortableList.DragHandle>
-
-            <div className="flex-1">
-              <Tag size="medium" style={style} item={item} className="py-1" />
-            </div>
-
-            <Popover
-              // open={open}
-              // onOpenChange={setOpen}
-              className="truncate"
-              placement="bottomLeft"
-              rootClassName="w-[300px]"
-              content={<div>123</div>}
-            >
-              <ButtonIcon
-                // onClick={(e) => {
-                //   e.stopPropagation()
-                //   console.log('children click')
-                // }}
-                size="small"
-                icon={<EllipsisHorizontalIcon className="size-5" />}
-              />
-            </Popover>
-          </div>
-        </Pressable>
+      <SortableList.Item key={item.id} id={item.id}>
+        <SelectItem item={item} onClick={handleSelect} />
       </SortableList.Item>
     )
   }
+
   return (
     <div className="-mx-3 -mb-2 -mt-3">
       <SingleSelectTagInput item={item?.category} />

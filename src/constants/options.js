@@ -72,7 +72,7 @@ export const FILTER_SELECT_OPTIONS = Object.values(FILTER_SELECT_TYPE).map((type
 }))
 
 export const FILTER_SELECT_COLOR_OPTIONS = Object.values(COLOR_TYPES).map((type) => ({
-  colorCode: FILTER_SELECT_COLOR[type],
+  color: FILTER_SELECT_COLOR[type],
   label: COLOR_TEXTS[type],
   value: type,
 }))
