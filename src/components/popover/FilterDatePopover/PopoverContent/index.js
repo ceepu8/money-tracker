@@ -83,13 +83,13 @@ const PopoverContentFooter = () => {
 const PopoverContent = () => {
   const { dateRange, timeUnit, count } = useFilterDateContext()
 
-  const startEndDates = getDateRange(dateRange, timeUnit, count)
+  const { startDate, endDate } = getDateRange(dateRange, timeUnit, count)
 
   return (
     <div className="flex flex-col gap-y-2">
       <PopoverContentHeader />
       <DateRangeControl />
-      <MiniCalendar {...{ ...startEndDates }} />
+      <MiniCalendar startDate={startDate} endDate={endDate} />
       <PopoverContentFooter />
     </div>
   )

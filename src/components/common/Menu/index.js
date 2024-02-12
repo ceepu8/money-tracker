@@ -1,4 +1,5 @@
 import { Pressable } from '@react-aria/interactions'
+import { memo } from 'react'
 import { CheckIcon } from '@/components/icons'
 import { cn } from '@/utils'
 
@@ -45,4 +46,4 @@ const Menu = ({ children, className, list, value, onChange, style, ...props }) =
 
 Menu.Item = MenuItem
 
-export default Menu
+export default memo(Menu)

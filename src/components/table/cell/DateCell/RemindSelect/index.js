@@ -30,29 +30,32 @@ const RemindSelect = ({ isIncludeTime }) => {
   const popoverContent = <Menu list={OPTIONS} value={value} onChange={handleChangeValue} />
 
   return (
-    <Popover
-      open={open}
-      placement="right"
-      rootClassName="w-[250px]"
-      onOpenChange={setOpen}
-      content={popoverContent}
-    >
-      <Button
-        size="small"
-        type="text"
-        className="!justify-start"
-        icon={<ClockIcon className="size-3.5" />}
+    <div>
+      <Popover
+        open={open}
+        placement="right"
+        rootClassName="w-[250px]"
+        onOpenChange={setOpen}
+        content={popoverContent}
       >
-        <div className="flex-between flex-1">
-          <span>Remind</span>
+        <Button
+          block
+          size="small"
+          type="text"
+          className="!justify-start"
+          icon={<ClockIcon className="size-3.5" />}
+        >
+          <div className="flex-between flex-1">
+            <span>Remind</span>
 
-          <div className="flex items-center gap-x-1 text-[rgba(55,_53,_47,_0.65)]">
-            <span>{TEXTS?.[value]?.replace('(9:00 AM)', '')}</span>
-            <ChevronDownIcon className="size-3" />
+            <div className="flex items-center gap-x-1 text-[rgba(55,_53,_47,_0.65)]">
+              <span>{TEXTS?.[value]?.replace('(9:00 AM)', '')}</span>
+              <ChevronDownIcon className="size-3" />
+            </div>
           </div>
-        </div>
-      </Button>
-    </Popover>
+        </Button>
+      </Popover>
+    </div>
   )
 }
 

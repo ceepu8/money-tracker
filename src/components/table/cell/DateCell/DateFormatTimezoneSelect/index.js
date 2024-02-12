@@ -49,22 +49,25 @@ const DateFormatTimezoneSelect = () => {
   )
 
   return (
-    <Popover
-      open={open}
-      placement="right"
-      rootClassName="w-[250px]"
-      onOpenChange={setOpen}
-      content={popoverContent}
-    >
-      <Button
-        size="small"
-        type="text"
-        className="!justify-start"
-        icon={<ClockIcon className="size-3.5" />}
+    <div>
+      <Popover
+        open={open}
+        placement="right"
+        rootClassName="w-[250px]"
+        onOpenChange={setOpen}
+        content={popoverContent}
       >
-        <span>Date format & timezone</span>
-      </Button>
-    </Popover>
+        <Button
+          block
+          size="small"
+          type="text"
+          className="!justify-start"
+          icon={<ClockIcon className="size-3.5" />}
+        >
+          <span>Date format & timezone</span>
+        </Button>
+      </Popover>
+    </div>
   )
 }
 
