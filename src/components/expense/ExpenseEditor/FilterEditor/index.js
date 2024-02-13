@@ -63,7 +63,6 @@ const FilterEditor = () => {
       </SortableList.Item>
     )
   }
-
   return (
     <div className="flex items-center gap-x-1">
       <SortableList className="gap-x-2" items={list} onChange={setList} renderItem={renderItem} />

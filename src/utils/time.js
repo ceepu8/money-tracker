@@ -13,59 +13,35 @@ dayjs.extend(utc)
 dayjs.extend(isBetween)
 dayjs.extend(weekOfYear)
 
-export const getActiveByRange = (day, count, dateRange, timeUnit) => {
-  const start = dayjs()
+export const getDateRange = (dateRange, timeUnit, count) => {
+  let start
   let end
+
   switch (dateRange) {
     case DATE_RANGE_TYPE.THIS:
-      return dayjs().isSame(day, timeUnit)
+      start = dayjs().startOf(timeUnit)
+      end = dayjs().endOf(timeUnit)
+      break
 
     case DATE_RANGE_TYPE.PAST:
-      end = dayjs().subtract(count, timeUnit)
+      start = dayjs().subtract(count, timeUnit)
+      end = dayjs()
       break
 
     case DATE_RANGE_TYPE.NEXT:
+      start = dayjs()
       end = dayjs().add(count, timeUnit)
       break
 
     default:
-      return false
+      break
   }
-  return dayjs(day).isBetween(start, end, 'day', '[]')
-}
 
-export const getFirstByRange = (day, time, dateRange, timeUnit) => {
-  switch (dateRange) {
-    case DATE_RANGE_TYPE.THIS:
-      return dayjs().startOf(timeUnit).isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.PAST:
-      return dayjs().subtract(time, timeUnit).isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.NEXT:
-      return dayjs().isSame(day, 'date')
-
-    default:
-      return false
+  return {
+    startDate: start,
+    endDate: end,
   }
 }
-
-export const getEndByRange = (day, time, dateRange, timeUnit) => {
-  switch (dateRange) {
-    case DATE_RANGE_TYPE.THIS:
-      return dayjs().endOf(timeUnit).isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.PAST:
-      return dayjs().isSame(day, 'date')
-
-    case DATE_RANGE_TYPE.NEXT:
-      return dayjs().add(time, timeUnit).isSame(day, 'date')
-
-    default:
-      return false
-  }
-}
-
 export const formatDate = (date, unit) => (date ? dayjs(date).format(unit) : '')
 
 export const formatDateDash = (date) => formatDate(date, FORMAT_STRING.date_dash)

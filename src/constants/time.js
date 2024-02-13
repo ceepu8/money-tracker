@@ -50,4 +50,8 @@ export const FORMAT_STRING = {
   reset_time: 'YYYY-MM-DD 00:00:00',
 
   dd: 'dd',
+  day_month_year: 'DD/MM/YYYY',
+  month_day_year: 'MMMM/DD/YYYY',
+  full_date: 'MMMM D, YYYY',
+  year_month_day: 'YYYY/MM/DD',
 }

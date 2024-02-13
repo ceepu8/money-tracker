@@ -1,6 +1,5 @@
 .common-title .ant-input-outlined:focus,
 .common-title .ant-input-outlined:focus-within {
-  height: 46px !important;
   border: none;
   padding: 0;
   box-shadow: none;
@@ -131,6 +130,16 @@
   > table
   > tbody.ant-table-tbody
   > tr
+  > td#select_cell.ant-table-cell {
+  @apply truncate;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
   > td.ant-table-cell:first-child {
   @apply p-0;
   border-inline-end: none;
@@ -145,10 +154,6 @@
   > td.ant-table-cell:last-child {
   border-inline-end: none;
   padding-right: 32px;
-}
-
-#expense-table .ant-table-wrapper .ant-table-cell {
-  @apply p-0;
 }
 
 #expense-table
@@ -172,12 +177,9 @@
   @apply bg-transparent;
 }
 
-#expense-table .ant-table-wrapper .ant-table-pagination.ant-pagination {
-  /* margin: 16px 0px 0px 0px; */
-}
 #expense-table .common-title.ant-input-outlined:focus,
 #expense-table .ant-input-outlined:focus-within {
-  @apply !h-[40px] p-2;
+  @apply !h-[40px] border-none p-2;
   box-shadow:
     0px 4px 16px rgba(17, 17, 26, 0.2),
     0px 8px 24px rgba(17, 17, 26, 0.2),
@@ -292,5 +294,19 @@
 }
 
 .filter_popover.filter_select_popover #_input_ {
-  @apply !bg-light-gray !h-[18px] !border-none !px-0.5 !leading-[18px] !shadow-none;
+  @apply !h-[18px] !border-none !bg-light-gray !px-0.5 !leading-[18px] !shadow-none;
+}
+
+/* SWITCH */
+
+#filter-date-cell .ant-switch {
+  @apply !bg-[rgba(0,_0,_0,_0.25)];
+}
+
+#filter-date-cell .ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+  @apply !bg-[#43a5f0];
+}
+
+#filter-date-cell .ant-switch.ant-switch-checked {
+  @apply !bg-[#43a5f0];
 }
