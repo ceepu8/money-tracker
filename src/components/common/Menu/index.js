@@ -1,8 +1,9 @@
 import { Pressable } from '@react-aria/interactions'
+import { memo } from 'react'
 import { CheckIcon } from '@/components/icons'
 import { cn } from '@/utils'
 
-const MenuItem = ({ children, item, isActive, isDisabled, onClick, className, ...props }) => {
+const MenuItem = memo(({ children, item, isActive, isDisabled, onClick, className, ...props }) => {
   const { value, label } = item || {}
 
   const handleOnPress = () => {
@@ -25,7 +26,7 @@ const MenuItem = ({ children, item, isActive, isDisabled, onClick, className, ..
       </li>
     </Pressable>
   )
-}
+})
 
 const Menu = ({ children, className, list, value, onChange, style, ...props }) => {
   const renderItem = (item) => {

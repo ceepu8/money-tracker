@@ -154,9 +154,10 @@ const MiniCalendarBody = ({ date, onChangeDate, startDate, endDate, month }) => 
 }
 
 const MiniCalendar = ({ date, onChangeDate, startDate, endDate }) => {
-  const [month, setMonth] = useState(
+  const defaultMonth =
     date?.startOf('month') || startDate?.startOf('month') || dayjs().startOf('month')
-  )
+
+  const [month, setMonth] = useState(defaultMonth)
 
   const onPrevMonth = () => {
     setMonth(() => month.subtract(1, 'month'))
