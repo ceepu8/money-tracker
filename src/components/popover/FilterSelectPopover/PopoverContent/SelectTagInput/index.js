@@ -29,10 +29,10 @@ const SelectTagInput = ({ value, setValue, setCheckedList, checkedList }) => {
   }
 
   const renderCheckedItem = (item) => {
-    const { value, color } = item || {}
+    const { id, label, value, color } = item || {}
     const style = getColorStyle(color)
 
-    return <Tag key={value} style={style} item={item} onRemove={handleDeleteItem} />
+    return <Tag key={value} style={style} id={id} label={label} onRemove={handleDeleteItem} />
   }
 
   useEffect(() => {

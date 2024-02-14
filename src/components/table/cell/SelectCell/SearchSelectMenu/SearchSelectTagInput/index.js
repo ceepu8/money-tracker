@@ -2,7 +2,7 @@ import { Input, Tag } from '@/components/ui'
 import { cn, getColorStyle } from '@/utils'
 
 const SearchSelectTagInput = ({ item, value, onChange }) => {
-  const { color } = item || {}
+  const { id, label, color } = item || {}
 
   const style = getColorStyle(color)
 
@@ -14,7 +14,7 @@ const SearchSelectTagInput = ({ item, value, onChange }) => {
         'bg-[rgba(242,_241,_238,_0.6)]'
       )}
     >
-      <Tag size="medium" style={style} item={item} onRemove={() => {}} />
+      <Tag size="medium" style={style} id={id} label={label} onRemove={() => {}} />
       <div className="flex-center h-[18px] min-w-[60px] flex-1">
         <Input size="small" value={value} onChange={onChange} placeholder="" />
       </div>

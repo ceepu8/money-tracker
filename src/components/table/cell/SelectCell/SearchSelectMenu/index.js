@@ -1,7 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { Pressable } from '@react-aria/interactions'
 import { Typography } from 'antd'
-import { memo, useDeferredValue, useEffect, useState } from 'react'
+import { memo, useDeferredValue, useEffect, useMemo, useState } from 'react'
 import { SixDotsVerticalIcon } from '@/components/icons'
 import { SortableList } from '@/components/sortable'
 import { Tag } from '@/components/ui'
@@ -10,11 +10,11 @@ import { cn, getColorStyle } from '@/utils'
 import SearchSelectTagInput from './SearchSelectTagInput'
 import SelectItemSettingPopover from './SelectItemSettingPopover'
 
-const { selectList } = data
+const { selectList: defaultList } = data
 
 const SelectItem = ({ item, onClick }) => {
   const [open, setOpen] = useState(false)
-  const { id, color } = item || {}
+  const { id, label, color } = item || {}
 
   const { isDragging } = useSortable({ id })
 
@@ -34,7 +34,7 @@ const SelectItem = ({ item, onClick }) => {
         </SortableList.DragHandle>
 
         <div className="flex-1">
-          <Tag size="medium" style={style} item={item} className="py-1" />
+          <Tag size="medium" style={style} id={id} label={label} className="py-1" />
         </div>
 
         <SelectItemSettingPopover item={item} open={open} setOpen={setOpen} />
@@ -43,10 +43,27 @@ const SelectItem = ({ item, onClick }) => {
   )
 }
 
-const SearchSelectMenu = memo(({ item }) => {
-  const [list, setList] = useState(selectList)
+const CreateNewSelectButton = memo(({ value }) => {
+  if (!value) return null
 
+  const handleCreateSelectItem = () => {}
+
+  const style = getColorStyle('red')
+
+  return (
+    <Pressable onPress={handleCreateSelectItem}>
+      <div className="menu-item mx-1 flex items-center gap-x-2">
+        <span>Create</span>
+        <Tag size="medium" style={style} label={value} />
+      </div>
+    </Pressable>
+  )
+})
+
+const SearchSelectMenu = memo(({ item }) => {
+  const [list, setList] = useState([])
   const [value, setValue] = useState('')
+
   const deferredValue = useDeferredValue(value)
 
   const handleSelect = (e) => {}
@@ -63,9 +80,17 @@ const SearchSelectMenu = memo(({ item }) => {
     )
   }
 
+  useEffect(() => {
+    const filterList = (defaultList || []).filter(({ label }) => {
+      return label.toLowerCase().includes(deferredValue.toLowerCase())
+    })
+
+    setList(filterList)
+  }, [deferredValue])
+
   return (
     <div className="-mx-3 -mb-2 -mt-3">
-      <SearchSelectTagInput item={item} value={deferredValue} onChange={handleChangeValue} />
+      <SearchSelectTagInput item={item} value={value} onChange={handleChangeValue} />
       <Typography.Text type="secondary" className="truncate pl-4 !text-xs">
         Select an option or create one
       </Typography.Text>
@@ -76,6 +101,7 @@ const SearchSelectMenu = memo(({ item }) => {
         renderItem={renderItem}
         className="px-1"
       />
+      <CreateNewSelectButton value={deferredValue} />
     </div>
   )
 })

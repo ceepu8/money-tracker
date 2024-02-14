@@ -92,12 +92,12 @@ const defaultColumns = [
     width: 120,
     editable: true,
     render: (item) => {
-      const { color } = item || {}
+      const { id, label, color } = item || {}
       const style = {
         color: FILTER_SELECT_COLOR[color]?.TEXT_COLOR.RGBA,
         backgroundColor: FILTER_SELECT_COLOR[color]?.BADGE_COLOR.RGBA,
       }
-      return <Tag size="medium" style={style} item={item} />
+      return <Tag size="medium" style={style} id={id} label={label} />
     },
   },
   {

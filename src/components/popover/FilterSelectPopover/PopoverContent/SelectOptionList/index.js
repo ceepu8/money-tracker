@@ -30,7 +30,7 @@ const SelectOptionList = ({ setValue, list, checkedList, setCheckedList }) => {
         onChange={onChange}
         className="flex min-h-7 cursor-pointer items-center gap-x-1 rounded px-2 transition-colors hover:bg-[rgba(55,_53,_47,_0.08)]"
       >
-        <Tag size="medium" style={style} item={item} />
+        <Tag size="medium" style={style} id={id} label={label} />
       </Checkbox>
     )
   }
