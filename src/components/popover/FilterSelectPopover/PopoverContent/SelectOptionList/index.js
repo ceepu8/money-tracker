@@ -1,6 +1,6 @@
 import { Checkbox } from 'antd'
 import { Tag } from '@/components/ui'
-import { FILTER_SELECT_COLOR } from '@/constants'
+import { getColorStyle } from '@/utils'
 
 const SelectOptionList = ({ setValue, list, checkedList, setCheckedList }) => {
   const onChange = (e) => {
@@ -20,10 +20,7 @@ const SelectOptionList = ({ setValue, list, checkedList, setCheckedList }) => {
   const renderCheckboxItem = (item) => {
     const { id, label, color } = item || {}
 
-    const style = {
-      color: FILTER_SELECT_COLOR[color].TEXT_COLOR.RGBA,
-      backgroundColor: FILTER_SELECT_COLOR[color].BADGE_COLOR.RGBA,
-    }
+    const style = getColorStyle(color)
 
     return (
       <Checkbox

@@ -1,30 +1,25 @@
 import { memo } from 'react'
+import { PROPERTY_TYPE } from '@/constants'
 import DateCell from '../DateCell'
 import SelectCell from '../SelectCell'
 import TextCell from '../TextCell'
 
-const BodyCell = ({ type, item, children, editable, dataIndex, record }) => {
-  if (type === 'date') {
-    return (
-      <DateCell item={item} record={record}>
-        {children}
-      </DateCell>
-    )
+const BodyCell = ({ type, children, editable, dataIndex, record }) => {
+  const props = {
+    record,
+    editable,
+    dataIndex,
   }
 
-  if (type === 'select') {
-    return (
-      <SelectCell item={item} record={record}>
-        {children}
-      </SelectCell>
-    )
+  if (type === PROPERTY_TYPE.DATE) {
+    return <DateCell {...props}>{children}</DateCell>
   }
 
-  return (
-    <TextCell item={item} editable={editable} dataIndex={dataIndex} record={record}>
-      {children}
-    </TextCell>
-  )
+  if (type === PROPERTY_TYPE.SELECT) {
+    return <SelectCell {...props}>{children}</SelectCell>
+  }
+
+  return <TextCell {...props}>{children}</TextCell>
 }
 
 export default memo(BodyCell)
