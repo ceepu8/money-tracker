@@ -1,7 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { Pressable } from '@react-aria/interactions'
 import { Typography } from 'antd'
-import { memo, useDeferredValue, useEffect, useMemo, useState } from 'react'
+import { memo, useDeferredValue, useEffect, useState } from 'react'
 import { SixDotsVerticalIcon } from '@/components/icons'
 import { SortableList } from '@/components/sortable'
 import { Tag } from '@/components/ui'
@@ -66,16 +66,16 @@ const SearchSelectMenu = memo(({ item }) => {
 
   const deferredValue = useDeferredValue(value)
 
-  const handleSelect = (e) => {}
+  const handleSelect = () => {}
 
   const handleChangeValue = (e) => {
     setValue(e.target.value)
   }
 
-  const renderItem = (item) => {
+  const renderItem = (e) => {
     return (
-      <SortableList.Item key={item.id} id={item.id}>
-        <SelectItem item={item} onClick={handleSelect} />
+      <SortableList.Item key={e.id} id={e.id}>
+        <SelectItem item={e} onClick={handleSelect} />
       </SortableList.Item>
     )
   }

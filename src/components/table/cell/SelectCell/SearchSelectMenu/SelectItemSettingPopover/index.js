@@ -13,7 +13,7 @@ const ColorMenuItem = memo(({ item }) => {
   return (
     <div className="flex items-center">
       <div
-        className="h-[18px] w-[18px] rounded"
+        className="size-[18px] rounded"
         style={{
           backgroundColor: BOX_COLOR.RGBA,
           boxShadow: 'rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset',
