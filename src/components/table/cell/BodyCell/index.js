@@ -4,22 +4,33 @@ import DateCell from '../DateCell'
 import SelectCell from '../SelectCell'
 import TextCell from '../TextCell'
 
-const BodyCell = ({ type, children, editable, dataIndex, record }) => {
-  const props = {
-    record,
-    editable,
-    dataIndex,
+export const PROPERTY_TYPE_CELL = {
+  [PROPERTY_TYPE.TEXT]: TextCell,
+  [PROPERTY_TYPE.NUMBER]: TextCell,
+  [PROPERTY_TYPE.SELECT]: SelectCell,
+  // [PROPERTY_TYPE.MULTI_SELECT]: SelectCell,
+  // [PROPERTY_TYPE.STATUS]: SelectCell,
+  [PROPERTY_TYPE.DATE]: DateCell,
+  // [PROPERTY_TYPE.FILES_AND_MEDIA]: DateCell,
+  // [PROPERTY_TYPE.URL]: DateCell,
+  // [PROPERTY_TYPE.CHECKBOX]: DateCell,
+  // [PROPERTY_TYPE.EMAIL]: DateCell,
+}
+
+const BodyCell = (props) => {
+  const { children, type } = props || {}
+
+  const Cell = PROPERTY_TYPE_CELL[type]
+
+  if (!Cell) {
+    return (
+      <td height="32" className="ant-table-cell !px-2">
+        <span className="truncate text-sm"> {children}</span>
+      </td>
+    )
   }
 
-  if (type === PROPERTY_TYPE.DATE) {
-    return <DateCell {...props}>{children}</DateCell>
-  }
-
-  if (type === PROPERTY_TYPE.SELECT) {
-    return <SelectCell {...props}>{children}</SelectCell>
-  }
-
-  return <TextCell {...props}>{children}</TextCell>
+  return <Cell {...props}>{children}</Cell>
 }
 
 export default memo(BodyCell)
