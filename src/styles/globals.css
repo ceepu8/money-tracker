@@ -45,6 +45,10 @@
   .link-item {
     @apply transition-opacity hover:opacity-80;
   }
+
+  .menu-item {
+    @apply h-7 cursor-pointer rounded px-2 text-sm transition-colors hover:bg-[rgba(55,_53,_47_,0.08)];
+  }
 }
 
 @layer components {
@@ -97,9 +101,4 @@ button:where(:not([class^='ant'])),
 ::-webkit-scrollbar-thumb {
   background: #646565;
   border-radius: 5px;
-}
-/* -- END_SCROLLBAR_STYLE -- */
-
-.menu-item {
-  @apply h-7 cursor-pointer rounded px-2 text-sm transition-colors hover:bg-[rgba(55,_53,_47_,0.08)];
 }

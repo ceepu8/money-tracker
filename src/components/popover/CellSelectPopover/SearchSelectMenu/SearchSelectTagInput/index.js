@@ -1,10 +1,10 @@
 import { Input, Tag } from '@/components/ui'
-import { cn, getColorStyle } from '@/utils'
+import { cn, getFilterSelectStyle } from '@/utils'
 
 const SearchSelectTagInput = ({ item, value, onChange }) => {
   const { id, label, color } = item || {}
 
-  const style = getColorStyle(color)
+  const style = getFilterSelectStyle(color)
 
   return (
     <div
