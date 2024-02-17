@@ -1,2 +1,5 @@
 export { default as HeadCell } from './HeadCell'
 export { default as BodyCell } from './BodyCell'
+export { default as DateCell } from './DateCell'
+export { default as SelectCell } from './SelectCell'
+export { default as TextCell } from './TextCell'

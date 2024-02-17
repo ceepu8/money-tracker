@@ -24,10 +24,11 @@ const ExpenseFilter = ({ extraFlag }) => {
 
   const extraContent = (
     <Button
+      block
       type="text"
       size="medium"
-      className="-mx-1 !justify-start"
-      icon={<PlusIcon className="size-5" />}
+      className="!justify-start"
+      icon={<PlusIcon className="size-4" />}
     >
       Add advanced filter
     </Button>

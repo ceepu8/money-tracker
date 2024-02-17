@@ -34,7 +34,7 @@ const DateSelectByCalendar = ({ value, setValue }) => {
   )
 }
 
-const DateCellSetting = memo(({ item }) => {
+const DateSettingForm = memo(({ item }) => {
   const [endDateChecked, setEndDateChecked] = useState(false)
   const [includeTimeChecked, setIncludeTimeChecked] = useState(false)
   const [value, setValue] = useState(dayjs(item))
@@ -64,4 +64,4 @@ const DateCellSetting = memo(({ item }) => {
   )
 })
 
-export default DateCellSetting
+export default DateSettingForm
