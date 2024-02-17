@@ -42,7 +42,7 @@ const RemindSelect = ({ isIncludeTime }) => {
           block
           size="small"
           type="text"
-          className="!justify-start"
+          className="justify-start"
           icon={<ClockIcon className="size-3.5" />}
         >
           <div className="flex-between flex-1">

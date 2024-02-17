@@ -26,7 +26,7 @@ const ColorMenuItem = memo(({ item }) => {
 
 const ColorMenu = ({ colorValue }) => {
   const renderItem = (item) => {
-    const { value } = item
+    const { value } = item || {}
     const isActive = value === colorValue
 
     return (
@@ -53,7 +53,7 @@ const PopoverContent = ({ value, onChange, onDelete, colorValue }) => {
           block
           type="text"
           size="small"
-          className="!justify-start"
+          className="justify-start"
           icon={<TrashIcon className="size-4" />}
           onClick={onDelete}
         >

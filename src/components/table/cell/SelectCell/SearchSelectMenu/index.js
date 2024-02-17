@@ -6,7 +6,7 @@ import { SixDotsVerticalIcon } from '@/components/icons'
 import { SortableList } from '@/components/sortable'
 import { Tag } from '@/components/ui'
 import data from '@/data/category-select-list.json'
-import { cn, getColorStyle } from '@/utils'
+import { cn, getFilterSelectStyle } from '@/utils'
 import SearchSelectTagInput from './SearchSelectTagInput'
 import SelectItemSettingPopover from './SelectItemSettingPopover'
 
@@ -22,7 +22,7 @@ const SelectItem = ({ item, onClick }) => {
     if (isDragging) setOpen(false)
   }, [isDragging])
 
-  const style = getColorStyle(color)
+  const style = getFilterSelectStyle(color)
 
   return (
     <Pressable onPress={onClick}>
@@ -48,7 +48,7 @@ const CreateNewSelectButton = memo(({ value }) => {
 
   const handleCreateSelectItem = () => {}
 
-  const style = getColorStyle('red')
+  const style = getFilterSelectStyle('red')
 
   return (
     <Pressable onPress={handleCreateSelectItem}>

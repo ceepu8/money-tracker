@@ -20,7 +20,7 @@ const Button = ({
   href,
   ...props
 }) => {
-  const rootClassName = cn('flex-center')
+  const rootClassName = cn('flex items-center justify-center')
 
   const customType = ANTD_BUTTON_TYPES.includes(type) && htmlType !== 'submit' ? type : 'default'
 

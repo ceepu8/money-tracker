@@ -56,7 +56,7 @@ const DateCellSetting = memo(({ item }) => {
       </div>
       <DateFormatTimezoneSelect />
       <div>
-        <Button block size="small" type="text" className="!justify-start">
+        <Button block size="small" type="text" className="justify-start">
           Clear
         </Button>
       </div>

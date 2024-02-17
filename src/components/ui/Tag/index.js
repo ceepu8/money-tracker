@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { XMarkIcon } from '@/components/icons'
 import { cn } from '@/utils'
 
-const Tag = memo(({ id, label, size = 'small', onRemove, style, className, ...props }) => {
+const Tag = ({ id, label, size = 'small', onRemove, style, className, ...props }) => {
   const sizeClassName = {
     small: 'h-[18px] leading-[18px] text-xs',
     medium: 'h-5 leading-5 text-sm',
@@ -30,6 +30,6 @@ const Tag = memo(({ id, label, size = 'small', onRemove, style, className, ...pr
       )}
     </div>
   )
-})
+}
 
-export default Tag
+export default memo(Tag)

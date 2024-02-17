@@ -2,7 +2,7 @@ import { useDeferredValue, useEffect, useRef } from 'react'
 import { XMarkIcon } from '@/components/icons'
 import { ButtonIcon, Input, Tag } from '@/components/ui'
 import { useBackspaceDetection } from '@/hooks/shared'
-import { cn, getColorStyle } from '@/utils'
+import { cn, getFilterSelectStyle } from '@/utils'
 
 const SelectTagInput = ({ value, setValue, setCheckedList, checkedList }) => {
   const placeholder = checkedList.length === 0 ? 'Select one or more options' : ''
@@ -30,7 +30,7 @@ const SelectTagInput = ({ value, setValue, setCheckedList, checkedList }) => {
 
   const renderCheckedItem = (item) => {
     const { id, label, color } = item || {}
-    const style = getColorStyle(color)
+    const style = getFilterSelectStyle(color)
 
     return <Tag key={item.value} style={style} id={id} label={label} onRemove={handleDeleteItem} />
   }
