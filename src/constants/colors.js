@@ -1,6 +1,6 @@
-import { COLOR_TYPES } from './types'
+import { COLOR_TYPES, STATUS_TYPES } from './types'
 
-// export const FILTER_SELECT_COLOR = {
+// export const FILTER_COLOR = {
 //   [COLOR_TYPES.RED]: {
 //     100: {
 //       RGBA: 'rgb(255, 239, 237, 1)',
@@ -223,7 +223,7 @@ import { COLOR_TYPES } from './types'
 //   },
 // }
 
-export const FILTER_SELECT_COLOR = {
+export const FILTER_COLOR = {
   [COLOR_TYPES.RED]: {
     BOX_COLOR: {
       RGBA: 'rgba(255, 239, 237, 1)',
@@ -236,6 +236,10 @@ export const FILTER_SELECT_COLOR = {
     BADGE_COLOR: {
       RGBA: 'rgba(255, 226, 221, 1)',
       HEX: '#ffe2dd',
+    },
+    DOT_COLOR: {
+      RGBA: 'rgba(225, 111, 100, 1)',
+      HEX: '#e16f64',
     },
   },
   [COLOR_TYPES.PINK]: {
@@ -251,6 +255,10 @@ export const FILTER_SELECT_COLOR = {
       RGBA: 'rgba(245, 224, 233, 1)',
       HEX: '#f5e0e9',
     },
+    DOT_COLOR: {
+      RGBA: 'rgba(205, 116, 159, 1)',
+      HEX: '#cd749f',
+    },
   },
   [COLOR_TYPES.PURPLE]: {
     BOX_COLOR: {
@@ -264,6 +272,10 @@ export const FILTER_SELECT_COLOR = {
     BADGE_COLOR: {
       RGBA: 'rgba(232, 222, 238, 1)',
       HEX: '#e8deee',
+    },
+    DOT_COLOR: {
+      RGBA: 'rgba(167, 130, 195, 1)',
+      HEX: '#a782c3',
     },
   },
   [COLOR_TYPES.BLUE]: {
@@ -279,6 +291,10 @@ export const FILTER_SELECT_COLOR = {
       RGBA: 'rgba(211, 229, 239, 1)',
       HEX: '#d3e5ef',
     },
+    DOT_COLOR: {
+      RGBA: 'rgba(91, 151, 189, 1)',
+      HEX: '#5b97bd',
+    },
   },
   [COLOR_TYPES.GREEN]: {
     BOX_COLOR: {
@@ -292,6 +308,10 @@ export const FILTER_SELECT_COLOR = {
     BADGE_COLOR: {
       RGBA: 'rgba(219, 237, 219, 1)',
       HEX: '#dbeddb',
+    },
+    DOT_COLOR: {
+      RGBA: 'rgba(108, 155, 125, 1)',
+      HEX: '#6c9b7d',
     },
   },
   [COLOR_TYPES.YELLOW]: {
@@ -307,6 +327,10 @@ export const FILTER_SELECT_COLOR = {
       RGBA: 'rgba(253, 236, 200, 1)',
       HEX: '#fdecc8',
     },
+    DOT_COLOR: {
+      RGBA: 'rgba(203, 148, 51, 1)',
+      HEX: '#cb9433',
+    },
   },
   [COLOR_TYPES.ORANGE]: {
     BOX_COLOR: {
@@ -320,6 +344,10 @@ export const FILTER_SELECT_COLOR = {
     BADGE_COLOR: {
       RGBA: 'rgba(250, 222, 201, 1)',
       HEX: '#fadec9',
+    },
+    DOT_COLOR: {
+      RGBA: 'rgba(215, 129, 58, 1)',
+      HEX: '#d7813a',
     },
   },
   [COLOR_TYPES.BROWN]: {
@@ -335,6 +363,10 @@ export const FILTER_SELECT_COLOR = {
       RGBA: 'rgba(238, 224, 218, 1)',
       HEX: '#eee0da',
     },
+    DOT_COLOR: {
+      RGBA: 'rgba(187, 132, 108, 1)',
+      HEX: '#bb846c',
+    },
   },
   [COLOR_TYPES.GRAY]: {
     BOX_COLOR: {
@@ -348,6 +380,10 @@ export const FILTER_SELECT_COLOR = {
     BADGE_COLOR: {
       RGBA: 'rgba(227, 226, 224, 1)',
       HEX: '#e3e2e0',
+    },
+    DOT_COLOR: {
+      RGBA: 'rgba(145, 145, 142, 1)',
+      HEX: '#91918e',
     },
   },
   [COLOR_TYPES.LIGHT_GRAY]: {
@@ -363,5 +399,15 @@ export const FILTER_SELECT_COLOR = {
       RGBA: 'rgba(227, 226, 224, 0.5)',
       HEX: '#e3e2e080',
     },
+    DOT_COLOR: {
+      RGBA: 'rgba(145, 145, 142, 1)',
+      HEX: '#91918e',
+    },
   },
+}
+
+export const STATUS_COLORS = {
+  [STATUS_TYPES.TO_DO]: 'rgb(120, 119, 116)',
+  [STATUS_TYPES.IN_PROGRESS]: 'rgb(51, 126, 169)',
+  [STATUS_TYPES.COMPLETE]: 'rgb(68, 131, 97)',
 }

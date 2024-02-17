@@ -10,7 +10,7 @@ import {
 } from '@/components/icons'
 import { ExpenseTableHead } from '@/components/table/head'
 import { Tag } from '@/components/ui'
-import { FILTER_SELECT_COLOR, PROPERTY_TYPE } from '@/constants'
+import { FILTER_COLOR, PROPERTY_TYPE } from '@/constants'
 import data from '@/data/expense.json'
 import TableBody from './TableBody'
 
@@ -94,8 +94,8 @@ const defaultColumns = [
     render: (item) => {
       const { id, label, color } = item || {}
       const style = {
-        color: FILTER_SELECT_COLOR[color]?.TEXT_COLOR.RGBA,
-        backgroundColor: FILTER_SELECT_COLOR[color]?.BADGE_COLOR.RGBA,
+        color: FILTER_COLOR[color]?.TEXT_COLOR.RGBA,
+        backgroundColor: FILTER_COLOR[color]?.BADGE_COLOR.RGBA,
       }
       return <Tag size="medium" style={style} id={id} label={label} />
     },
