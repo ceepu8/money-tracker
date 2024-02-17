@@ -1,33 +1,8 @@
-import { Pressable } from '@react-aria/interactions'
-import { memo, useDeferredValue, useEffect, useRef } from 'react'
+import { useDeferredValue, useEffect, useRef } from 'react'
 import { XMarkIcon } from '@/components/icons'
-import { ButtonIcon, Input } from '@/components/ui'
-import { FILTER_SELECT_COLOR } from '@/constants'
+import { ButtonIcon, Input, Tag } from '@/components/ui'
 import { useBackspaceDetection } from '@/hooks/shared'
-import { cn } from '@/utils'
-
-const TagItem = memo(({ item, onDeleteItem }) => {
-  const { id, label, color } = item || {}
-
-  const style = {
-    color: FILTER_SELECT_COLOR[color].TEXT_COLOR.RGBA,
-    backgroundColor: FILTER_SELECT_COLOR[color].BADGE_COLOR.RGBA,
-  }
-
-  return (
-    <div
-      style={style}
-      className="flex-center h-[18px] w-max truncate rounded pl-1 text-xs leading-5"
-    >
-      <span>{label}</span>
-      <Pressable onPress={() => onDeleteItem(id)}>
-        <div className="flex-center size-[18px] cursor-pointer opacity-60 transition-[opacity] hover:opacity-40">
-          <XMarkIcon className="size-[11px] stroke-[3px]" />
-        </div>
-      </Pressable>
-    </div>
-  )
-})
+import { cn, getFilterSelectStyle } from '@/utils'
 
 const SelectTagInput = ({ value, setValue, setCheckedList, checkedList }) => {
   const placeholder = checkedList.length === 0 ? 'Select one or more options' : ''
@@ -54,7 +29,10 @@ const SelectTagInput = ({ value, setValue, setCheckedList, checkedList }) => {
   }
 
   const renderCheckedItem = (item) => {
-    return <TagItem key={item?.id} item={item} onDeleteItem={handleDeleteItem} />
+    const { id, label, color } = item || {}
+    const style = getFilterSelectStyle(color)
+
+    return <Tag key={item.value} style={style} id={id} label={label} onRemove={handleDeleteItem} />
   }
 
   useEffect(() => {

@@ -28,7 +28,6 @@ const TableBody = ({ dataSource, setDataSource, columns, handleSave }) => {
             type: col.type,
             editable: col.editable,
             dataIndex: col.dataIndex,
-            item: col,
           }
         },
       }

@@ -8,7 +8,7 @@ const ExtraSettingPopoverContent = ({ onDelete, onAdvancedFilter }) => {
         block
         type="text"
         size="medium"
-        className="!justify-start"
+        className="justify-start"
         icon={<TrashIcon className="size-4" />}
         onClick={onDelete}
       >
@@ -18,7 +18,7 @@ const ExtraSettingPopoverContent = ({ onDelete, onAdvancedFilter }) => {
         block
         type="text"
         size="medium"
-        className="!justify-start"
+        className="justify-start"
         icon={<MenuIcon className="size-4" />}
         onClick={onAdvancedFilter}
       >

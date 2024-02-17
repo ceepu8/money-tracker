@@ -91,7 +91,7 @@ const SortEditorContent = () => {
           <SortableList.DragHandle>
             <SixDotsVerticalIcon className="size-3 fill-[#7e7e7e]" />
           </SortableList.DragHandle>
-          <SortItem key={item.id} item={item} onDeleteItem={onDeleteItem} />
+          <SortItem item={item} onDeleteItem={onDeleteItem} />
         </div>
       </SortableList.Item>
     )

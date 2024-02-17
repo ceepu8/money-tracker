@@ -61,7 +61,7 @@ const DateFormatTimezoneSelect = () => {
           block
           size="small"
           type="text"
-          className="!justify-start"
+          className="justify-start"
           icon={<ClockIcon className="size-3.5" />}
         >
           <span>Date format & timezone</span>
