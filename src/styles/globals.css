@@ -133,8 +133,8 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: var(--white);
-    color: var(--black);
+    background-color: var(--bg);
+    color: var(--fg);
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
