@@ -1,52 +1,36 @@
-import { Form, Input } from 'antd'
-import { memo, useContext, useEffect, useRef, useState } from 'react'
-import { TableContext } from '../../context'
+import { memo } from 'react'
+import { PROPERTY_TYPE } from '@/constants'
+import DateCell from '../DateCell'
+import SelectCell from '../SelectCell'
+import TextCell from '../TextCell'
 
-const BodyCell = ({ title, editable, children, dataIndex, record, handleSave, ...restProps }) => {
-  const [editing, setEditing] = useState(false)
-  const inputRef = useRef(null)
-  const form = useContext(TableContext)
-  useEffect(() => {
-    if (editing) {
-      inputRef.current.focus()
-    }
-  }, [editing])
-  const toggleEdit = () => {
-    setEditing(!editing)
-    form.setFieldsValue({
-      [dataIndex]: record[dataIndex],
-    })
-  }
-  const save = async () => {
-    try {
-      const values = await form.validateFields()
-      toggleEdit()
-      handleSave({
-        ...record,
-        ...values,
-      })
-    } catch (errInfo) {
-      //   console.log('Save failed:', errInfo)
-    }
-  }
-  let childNode = children
-  if (editable) {
-    childNode = editing ? (
-      <Form.Item
-        style={{
-          margin: 0,
-        }}
-        name={dataIndex}
-      >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
-      </Form.Item>
-    ) : (
-      <div role="presentation" onClick={toggleEdit} className="editable-cell-value-wrap">
-        {children}
-      </div>
+export const PROPERTY_TYPE_CELL = {
+  [PROPERTY_TYPE.TEXT]: TextCell,
+  [PROPERTY_TYPE.NUMBER]: TextCell,
+  [PROPERTY_TYPE.SELECT]: SelectCell,
+  // [PROPERTY_TYPE.MULTI_SELECT]: SelectCell,
+  // [PROPERTY_TYPE.STATUS]: SelectCell,
+  [PROPERTY_TYPE.DATE]: DateCell,
+  // [PROPERTY_TYPE.FILES_AND_MEDIA]: DateCell,
+  // [PROPERTY_TYPE.URL]: DateCell,
+  // [PROPERTY_TYPE.CHECKBOX]: DateCell,
+  // [PROPERTY_TYPE.EMAIL]: DateCell,
+}
+
+const BodyCell = (props) => {
+  const { children, type } = props || {}
+
+  const Cell = PROPERTY_TYPE_CELL[type]
+
+  if (!Cell) {
+    return (
+      <td height="32" className="ant-table-cell !px-2">
+        <span className="truncate text-sm"> {children}</span>
+      </td>
     )
   }
-  return <td {...restProps}>{childNode}</td>
+
+  return <Cell {...props}>{children}</Cell>
 }
 
 export default memo(BodyCell)

@@ -4,9 +4,11 @@ import {
   ArrowUpIcon,
   CalculatorIcon,
   CalendarDaysIcon,
+  CheckIcon,
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  ClockIcon,
   EllipsisHorizontalIcon,
   LinkIcon,
   MagnifyingGlassIcon,
@@ -73,4 +75,6 @@ export {
   ArrowUpIcon,
   ArrowDownIcon,
   ArrowsUpDownIcon,
+  CheckIcon,
+  ClockIcon,
 }

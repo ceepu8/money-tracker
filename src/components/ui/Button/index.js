@@ -1,6 +1,8 @@
 import { Button as AntdButton, message } from 'antd'
 import noop from 'lodash/noop'
+
 import { cn } from '@/utils'
+
 import Link from '../Link'
 
 const ANTD_BUTTON_TYPES = ['default', 'primary', 'ghost', 'dashed', 'link', 'text', 'success']
@@ -9,7 +11,7 @@ const ANTD_BUTTON_TYPES = ['default', 'primary', 'ghost', 'dashed', 'link', 'tex
 
 const Button = ({
   label,
-  size = 'large',
+  size = 'middle',
   type = 'primary',
   disabled = false,
   htmlType = 'button',
@@ -20,7 +22,7 @@ const Button = ({
   href,
   ...props
 }) => {
-  const rootClassName = cn('flex-center')
+  const rootClassName = cn('flex items-center justify-center')
 
   const customType = ANTD_BUTTON_TYPES.includes(type) && htmlType !== 'submit' ? type : 'default'
 

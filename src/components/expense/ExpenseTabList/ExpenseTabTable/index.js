@@ -9,7 +9,8 @@ import {
   PlusIcon,
 } from '@/components/icons'
 import { ExpenseTableHead } from '@/components/table/head'
-import { PROPERTY_TYPE } from '@/constants'
+import { Tag } from '@/components/ui'
+import { FILTER_SELECT_COLOR, PROPERTY_TYPE } from '@/constants'
 import data from '@/data/expense.json'
 import TableBody from './TableBody'
 
@@ -20,9 +21,9 @@ const TableAddNewRow = ({ onClick }) => {
       onClick={onClick}
       className="sticky bottom-[-4px] left-0 z-20 flex h-10 w-full cursor-pointer items-center rounded-none border-b border-[#ededed] hover:bg-gray-50"
     >
-      <div className="sticky left-0 flex items-center gap-x-2 pl-4">
+      <div className="sticky left-0 flex items-center gap-x-2 pl-4 text-[rgba(55,_53,_47,_0.5)]">
         <PlusIcon className="size-4" />
-        <span>New</span>
+        <span className="text-sm">New</span>
       </div>
     </div>
   )
@@ -90,6 +91,14 @@ const defaultColumns = [
     id: 'category',
     width: 120,
     editable: true,
+    render: (item) => {
+      const { id, label, color } = item || {}
+      const style = {
+        color: FILTER_SELECT_COLOR[color]?.TEXT_COLOR.RGBA,
+        backgroundColor: FILTER_SELECT_COLOR[color]?.BADGE_COLOR.RGBA,
+      }
+      return <Tag size="medium" style={style} id={id} label={label} />
+    },
   },
   {
     title: 'Status',
@@ -122,7 +131,7 @@ const defaultColumns = [
 const ExpenseTabTable = () => {
   const [dataSource, setDataSource] = useState(data)
   const [columns, setColumns] = useState(defaultColumns)
-  const [count, setCount] = useState(2)
+  const [count, setCount] = useState(defaultColumns.length)
 
   // const handleDelete = (key) => {
   //   const newData = dataSource.filter((item) => item.key !== key)

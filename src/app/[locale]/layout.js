@@ -3,8 +3,10 @@ import { Montserrat, Roboto } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import NextTopLoader from 'nextjs-toploader'
 import { Suspense } from 'react'
+
 import { APP_NAME } from '@/constants'
 import { cn } from '@/utils'
+
 import Provider from './providers'
 
 export const metadata = {
@@ -13,8 +15,8 @@ export const metadata = {
 }
 
 const roboto = Roboto({
-  weight: '400',
   subsets: ['latin'],
+  weight: '400',
   variable: '--font-sans',
 })
 
@@ -35,7 +37,7 @@ async function LocaleLayout({ children, params: { locale }, modal }) {
 
   return (
     <html lang={locale} translate="no" suppressHydrationWarning>
-      <body className={cn(montserrat.variable, roboto.variable, 'min-h-screen font-sans')}>
+      <body className={cn(`${montserrat.variable} ${roboto.variable} min-h-screen font-sans`)}>
         <Suspense>
           <NextTopLoader />
           <NextIntlClientProvider locale={locale} messages={messages}>

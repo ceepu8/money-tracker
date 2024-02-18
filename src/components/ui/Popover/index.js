@@ -1,5 +1,6 @@
 import { Popover as AntdPopover } from 'antd'
 import isEmpty from 'lodash/isEmpty'
+import { cn } from '@/utils'
 
 const Popover = ({
   children,
@@ -14,6 +15,7 @@ const Popover = ({
   open,
   onOpenChange,
   style,
+  content,
   ...props
 }) => {
   const _arrow = !isEmpty(arrow) && {
@@ -55,8 +57,9 @@ const Popover = ({
       arrow={_arrow}
       autoAdjustOverflow="true"
       style={style}
-      rootClassName={rootClassName}
+      rootClassName={cn('rounded-[8px] border border-[#ededed]', rootClassName)}
       className={className}
+      content={content}
       {...props}
     >
       {children}

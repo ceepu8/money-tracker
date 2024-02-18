@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    /* ['light'] theme default */
+    /* ['pinky_lady'] theme default */
   }
 
-  [data-theme='light'] {
+  [data-theme='pinky_lady'] {
     --bg: #ffffff;
     --bg-light: #cbc7bf;
     --bg-lighter: #f2f0ec;
@@ -38,7 +38,7 @@
     --bg-red: #fbe4e4;
   }
 
-  [data-theme='dark'] {
+  [data-theme='ocean_night'] {
     --bg: #263238;
     --bg-light: #1e272c;
     --bg-lighter: #1e272c;
@@ -69,7 +69,7 @@
     --bg-red: #943844;
   }
 
-  [data-theme='ceepu'] {
+  [data-theme='cotton_candy'] {
     --bg: #f9f4f6;
     --bg-light: #e1a7b0;
     --bg-lighter: #ffeff1;
@@ -100,7 +100,7 @@
     --bg-red: #fbe4e4;
   }
 
-  [data-theme='tist'] {
+  [data-theme='dark_chocolate'] {
     --bg: #161b22;
     --bg-light: #161b22;
     --bg-lighter: #0d1117;
@@ -152,6 +152,10 @@
 
   .link-item {
     @apply transition-opacity hover:opacity-80;
+  }
+
+  .menu-item {
+    @apply h-7 cursor-pointer rounded px-2 text-sm transition-colors hover:bg-[rgba(55,_53,_47_,0.08)];
   }
 }
 
@@ -206,4 +210,3 @@ button:where(:not([class^='ant'])),
   background: #646565;
   border-radius: 5px;
 }
-/* -- END_SCROLLBAR_STYLE -- */

@@ -30,6 +30,20 @@ export const configTheme = {
       colorPrimaryHover: 'var(-primary)',
       controlOutline: 'var(--bg-gray)',
       optionSelectedBg: 'var(--selection)',
+      colorBgContainer: 'var(--bg)',
+    },
+    Table: {
+      borderColor: 'var(--border)',
+    },
+    Tabs: {
+      colorBorderSecondary: 'var(--border)',
+    },
+    Popover: {
+      colorBgElevated: 'var(--bg)',
+    },
+    Checkbox: {
+      colorPrimary: 'var(--main)',
+      colorPrimaryHover: 'var(--hover)',
     },
   },
 }

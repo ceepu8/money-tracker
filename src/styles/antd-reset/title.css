@@ -1,6 +1,5 @@
 .common-title .ant-input-outlined:focus,
 .common-title .ant-input-outlined:focus-within {
-  height: 46px !important;
   border: none;
   padding: 0;
   box-shadow: none;

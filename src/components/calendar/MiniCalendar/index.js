@@ -1,30 +1,17 @@
 'use client'
 
 import dayjs from 'dayjs'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import utc from 'dayjs/plugin/utc'
 import times from 'lodash/times'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons'
 import ButtonIcon from '@/components/ui/ButtonIcon'
-import { cn } from '@/utils'
+import { FORMAT_STRING } from '@/constants'
+import { cn, formatDate } from '@/utils'
 
-const CalendarDayItem = ({ value, isCurrent, isThisMonth, isFuture, className }) => {
-  return (
-    <span
-      className={cn(
-        'w-8 border-[2px] border-transparent text-center leading-[28px]',
-        'cursor-pointer',
-        isThisMonth ? 'font-medium text-gray-700' : 'text-gray-400',
-        isCurrent
-          ? 'rounded-full bg-red-500 text-white hover:bg-red-500/80'
-          : 'rounded bg-white hover:border-blue',
-        isFuture && 'cursor-default font-normal text-gray-400 hover:border-transparent',
-        className
-      )}
-    >
-      {dayjs(value).format('D')}
-    </span>
-  )
-}
+dayjs.extend(isSameOrBefore)
+dayjs.extend(utc)
 
 const MiniCalendarControl = ({ onPrevMonth, onNextMonth }) => {
   return (
@@ -45,59 +32,132 @@ const MiniCalendarControl = ({ onPrevMonth, onNextMonth }) => {
   )
 }
 
-const CalendarDayList = ({ pivot, month }) => {
-  let start = pivot
+const CalendarDayItem = memo(
+  ({
+    value,
+    isCurrent,
+    isThisMonth,
+    isFuture,
+    isActive,
+    isFirst,
+    isEnd,
+    isBetween,
+    onClick,
+    className,
+  }) => {
+    return (
+      <div
+        role="presentation"
+        className={cn(
+          'w-full border-[2px] border-transparent p-0.5 text-center text-sm leading-[24px]',
+          'cursor-pointer hover:rounded hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
+
+          isBetween &&
+            'cursor-pointer bg-[rgba(35,_131,_226,_0.15)] hover:border-blue hover:bg-[rgba(35,_131,_226,_0.15)]',
+
+          (isFuture || !isThisMonth) &&
+            'cursor-default text-gray-400 hover:border-transparent hover:bg-transparent',
+          !isThisMonth && 'text-gray-400',
+          isFuture && isThisMonth && isBetween && 'text-gray-700',
+
+          isFirst && 'rounded-l bg-blue text-white hover:rounded-r-none hover:bg-blue',
+          isEnd && 'rounded-r bg-blue text-white hover:rounded-l-none hover:bg-blue',
+
+          isActive && 'rounded bg-blue text-white hover:bg-blue',
+
+          className
+        )}
+        onClick={() => {
+          onClick(value)
+        }}
+      >
+        <p
+          className={cn(
+            'size-full',
+            isCurrent && !isFirst && !isEnd && !isActive && 'rounded-full bg-red-500 text-white'
+          )}
+        >
+          {dayjs(value).format('D')}
+        </p>
+      </div>
+    )
+  }
+)
+
+const CalendarDayList = ({ date, onChangeDate, endDate, startDate, month }) => {
+  const pivot = month.startOf('week')
+
+  const handleChangeDate = (value) => {
+    onChangeDate?.(value)
+  }
 
   const renderItem = (index) => {
-    const day = start.add(1, 'day')
-    start = start.add(1, 'day')
+    const day = pivot.add(index, 'day')
 
+    // always checked
     const isCurrent = dayjs().isSame(day, 'date')
-    const isThisMonth = dayjs(month).isSame(day, 'month')
-    const isFuture = day.diff(dayjs(), 'date') > 0
+    const isThisMonth = month.isSame(day, 'month')
+
+    // when only date received as prop, no future checked, no first, end , between checked for styling.
+    const isActive = date && dayjs(day).isSame(date, 'date')
+
+    // when startDate and endDate received as props, no date checked.
+    const isFuture = !date ? day.diff(dayjs(), 'date') > 0 : false
+    const isBetween =
+      !date && startDate && endDate && dayjs(day).isBetween(startDate, endDate, 'day', '[]')
+    const isFirst = !date && startDate && dayjs(day).isSame(startDate, 'date')
+    const isEnd = !date && endDate && dayjs(day).isSame(endDate, 'date')
 
     return (
       <CalendarDayItem
-        key={index}
+        key={day}
         value={day}
+        isEnd={isEnd}
+        isFirst={isFirst}
+        isActive={isActive}
+        isBetween={isBetween}
+        isFuture={isFuture}
         isCurrent={isCurrent}
         isThisMonth={isThisMonth}
-        isFuture={isFuture}
+        onClick={handleChangeDate}
       />
     )
   }
 
-  return <div className="grid grid-cols-7 gap-x-1">{times(42, renderItem)}</div>
+  return <div className="grid grid-cols-7 gap-x-0">{times(42, renderItem)}</div>
 }
 
-const MiniCalendarBody = ({ pivot, month }) => {
-  const DAY_OF_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-
-  const renderItem = (day) => {
+const MiniCalendarBody = ({ date, onChangeDate, startDate, endDate, month }) => {
+  const renderItem = (index) => {
     return (
       <span
+        key={index}
         className="w-8 text-center text-xs font-semibold leading-[32px] text-[#7e7e7e]"
-        key={day}
       >
-        {day}
+        {formatDate(dayjs().day(index), FORMAT_STRING.dd)}
       </span>
     )
   }
 
   return (
     <div>
-      <div className="flex w-full justify-between">{DAY_OF_WEEK.map(renderItem)}</div>
-      <CalendarDayList pivot={pivot} month={month} />
+      <div className="flex w-full justify-between">{times(7, renderItem)}</div>
+      <CalendarDayList
+        date={date}
+        onChangeDate={onChangeDate}
+        month={month}
+        startDate={startDate}
+        endDate={endDate}
+      />
     </div>
   )
 }
 
-const MiniCalendar = () => {
-  // day/ week/ month/ year
-  // const [active, setActive] = useState('day')
+const MiniCalendar = ({ date, onChangeDate, startDate, endDate }) => {
+  const defaultMonth =
+    date?.startOf('month') || startDate?.startOf('month') || dayjs().startOf('month')
 
-  const currentMonth = dayjs()
-  const [month, setMonth] = useState(currentMonth)
+  const [month, setMonth] = useState(defaultMonth)
 
   const onPrevMonth = () => {
     setMonth(() => month.subtract(1, 'month'))
@@ -107,20 +167,21 @@ const MiniCalendar = () => {
     setMonth(() => month.add(1, 'month'))
   }
 
-  const startDayOfMonth = dayjs(month).startOf('month').day()
-  const startDateOfMonth = dayjs(month).startOf('month')
-
-  const pivot = dayjs(startDateOfMonth).subtract(startDayOfMonth + 1, 'day')
-
   return (
-    <div className="flex flex-col rounded-md bg-white">
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-medium">{dayjs(month).format('MMM YYYY')}</span>
+    <div className="mx-auto flex w-full max-w-[224px] flex-col rounded-md bg-white">
+      <div className="flex items-center justify-between px-2">
+        <span className="text-sm font-semibold">{dayjs(month).format('MMM YYYY')}</span>
         <MiniCalendarControl onPrevMonth={onPrevMonth} onNextMonth={onNextMonth} />
       </div>
 
       <div className="flex-1">
-        <MiniCalendarBody pivot={pivot} month={month} />
+        <MiniCalendarBody
+          date={date}
+          month={month}
+          endDate={endDate}
+          startDate={startDate}
+          onChangeDate={onChangeDate}
+        />
       </div>
     </div>
   )

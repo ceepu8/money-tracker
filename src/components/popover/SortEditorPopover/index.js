@@ -32,7 +32,7 @@ const AddSortPopover = ({ list, open, setOpen, onAddItem }) => {
         type="text"
         size="small"
         icon={<PlusIcon className="size-4" />}
-        className="!-mx-2 !justify-start"
+        className="!-mx-1 !justify-start"
       >
         Add sort
       </Button>
@@ -91,7 +91,7 @@ const SortEditorContent = () => {
           <SortableList.DragHandle>
             <SixDotsVerticalIcon className="size-3 fill-[#7e7e7e]" />
           </SortableList.DragHandle>
-          <SortItem key={item.id} item={item} onDeleteItem={onDeleteItem} />
+          <SortItem item={item} onDeleteItem={onDeleteItem} />
         </div>
       </SortableList.Item>
     )
@@ -114,7 +114,7 @@ const SortEditorContent = () => {
         type="text"
         size="small"
         onClick={onRemoveAllSorts}
-        className="!-mx-2 !justify-start"
+        className="!-mx-1 !justify-start"
         icon={<TrashIcon className="size-4" />}
       >
         Delete sort

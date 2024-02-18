@@ -1,37 +1,8 @@
-'use client'
-
-import { Pressable } from '@react-aria/interactions'
-import { Input as AntdInput } from 'antd'
-import { forwardRef, memo, useDeferredValue, useMemo, useState } from 'react'
-import Divider from '@/components/ui/Divider'
+import { useDeferredValue, useMemo, useState } from 'react'
+import { Menu } from '@/components/common'
+import { Input } from '@/components/ui'
 import Popover from '@/components/ui/Popover'
 import { PROPERTY_TYPE_ICONS } from '@/constants/icons'
-
-const Input = forwardRef((props, ref) => {
-  return (
-    <AntdInput
-      ref={ref}
-      size="large"
-      placeholder={props?.placeholder || '入力してください。'}
-      id="_input_"
-      {...props}
-    />
-  )
-})
-
-const ExpenseFilterItem = memo(({ item, onClick }) => {
-  const { title, type } = item || {}
-  const Icon = PROPERTY_TYPE_ICONS[type]
-
-  return (
-    <Pressable onPress={onClick}>
-      <li className="-mx-2 flex h-8 cursor-pointer items-center gap-x-2 rounded-md pl-4 hover:bg-[#ededed]">
-        {Icon && <Icon className="size-4" />}
-        <span>{title}</span>
-      </li>
-    </Pressable>
-  )
-})
 
 const ExpenseFilterList = ({ list, addItem }) => {
   if (!list?.length) {
@@ -39,10 +10,20 @@ const ExpenseFilterList = ({ list, addItem }) => {
   }
 
   const renderItem = (item) => {
-    return <ExpenseFilterItem key={item.id} item={item} onClick={() => addItem(item)} />
+    const { id, title, type } = item || {}
+    const Icon = PROPERTY_TYPE_ICONS[type]
+
+    return (
+      <Menu.Item key={id} onClick={() => addItem(item)}>
+        <div className="flex items-center gap-x-2">
+          {Icon && <Icon className="size-4" />}
+          <span>{title}</span>
+        </div>
+      </Menu.Item>
+    )
   }
 
-  return <ul>{list.map(renderItem)}</ul>
+  return <Menu>{list.map(renderItem)}</Menu>
 }
 
 const PopoverContent = ({ list, extraContent, inputPlaceholder, addItem }) => {
@@ -62,15 +43,12 @@ const PopoverContent = ({ list, extraContent, inputPlaceholder, addItem }) => {
   )
 
   return (
-    <div className="flex flex-col gap-y-2">
-      <Input value={value} onChange={onChange} placeholder={inputPlaceholder} size="small" />
-      <ExpenseFilterList list={filterList} addItem={addItem} />
-      {extraContent && (
-        <>
-          <Divider className="!my-0" />
-          {extraContent}
-        </>
-      )}
+    <div className="flex flex-col divide-x-0 divide-y divide-[#ededed]">
+      <div className="space-y-2">
+        <Input value={value} onChange={onChange} placeholder={inputPlaceholder} size="small" />
+        <ExpenseFilterList list={filterList} addItem={addItem} />
+      </div>
+      {extraContent && <div className="mt-2 pt-2">{extraContent}</div>}
     </div>
   )
 }

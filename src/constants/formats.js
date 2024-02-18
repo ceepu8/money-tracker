@@ -1,0 +1,10 @@
+import { FORMAT_STRING } from './time'
+import { DATE_FORMAT_TYPES } from './types'
+
+export const DATE_FORMAT_FORMATS = {
+  [DATE_FORMAT_TYPES.FULL_DATE]: FORMAT_STRING.full_date,
+  [DATE_FORMAT_TYPES.MONTH_DAY_YEAR]: FORMAT_STRING.month_day_year,
+  [DATE_FORMAT_TYPES.DAY_MONTH_YEAR]: FORMAT_STRING.day_month_year,
+  [DATE_FORMAT_TYPES.YEAR_MONTH_DAY]: FORMAT_STRING.year_month_day,
+  [DATE_FORMAT_TYPES.RELATIVE]: 'Relative',
+}

@@ -50,22 +50,22 @@ const TistTest = () => {
         <div>Select</div>
         <ul className="w-full space-y-4">
           <li>
-            <Select />
+            <Select placeholder="Select option..." />
           </li>
           <li>
-            <Select mode="multiple" />
+            <Select placeholder="Select option..." mode="multiple" />
           </li>
           <li>
-            <Select mode="tags" />
+            <Select placeholder="Select option..." mode="tags" />
           </li>
           <li>
-            <Select variant="borderless" />
+            <Select placeholder="Select option..." variant="borderless" />
           </li>
           <li>
-            <Select variant="filled" />
+            <Select placeholder="Select option..." variant="filled" />
           </li>
           <li>
-            <Select variant="outlined" />
+            <Select placeholder="Select option..." variant="outlined" />
           </li>
         </ul>
       </dd>
