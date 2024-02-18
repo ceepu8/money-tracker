@@ -1,6 +1,6 @@
 import { Pressable } from '@react-aria/interactions'
 import { Typography } from 'antd'
-import { groupBy } from 'lodash'
+import groupBy from 'lodash/groupBy'
 
 import { memo, useState } from 'react'
 
