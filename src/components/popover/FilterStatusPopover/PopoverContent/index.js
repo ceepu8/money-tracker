@@ -77,9 +77,8 @@ const FilterStatusPopoverContent = ({ content }) => {
     setStatus((prev) => {
       if (checked) {
         return prev.filter((e) => !_item.includes(e))
-      } else {
-        return [...prev, ..._item]
       }
+      return [...prev, ..._item]
     })
   }
 
@@ -88,12 +87,12 @@ const FilterStatusPopoverContent = ({ content }) => {
     const checked = difference(children, status)?.length === 0
 
     const renderChildStatusItem = (childItem) => {
-      const { id, value: _value } = childItem || {}
+      const { id: childId, value: _value } = childItem || {}
       const checkedChild = status.some((e) => e?.value === _value)
 
       return (
         <StatusItem
-          key={id}
+          key={childId}
           item={childItem}
           checked={checkedChild}
           onPress={() => onChecked([childItem])}
