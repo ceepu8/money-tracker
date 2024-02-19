@@ -1,0 +1,120 @@
+#expense-table .ant-table-container {
+  border: none;
+}
+
+#expense-table .ant-table-container > .ant-table-content {
+  transition: visibility 150ms ease-in;
+  /* padding-bottom: 42px; */
+}
+
+#expense-table::-webkit-scrollbar {
+  height: 6px;
+}
+
+#expense-table::-webkit-scrollbar-thumb {
+  visibility: hidden;
+}
+
+#expense-table:active::-webkit-scrollbar-thumb,
+#expense-table:focus::-webkit-scrollbar-thumb,
+#expense-table:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > thead.ant-table-thead
+  > tr
+  > th.ant-table-cell {
+  background-color: transparent;
+  border-inline-end: none;
+  padding: 4px;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > thead.ant-table-thead
+  > tr
+  > th.ant-table-cell:first-child {
+  @apply pl-8;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
+  > td.ant-table-cell {
+  @apply p-0;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
+  > td#select_cell.ant-table-cell {
+  @apply truncate;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
+  > td.ant-table-cell:first-child {
+  @apply p-0;
+  border-inline-end: none;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
+  > td.ant-table-cell:last-child {
+  border-inline-end: none;
+  padding-right: 32px;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
+  > td.ant-table-cell
+  > .editable-cell-value-wrap {
+  padding: 8px;
+}
+
+#expense-table
+  .ant-table-container
+  .ant-table-content
+  > table
+  > tbody.ant-table-tbody
+  > tr
+  > td.ant-table-cell.ant-table-cell-row-hover {
+  @apply bg-transparent;
+}
+
+#expense-table .common-title.ant-input-outlined:focus,
+#expense-table .ant-input-outlined:focus-within {
+  @apply !h-[40px] border-none p-2;
+  box-shadow:
+    0px 4px 16px rgba(17, 17, 26, 0.2),
+    0px 8px 24px rgba(17, 17, 26, 0.2),
+    0px 16px 56px rgba(17, 17, 26, 0.2);
+}
+
+#expense-table .ant-form-item .ant-form-item-control-input {
+  @apply min-h-[38px];
+}

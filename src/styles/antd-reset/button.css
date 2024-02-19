@@ -1,0 +1,23 @@
+.ant-btn {
+  @apply !flex !items-center !text-sm;
+}
+
+.ant-btn.ant-btn-sm {
+  @apply !text-sm;
+}
+
+.ant-btn-default.ant-btn-background-ghost {
+  @apply !border-[rgba(55,_53,_47,_0.16)] !text-[rgba(55,_53,_47,_0.65)] hover:!bg-[rgba(55,_53,_47,_0.08)];
+}
+
+.ant-btn-primary.ant-btn-background-ghost {
+  @apply !border-[rgba(35,_131,_226,_0.35)] !bg-[rgba(35,_131,_226,_0.03)] !text-[rgb(35,_131,_226)] hover:!bg-[rgba(35,_131,_226,_0.07)];
+}
+
+.ant-btn.ant-btn-text {
+  @apply text-[rgb(35,_131,_226)] hover:!bg-[rgba(35,_131,_226,_0.07)];
+}
+
+.ant-btn-text:not(:disabled):not(.ant-btn-disabled):hover {
+  @apply !text-[rgb(35,_131,_226)];
+}

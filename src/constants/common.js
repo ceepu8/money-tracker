@@ -5,4 +5,9 @@ export const APP_NAME = 'MONEY_TRACKER'
 
 export const locales = ['en', 'vi']
 
-export const THEME = { LIGHT: 'light', DARK: 'dark' }
+export const THEME = {
+  PINKY_LADY: 'pinky_lady',
+  OCEAN_NIGHT: 'ocean_night',
+  COTTON_CANDY: 'cotton_candy',
+  DARK_CHOCOLATE: 'dark_chocolate',
+}

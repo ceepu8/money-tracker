@@ -2,6 +2,7 @@
 
 import { ConfigProvider } from 'antd'
 import localeVN from 'antd/locale/vi_VN'
+
 import { configTheme } from '@/configs/antd'
 import StyledComponentsRegistry from '@/libs/antd.registry'
 

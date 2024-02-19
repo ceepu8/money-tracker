@@ -1,14 +1,15 @@
 'use client'
 
 import { Input as AntdInput } from 'antd'
+
 import { forwardRef } from 'react'
 
 const Input = forwardRef((props, ref) => {
   return (
     <AntdInput
       ref={ref}
-      size="large"
-      placeholder={props?.placeholder || '入力してください。'}
+      size="middle"
+      placeholder={props?.placeholder || 'Input content...'}
       id="_input_"
       {...props}
     />

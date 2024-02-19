@@ -4,16 +4,47 @@ export const configTheme = {
     fontSize: 16,
     fontFamily: 'var(--font-sans)',
 
-    colorBorder: 'rgba(55, 53, 47, 0.16)',
-
-    colorPrimary: '#1b84e2',
-
-    colorBgBase: '#fff',
-    colorTextBase: 'var(--text-primary)',
-    colorBgContainer: '#fff',
+    colorBorder: 'var(--border)',
+    colorPrimary: 'var(--main)',
+    colorBgBase: 'var(--bg)',
+    colorTextBase: 'var(--fg)',
+    colorBgContainer: 'var(--bg)',
 
     controlHeightLG: 48,
     fontSizeLG: 16,
+  },
+  components: {
+    Button: {
+      colorPrimary: 'var(--main)',
+      hoverBorderColor: 'var(--hover)',
+      activeBorderColor: 'var(--selection)',
+      controlOutline: 'var(--bg-gray)',
+    },
+    Input: {
+      activeBorderColor: 'var(--selection)',
+      hoverBorderColor: 'var(--hover)',
+      controlOutline: 'var(--bg-gray)',
+    },
+    Select: {
+      colorPrimary: 'var(--main)',
+      colorPrimaryHover: 'var(-primary)',
+      controlOutline: 'var(--bg-gray)',
+      optionSelectedBg: 'var(--selection)',
+      colorBgContainer: 'var(--bg)',
+    },
+    Table: {
+      borderColor: 'var(--border)',
+    },
+    Tabs: {
+      colorBorderSecondary: 'var(--border)',
+    },
+    Popover: {
+      colorBgElevated: 'var(--bg)',
+    },
+    Checkbox: {
+      colorPrimary: 'var(--main)',
+      colorPrimaryHover: 'var(--hover)',
+    },
   },
 }
 

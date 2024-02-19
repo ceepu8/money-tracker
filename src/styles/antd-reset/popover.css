@@ -1,0 +1,38 @@
+.filter_popover .ant-select-single {
+  @apply h-[18px];
+}
+
+.filter_popover .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  @apply rounded border-none px-1;
+}
+
+.filter_popover
+  .ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(
+    .ant-pagination-size-changer
+  ):hover
+  .ant-select-selector {
+  @apply bg-light-gray;
+}
+
+.filter_popover
+  .ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(
+    .ant-select-customize-input
+  ):not(.ant-pagination-size-changer)
+  .ant-select-selector {
+  @apply shadow-none;
+}
+
+.filter_popover .ant-select-single .ant-select-selector .ant-select-selection-item,
+.ant-select-single .ant-select-selector .ant-select-selection-placeholder {
+  @apply text-xs font-bold lowercase leading-[18px];
+  padding-inline-end: 10px;
+}
+
+.filter_popover .ant-select .ant-select-arrow {
+  @apply size-[10px] h-[14px];
+  inset-inline-end: 2px;
+}
+
+.filter_popover.filter_select_popover #_input_ {
+  @apply !h-[18px] !border-none !bg-light-gray !px-0.5 !leading-[18px] !shadow-none;
+}

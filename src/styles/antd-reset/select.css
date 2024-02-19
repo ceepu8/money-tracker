@@ -1,0 +1,28 @@
+.ant-select-single.ant-select-lg .ant-select-selector {
+  @apply !text-base;
+}
+
+.ant-select-single .ant-select-selector {
+  @apply !text-sm;
+}
+
+.ant-select-dropdown .ant-select-item {
+  @apply !text-sm;
+}
+
+.ant-select-single.ant-select-open .ant-select-selection-item {
+  @apply !text-black;
+}
+
+[class^='ant-select'],
+[class*='ant-select'] {
+  font-size: inherit;
+}
+
+.ant-select-dropdown {
+  @apply !bg-[var(--bg)];
+}
+
+.ant-select {
+  @apply w-full;
+}

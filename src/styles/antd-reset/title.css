@@ -1,0 +1,18 @@
+.common-title .ant-input-outlined:focus,
+.common-title .ant-input-outlined:focus-within {
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+.common-title.ant-typography-edit-content {
+  transition: none;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  inset-inline-start: 0;
+}
+
+.common-title.ant-typography-edit-content .ant-typography-edit-content-confirm {
+  display: none;
+}
