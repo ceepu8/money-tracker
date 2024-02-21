@@ -1,6 +1,6 @@
-import { FILTER_SELECT_COLOR } from './colors'
+import { FILTER_COLOR, STATUS_COLORS } from './colors'
 import { DATE_FORMAT_FORMATS } from './formats'
-import { PROPERTY_TYPE_ICONS } from './icons'
+import { PROPERTY_TYPE_ICONS, STATUS_ICONS } from './icons'
 import {
   COLOR_TEXTS,
   DATE_FORMAT_AND_TIMEZONE_TEXTS,
@@ -13,6 +13,7 @@ import {
   NOT_INCLUDE_TIME_REMIND_TEXTS,
   PLURAL_TIME_UNIT_TEXT,
   PROPERTY_TYPE_TEXT,
+  STATUS_TEXTS,
   TIME_UNIT_TEXT,
 } from './texts'
 import {
@@ -27,6 +28,7 @@ import {
   INCLUDE_TIME_REMIND_TYPES,
   NOT_INCLUDE_TIME_REMIND_TYPES,
   PROPERTY_TYPE,
+  STATUS_TYPES,
   TIME_UNIT_TYPE,
 } from './types'
 
@@ -71,8 +73,8 @@ export const FILTER_SELECT_OPTIONS = Object.values(FILTER_SELECT_TYPE).map((type
   value: type,
 }))
 
-export const FILTER_SELECT_COLOR_OPTIONS = Object.values(COLOR_TYPES).map((type) => ({
-  color: FILTER_SELECT_COLOR[type],
+export const FILTER_COLOR_OPTIONS = Object.values(COLOR_TYPES).map((type) => ({
+  color: FILTER_COLOR[type],
   label: COLOR_TEXTS[type],
   value: type,
 }))
@@ -100,4 +102,11 @@ export const DATE_FORMAT_OPTIONS = Object.values(DATE_FORMAT_TYPES).map((type) =
   value: type,
   format: DATE_FORMAT_FORMATS[type],
   label: DATE_FORMAT_TEXTS[type],
+}))
+
+export const STATUS_OPTIONS = Object.values(STATUS_TYPES).map((type) => ({
+  value: type,
+  icon: STATUS_ICONS[type],
+  label: STATUS_TEXTS[type],
+  color: STATUS_COLORS[type],
 }))

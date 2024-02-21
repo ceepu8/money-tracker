@@ -69,7 +69,7 @@ export const COLOR_TYPES = {
   ORANGE: 'orange',
   BROWN: 'brown',
   GRAY: 'gray',
-  LIGHT_GRAY: 'lightGray',
+  LIGHT_GRAY: 'light-gray',
 }
 
 export const NOT_INCLUDE_TIME_REMIND_TYPES = {
@@ -105,4 +105,10 @@ export const DATE_FORMAT_AND_TIMEZONE_TYPES = {
   DATE_FORMAT: 'dateFormat',
   TIME_FORMAT: 'timeFormat',
   TIMEZONE: 'timezone',
+}
+
+export const STATUS_TYPES = {
+  TO_DO: 'to-do',
+  IN_PROGRESS: 'in-progress',
+  COMPLETE: 'complete',
 }

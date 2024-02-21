@@ -2,11 +2,12 @@ import {
   FilterDatePopover,
   FilterNumberPopover,
   FilterSelectPopover,
+  FilterStatusPopover,
   FilterTextPopover,
 } from '@/components/popover'
 
 export const PROPERTY_TYPE_POPOVER = {
-  // status: CalendarDaysIcon,
+  status: FilterStatusPopover,
   date: FilterDatePopover,
   text: FilterTextPopover,
   url: FilterTextPopover,

@@ -1,0 +1,53 @@
+[
+    {
+        "children": [
+            {
+                "color": "purple",
+                "id": 11,
+                "label": "hello eny",
+                "value": "hello-eny"
+            },
+            {
+                "color": "red",
+                "id": 12,
+                "label": "Not started",
+                "value": "not-started"
+            }
+        ],
+        "id": 1,
+        "label": "To-do",
+        "value": "to-do"
+    },
+    {
+        "children": [
+            {
+                "color": "green",
+                "id": 21,
+                "label": "In progress",
+                "value": "in-progress"
+            }
+        ],
+        "id": 2,
+        "label": "In progress",
+        "value": "in-progress"
+    },
+    {
+        "children": [
+            {
+                "color": "light-gray",
+                "id": 31,
+                "label": "Done",
+                "value": "done"
+            },
+            {
+                "color": "pink",
+                "id": 32,
+                "label": "Completed",
+                "value": "completed"
+            }
+        ],
+        "id": 3,
+        "label": "Complete",
+        "value": "complete"
+    }
+]

@@ -2,7 +2,7 @@ import { memo, useDeferredValue, useState } from 'react'
 import { Menu } from '@/components/common'
 import { EllipsisHorizontalIcon, TrashIcon } from '@/components/icons'
 import { Button, ButtonIcon, Divider, Input, Popover } from '@/components/ui'
-import { FILTER_SELECT_COLOR_OPTIONS } from '@/constants'
+import { FILTER_COLOR_OPTIONS } from '@/constants'
 
 const ColorMenuItem = memo(({ item }) => {
   const {
@@ -38,7 +38,7 @@ const ColorMenu = ({ colorValue }) => {
   return (
     <div>
       <span className="pl-3 text-xs text-[rgba(55,_53,_47,_0.65)]">Colors</span>
-      <Menu>{FILTER_SELECT_COLOR_OPTIONS.map(renderItem)}</Menu>
+      <Menu>{FILTER_COLOR_OPTIONS.map(renderItem)}</Menu>
     </div>
   )
 }
