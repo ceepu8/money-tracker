@@ -1,8 +1,8 @@
 import { Pressable } from '@react-aria/interactions'
 import { Typography } from 'antd'
-import groupBy from 'lodash/groupBy'
+import { difference, groupBy } from 'lodash'
 
-import { memo, useState } from 'react'
+import { useState } from 'react'
 
 import { Menu } from '@/components/common'
 import ExtraSettingPopover from '@/components/popover/ExtraSettingPopover'
@@ -37,14 +37,13 @@ const PopoverHeader = ({ title }) => {
   )
 }
 
-const StatusItem = memo(({ item, onPress, checked }) => {
+const StatusItem = ({ item, onPress, checked }) => {
   const { id, value, label, color: _childColor, children } = item || {}
-
   const { color, icon: Icon } = groupBy(STATUS_OPTIONS, 'value')[value]?.[0] || {}
   const { BADGE_COLOR, TEXT_COLOR, DOT_COLOR } = FILTER_COLOR[_childColor] || {}
 
   return (
-    <Pressable onPress={() => onPress(id)}>
+    <Pressable onPress={() => onPress([id])}>
       <div className="menu-item flex items-center gap-x-2">
         <Checkbox name={label} checked={checked} />
         {children?.length > 0 ? (
@@ -66,38 +65,46 @@ const StatusItem = memo(({ item, onPress, checked }) => {
       </div>
     </Pressable>
   )
-})
+}
 
-const FilterStatusPopoverContent = () => {
-  const [statusIds, setStatusIds] = useState([])
+const FilterStatusPopoverContent = ({ content }) => {
+  const { title } = content || {}
+  const [status, setStatus] = useState([])
 
-  const onChecked = (id) => {
-    setStatusIds((prev) => {
-      if (statusIds.includes(id)) {
-        return prev.filter((_id) => _id !== id)
+  const onChecked = (_item) => {
+    const checked = difference(_item, status)?.length === 0
+
+    setStatus((prev) => {
+      if (checked) {
+        return prev.filter((e) => !_item.includes(e))
+      } else {
+        return [...prev, ..._item]
       }
-      return [...prev, id]
     })
   }
 
   const renderStatusItem = (item) => {
     const { id, children } = item || {}
-    const checked = statusIds.includes(id)
+    const checked = difference(children, status)?.length === 0
 
     const renderChildStatusItem = (childItem) => {
+      const { id, value: _value } = childItem || {}
+      const checkedChild = status.some((e) => e?.value === _value)
+
       return (
         <StatusItem
+          key={id}
           item={childItem}
-          checked={statusIds.includes(childItem?.id) || checked}
-          onPress={onChecked}
+          checked={checkedChild}
+          onPress={() => onChecked([childItem])}
         />
       )
     }
 
     return (
       <Menu.Item key={id} style={{ height: 'auto' }} className="!px-0 hover:!bg-transparent">
-        <div className="flex w-full flex-col">
-          <StatusItem item={item} onPress={onChecked} checked={checked} />
+        <div className="w-full">
+          <StatusItem item={item} onPress={() => onChecked(children)} checked={checked} />
           <Menu className="pl-4">{children.map(renderChildStatusItem)}</Menu>
         </div>
       </Menu.Item>
@@ -106,7 +113,7 @@ const FilterStatusPopoverContent = () => {
 
   return (
     <div className="filter_popover filter_select_popover -m-1 flex flex-col gap-y-1">
-      <PopoverHeader title="Status" />
+      <PopoverHeader title={title} />
       <Menu className="">{STATUS_LIST_RAW_DATA.map(renderStatusItem)}</Menu>
     </div>
   )
